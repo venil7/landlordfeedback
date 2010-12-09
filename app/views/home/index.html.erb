@@ -1,0 +1,88 @@
+<div id="homeheader">
+	<div id="mainimg">
+		<div id="map" style="width:980px;height:330px;background:#abc;"></div>
+		<div id="searchform">
+				<form id="propertysearch" class="propertysearch">
+						<input type="text" name="searchaddress" id="searchaddress"/>
+						<input type="submit" value="&nbsp;Search&nbsp;"/>
+				</form>
+		</div>
+		<div id="addbutton">
+			Add Property
+		</div>
+	</div>
+
+	<!-- div id="rightboxes">
+		<div class="box1">
+			<p class="rotate">
+				<a href="#"><span>What we do ?</span></a>
+			</p>
+		</div>
+		<div class="box2">
+			<p class="rotate">
+				<a href="#"><span>How we do it ?</span></a>
+			</p>
+		</div>
+		<div class="box3">
+			<p class="rotate">
+				<a href="#"><span>What our clients say ?</span></a>
+			</p>
+		</div>
+	</div -->
+	
+	<div class="clear">
+	</div>
+</div>
+<div id="maincontent">
+	<div id="threecol">
+		<div class="col1">
+			<h2>What is it about? </h2>
+			<p>
+				CSS Heaven - 2 is a Free CSS Template designed by Roshan and released by CSSHeaven.org. This template suitable for small business or personal websites.
+			</p>
+		</div>
+		<div class="col2">
+			<h2>Why leave feedback?</h2>
+			<p>
+				That's all and some lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer aliquam pulvinar adipiscing. In euismod nunc vel mauris placerat vitae fermentum lacus pharetra.
+			</p>
+		</div>
+		<div class="col3">
+			<h2>Why look for feedback?</h2>
+			<p>
+				This template is released under General Public License (GPL). You may modify, use, or redistribute this template. This tempalte comes without any warranty.
+			</p>
+		</div>
+		<div class="clear">
+		</div>
+	</div>
+	<div class="clear bordered">
+	</div>
+	<div id="page">
+		<h2 class="subhead"><span>Latest from the blog</span></h2>
+		<% @posts.each do |post| %>
+		  <%url = {:controller=>:blog,:action=>:view,:id=>post.id}%>
+		  <div class="post">
+			  <div class="posthead">
+				  <p class="date">
+					  <%= post.updated_at %>
+				  </p>
+				  <h3><a href="#"><%= link_to post.title, url %></h3>
+				  <p class="postmeta">
+					  By <%= post.author %>  | <!-- a href="#">10 Comments</a -->
+				  </p>
+			  </div>
+			  <p>
+          <%= post.entry[0,400] %>
+			    <%= link_to "more..", url %>
+			  </p>
+		  </div>
+		<% end %>
+	</div>
+	<div id="sidebar">
+    <%= render "shared/latest_feedbacks", :feedbacks => @latest_feedbacks %>
+	</div>
+	<div class="clear">
+	</div>
+</div>
+<%= javascript_include_tag "map/map.js" %>

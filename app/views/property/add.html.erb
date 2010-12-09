@@ -1,0 +1,70 @@
+<div id="maincontent">
+	<div id="page">
+		<div class="post">
+		  <div class="posthead">
+      <h1>Add a new property</h1>
+      <p>
+        We've made a best guess at property address, please make sure all details are entered correctly
+      </p>
+      </div>
+      <div class="form2 formstyle">
+        <%= form_for(@property,:as=> :property, :url =>{ :controller=>:property, :action=>"create" }) do |p| %>
+          <%= p.hidden_field(:lat) %>
+          <%= p.hidden_field(:lng) %>
+	        <div class="fieldsets">
+		        <h3>New Property Address</h3>
+		        <div class="clear">
+		        </div>
+		        <p class="info">
+			         All fields marked with * are mandatory
+		        </p>
+        		<%= render "shared/error_list", :item => @property %>
+		        <div class="textfield fields">
+			        <label>Address*</label>
+              <%= p.text_field(:address) %>
+		        </div>
+		        <div class="clear">
+		        </div>
+		        <div class="textfield fields">
+			        <label>Post Code*</label>
+			        <%= p.text_field(:postcode) %>
+		        </div>
+		        <div class="clear">
+		        </div>
+		        <div class="textfield fields">
+			        <label>Property type*</label>
+			        <%= p.select(:propertytype_id, options_for_select(@propertytypes)) %>
+			         &nbsp;
+		        </div>
+		        <div class="clear"></div>
+		        <div class="clear"></div>
+	        </div>
+	        <div class="fieldsets">
+	          <div class="textfield fields">
+			        <%= p.check_box(:accept_terms, :class=>"inline") %>
+			        <label class="inline">I Agree to Landlord feedback <%= link_to "terms", :anchor=>:terms %> of posting*</label>
+		        </div>
+		        <%= p.submit("Submit", :class=>:btn1) %>
+	        </div>
+        <% end %>
+      </div>
+    </div>
+    
+    <div class="post">
+      <a name="terms"></a>
+      <h3>Terms</h3>
+      <p>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse at libero leo, non tristique lorem. Fusce sagittis sollicitudin orci eget porta. Maecenas magna eros, consequat ut dignissim ac, eleifend bibendum magna. Praesent venenatis libero nec nisi fringilla vitae lacinia velit eleifend. Aenean id elementum eros. Suspendisse vel mauris ac nisl egestas gravida. Praesent eu neque at lacus posuere tincidunt dignissim in nunc. Donec arcu ipsum, faucibus ut viverra id, fermentum eu leo. Proin id interdum velit. Proin bibendum lectus bibendum nisi vehicula interdum. Nulla condimentum felis eget purus ullamcorper consectetur vel vitae nisl. Cras in lobortis augue. Quisque vitae augue neque, eget mollis mauris. Vivamus dui nisi, malesuada quis pellentesque vel, lacinia vel ante. 
+      </p>
+    </div>
+	</div>
+	<div id="sidebar">
+	  <h1>Map</h1>
+	  <%= google_static_map :lat=>@property.lat, :lng=>@property.lng %>
+	  <div class="clear">&nbsp;
+		        </div>
+		<%= render "shared/latest_feedbacks", :feedbacks => @latest_feedbacks %>
+	</div>
+	<div class="clear">
+	</div>
+</div>

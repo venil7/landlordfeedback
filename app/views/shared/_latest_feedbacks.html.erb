@@ -1,0 +1,9 @@
+<h2>Latest Feedbacks</h2>
+<ul class="posts">
+  <% feedbacks.each do |feedback| %>
+	  <li>
+	    <%= link_to feedback.property.address, :controller=>:feedback, :action=>:view, :id=>feedback.id%>
+	    <span><%= feedback.updated_at%> | 12 Comments</span>
+	  </li>
+	<% end %>
+</ul>
