@@ -65,7 +65,7 @@ CREATE TABLE `entries` (
   `entrytype_id` int(11) NOT NULL,
   `feedback_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
-  `entry` text CHARACTER SET latin1 NOT NULL,
+  `description` text CHARACTER SET latin1,
   `rating` int(11) NOT NULL,
   `updated_at` datetime NOT NULL,
   PRIMARY KEY (`id`)
@@ -80,6 +80,31 @@ LOCK TABLES `entries` WRITE;
 /*!40000 ALTER TABLE `entries` DISABLE KEYS */;
 INSERT INTO `entries` VALUES (1,1,1,2,'very baad apartment',1,'2010-10-17 22:04:44'),(2,3,1,2,'very bad landlord',1,'2010-10-17 22:05:28'),(9,4,15,2,'neigbours are very good',0,'2010-10-24 02:02:47'),(8,2,15,2,'shittiest agency ever',0,'2010-10-24 01:20:14'),(7,2,15,2,'agency just suxx',3,'2010-10-24 00:21:33'),(10,3,15,2,'area is so-so',3,'2010-10-24 02:03:59'),(11,2,8,2,'suxx',1,'2010-10-25 20:50:46'),(12,3,8,2,'<a href=\'http://google.com\'>click me </a>',3,'2010-10-25 20:55:01'),(13,1,16,2,'<a href=\'#\'>sss</a>',3,'2010-10-25 21:03:40'),(14,2,13,2,'some text',3,'2010-10-25 21:23:51'),(15,1,17,2,'Very decent landlord',5,'2010-10-31 10:15:20'),(16,2,17,2,'Agency, is so so, but it didnt matter',3,'2010-10-31 10:15:48'),(17,4,17,2,'neighbours are fine',4,'2010-10-31 10:16:02'),(18,3,17,2,'are is good',5,'2010-10-31 10:16:16'),(19,2,18,2,'agency suxx',2,'2010-11-20 18:56:16'),(20,3,18,2,'rea is all right',3,'2010-11-20 20:45:10'),(21,3,21,2,'area is allriigh',3,'2010-11-28 12:31:11'),(22,2,22,2,'agency suxx',2,'2010-11-28 20:23:25'),(23,3,23,2,'qaqaqasdsds',5,'2010-11-28 23:01:14'),(24,1,23,2,'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',5,'2010-11-28 23:02:03');
 /*!40000 ALTER TABLE `entries` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `entrytypes`
+--
+
+DROP TABLE IF EXISTS `entrytypes`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `entrytypes` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(50) CHARACTER SET latin1 NOT NULL,
+  `comment` text CHARACTER SET latin1,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `entrytypes`
+--
+
+LOCK TABLES `entrytypes` WRITE;
+/*!40000 ALTER TABLE `entrytypes` DISABLE KEYS */;
+INSERT INTO `entrytypes` VALUES (1,'Ladnlord Feedback','Anything you have to say about landlord..'),(2,'Agency','Anything you want to say about agency'),(3,'Area','Anything you want to say about area'),(4,'Neighbours','Anything about neighbours ');
+/*!40000 ALTER TABLE `entrytypes` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -134,31 +159,6 @@ INSERT INTO `feedbacks` VALUES (15,11,2,12,'2010-10-31','some name','some agency
 UNLOCK TABLES;
 
 --
--- Table structure for table `feedbacktypes`
---
-
-DROP TABLE IF EXISTS `feedbacktypes`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `feedbacktypes` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(50) CHARACTER SET latin1 NOT NULL,
-  `comment` text CHARACTER SET latin1,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `feedbacktypes`
---
-
-LOCK TABLES `feedbacktypes` WRITE;
-/*!40000 ALTER TABLE `feedbacktypes` DISABLE KEYS */;
-INSERT INTO `feedbacktypes` VALUES (1,'Ladnlord Feedback','Anything you have to say about landlord..'),(2,'Agency','Anything you want to say about agency'),(3,'Area','Anything you want to say about area'),(4,'Neighbours','Anything about neighbours ');
-/*!40000 ALTER TABLE `feedbacktypes` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `photos`
 --
 
@@ -175,7 +175,7 @@ CREATE TABLE `photos` (
   `photo_file_size` int(11) DEFAULT NULL,
   `photo_updated_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -203,7 +203,7 @@ CREATE TABLE `posts` (
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -312,7 +312,7 @@ CREATE TABLE `users` (
   `updated_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `alias` (`alias`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -375,7 +375,7 @@ CREATE TABLE `entries` (
   `entrytype_id` int(11) NOT NULL,
   `feedback_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
-  `entry` text CHARACTER SET latin1 NOT NULL,
+  `description` text CHARACTER SET latin1,
   `rating` int(11) NOT NULL,
   `updated_at` datetime NOT NULL,
   PRIMARY KEY (`id`)
@@ -390,6 +390,31 @@ LOCK TABLES `entries` WRITE;
 /*!40000 ALTER TABLE `entries` DISABLE KEYS */;
 INSERT INTO `entries` VALUES (1,1,1,2,'very baad apartment',1,'2010-10-17 22:04:44'),(2,3,1,2,'very bad landlord',1,'2010-10-17 22:05:28'),(9,4,15,2,'neigbours are very good',0,'2010-10-24 02:02:47'),(8,2,15,2,'shittiest agency ever',0,'2010-10-24 01:20:14'),(7,2,15,2,'agency just suxx',3,'2010-10-24 00:21:33'),(10,3,15,2,'area is so-so',3,'2010-10-24 02:03:59'),(11,2,8,2,'suxx',1,'2010-10-25 20:50:46'),(12,3,8,2,'<a href=\'http://google.com\'>click me </a>',3,'2010-10-25 20:55:01'),(13,1,16,2,'<a href=\'#\'>sss</a>',3,'2010-10-25 21:03:40'),(14,2,13,2,'some text',3,'2010-10-25 21:23:51'),(15,1,17,2,'Very decent landlord',5,'2010-10-31 10:15:20'),(16,2,17,2,'Agency, is so so, but it didnt matter',3,'2010-10-31 10:15:48'),(17,4,17,2,'neighbours are fine',4,'2010-10-31 10:16:02'),(18,3,17,2,'are is good',5,'2010-10-31 10:16:16'),(19,2,18,2,'agency suxx',2,'2010-11-20 18:56:16'),(20,3,18,2,'rea is all right',3,'2010-11-20 20:45:10'),(21,3,21,2,'area is allriigh',3,'2010-11-28 12:31:11'),(22,2,22,2,'agency suxx',2,'2010-11-28 20:23:25'),(23,3,23,2,'qaqaqasdsds',5,'2010-11-28 23:01:14'),(24,1,23,2,'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',5,'2010-11-28 23:02:03');
 /*!40000 ALTER TABLE `entries` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `entrytypes`
+--
+
+DROP TABLE IF EXISTS `entrytypes`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `entrytypes` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(50) CHARACTER SET latin1 NOT NULL,
+  `comment` text CHARACTER SET latin1,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `entrytypes`
+--
+
+LOCK TABLES `entrytypes` WRITE;
+/*!40000 ALTER TABLE `entrytypes` DISABLE KEYS */;
+INSERT INTO `entrytypes` VALUES (1,'Ladnlord Feedback','Anything you have to say about landlord..'),(2,'Agency','Anything you want to say about agency'),(3,'Area','Anything you want to say about area'),(4,'Neighbours','Anything about neighbours ');
+/*!40000 ALTER TABLE `entrytypes` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -444,31 +469,6 @@ INSERT INTO `feedbacks` VALUES (15,11,2,12,'2010-10-31','some name','some agency
 UNLOCK TABLES;
 
 --
--- Table structure for table `feedbacktypes`
---
-
-DROP TABLE IF EXISTS `feedbacktypes`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `feedbacktypes` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(50) CHARACTER SET latin1 NOT NULL,
-  `comment` text CHARACTER SET latin1,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `feedbacktypes`
---
-
-LOCK TABLES `feedbacktypes` WRITE;
-/*!40000 ALTER TABLE `feedbacktypes` DISABLE KEYS */;
-INSERT INTO `feedbacktypes` VALUES (1,'Ladnlord Feedback','Anything you have to say about landlord..'),(2,'Agency','Anything you want to say about agency'),(3,'Area','Anything you want to say about area'),(4,'Neighbours','Anything about neighbours ');
-/*!40000 ALTER TABLE `feedbacktypes` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `photos`
 --
 
@@ -485,7 +485,7 @@ CREATE TABLE `photos` (
   `photo_file_size` int(11) DEFAULT NULL,
   `photo_updated_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -513,7 +513,7 @@ CREATE TABLE `posts` (
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -622,7 +622,7 @@ CREATE TABLE `users` (
   `updated_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `alias` (`alias`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -694,4 +694,4 @@ USE `llfb`;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2010-12-11 11:51:29
+-- Dump completed on 2010-12-11 13:25:42
