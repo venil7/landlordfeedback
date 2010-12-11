@@ -15,27 +15,6 @@
       <% end %>
 		</div>
 
-		<% if @can_upload_images %>
-		<!-- photos upload -->
-		<div class="post">
-		  <div class="posthead">
-		    <h2>upload photo</h2>
-		  </div>
-		  <div class="form2 formstyle">
-		    <%= form_for(@photo, :as=>:photo, :url=>{:controller=>:ajax,:action=>:create_property_img}, :html=>{:multipart=>true}) do |p| %>
-		    <div class="fieldsets">
-	          <%= p.hidden_field(:property_id) %>
-            <div class="textfield fields">
-		          <label>upload picture</label>
-              <%= p.file_field(:photo) %>
-		        </div>  
-		        <%= p.submit('upload') %>
-		    </div>    
-		    <%end%>
-		  </div>
-		</div>
-		<% end %>
-		
     <!-- feedbacks if any -->
 		<div class="post">
 		  <div class="posthead">

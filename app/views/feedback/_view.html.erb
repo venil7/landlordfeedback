@@ -1,0 +1,49 @@
+<%=@property.lat %><br/>
+<%=@property.lng %><br/>
+<%=@property.address %><br/>
+<%=@property.postcode %><br/>
+<%=@property.rating %><br/>
+<hr/>
+<%=@feedback.totalmonths %><br/>
+<%=@feedback.lastdate %><br/>
+<%=@feedback.landlord %><br/>
+<%=@feedback.agency %><br/>
+<%=@feedback.rating %><br/>
+<hr/>
+<% @feedback.entries.each do |e| %>
+  <%= e.entry << e.rating.to_s %>
+  <br/>
+<% end %>
+<hr/>
+<% if @entry.errors.any? %>
+<ul>
+  <%@entry.errors.full_messages.each do |msg| %>
+    <li><%= msg %></li>
+  <%end %>
+</ul>
+<% end %>
+<%= form_for(@entry, :as => :entry, :url =>{ :controller=>"feedback", :action=>"entry_create" }) do |e| %>
+    <%= e.hidden_field(:feedback_id) %>
+    <%= e.select(:entrytype_id,  @entrytypes) %><br/>
+    <%= e.text_area(:entry) %><br/>
+    <%= e.text_field(:rating) %><br/>
+    <%= e.submit("add") %>
+<% end %>
+<hr/>
+<% @feedback.comments.each do |c| %>
+  <%= c.text %>
+  <br/>
+<% end %>
+<% if @comment.errors.any? %>
+<ul>
+  <%@comment.errors.full_messages.each do |msg| %>
+    <li><%= msg %></li>
+  <%end %>
+</ul>
+<% end %>
+add comment:
+<%= form_for(@comment, :as => :comment, :url=> { :action=>"comment_create", :id => @feedback.id }) do |c| %>
+           <%= c.hidden_field(:feedback_id) %><br/>
+    comment<%= c.text_field(:text) %><br/>
+           <%= c.submit("add comment") %>
+<% end %>

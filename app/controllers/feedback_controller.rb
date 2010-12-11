@@ -7,7 +7,7 @@ class FeedbackController < ApplicationController
   def view
     @feedback = Feedback.find(params[:id])
     @property = Property.find(@feedback[:property_id])
-    @entrytypes = Feedbacktype.for_select
+    @entrytypes = Entrytype.for_select
     @entry = Entry.new :feedback_id => @feedback.id
     @comment.feedback_id = @feedback.id
   end
@@ -20,7 +20,7 @@ class FeedbackController < ApplicationController
     else
       @feedback = Feedback.find(@entry.feedback_id)
       @property = Property.find(@feedback.property_id)
-      @entrytypes = Feedbacktype.for_select
+      @entrytypes = Entrytype.for_select
       @comment.feedback_id = @feedback.id
       render :action => 'view'
     end
@@ -34,7 +34,7 @@ class FeedbackController < ApplicationController
     else
       @feedback = Feedback.find(@comment.feedback_id)
       @property = Property.find(@feedback.property_id)
-      @entrytypes = Feedbacktype.for_select
+      @entrytypes = Entrytype.for_select
       @entry = Entry.new :feedback_id => @feedback.id
       render :action => 'view'
     end

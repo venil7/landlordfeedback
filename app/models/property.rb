@@ -1,4 +1,5 @@
 class Property < ActiveRecord::Base
+  self.include_root_in_json = false
   extend Application
   attr_accessor :accept_terms
   attr_accessor :post_as_anonymous
@@ -8,7 +9,6 @@ class Property < ActiveRecord::Base
   #relations
   has_many :feedbacks
   has_many :comments
-  has_many :photos
   belongs_to :user
   belongs_to :propertytype
   has_many :entries, :through => :feedbacks, :source => :entries
@@ -20,20 +20,18 @@ class Property < ActiveRecord::Base
   validates :propertytype_id, :presence => true, :numericality => true
   validates :accept_terms, :acceptance => {:message => "of use must be accepted"}
   validates :user_id, login_validation_parameters
-  validate  :lat_lng_boundary
+  validate  :within_uk_boundary
   #methods
+  def photos
+    begin
+      feedbacks.last.photos
+    rescue
+      []
+    end
+  end
   def rating
-    @rating = 0
-    @count = 0
-    entries.each do |e|
-      @rating += e.rating
-      @count += 1
-    end
-    if @count > 0
-      (@rating / @count).round
-    else
-      @rating
-    end
+    feedback_range = feedbacks.collect{ |f| f.id }
+    Entry.average('rating', :conditions => { :feedback_id => feedback_range }).to_i
   end
   #callbacks
   before_save :on_before_save
@@ -44,7 +42,7 @@ class Property < ActiveRecord::Base
     address.strip!
   end
   private
-  def lat_lng_boundary
+  def within_uk_boundary
     errors.add(:address, "location is outside UK boundary") if !uk_boundary[:lat].include?(lat) || !uk_boundary[:lng].include?(lng)
   end
   

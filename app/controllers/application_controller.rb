@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
   def initialize()
     super()
     get_latest_feedbacks()
+    @own_page = false;
   end
   
   protected

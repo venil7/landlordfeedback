@@ -1,4 +1,4 @@
-class Feedbacktype < ActiveRecord::Base
+class Entrytype < ActiveRecord::Base
   has_many :feedbacks
   def self.for_select
     @result = []

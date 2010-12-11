@@ -22,9 +22,9 @@ class PropertyController < ApplicationController
       @comment  = Comment.new(:property_id => @property[:id])
       
       #subject to refactoring
-      if @can_upload_images = user_logged_in? && user_id == @property.user_id
-        @photo = Photo.new(:property_id => @property.id)
-      end
+      #if @can_upload_images = user_logged_in? && user_id == @property.user_id
+      #  @photo = Photo.new(:property_id => @property.id)
+      #end
       
     end
     

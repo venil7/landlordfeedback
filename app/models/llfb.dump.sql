@@ -167,7 +167,7 @@ DROP TABLE IF EXISTS `photos`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `photos` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `property_id` int(11) DEFAULT NULL,
+  `feedback_id` int(11) NOT NULL,
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
   `photo_file_name` varchar(255) DEFAULT NULL,
@@ -477,7 +477,7 @@ DROP TABLE IF EXISTS `photos`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `photos` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `property_id` int(11) DEFAULT NULL,
+  `feedback_id` int(11) NOT NULL,
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
   `photo_file_name` varchar(255) DEFAULT NULL,
@@ -694,4 +694,4 @@ USE `llfb`;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2010-12-06 20:59:30
+-- Dump completed on 2010-12-11 11:51:29

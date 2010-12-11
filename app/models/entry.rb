@@ -5,12 +5,13 @@ class Entry < ActiveRecord::Base
     
     belongs_to :feedback
     belongs_to :user
-    has_many :comments
+    belongs_to :entrytype
+    has_many   :comments
     #validations
     validates :feedback_id, :presence => true, :numericality=>true
     validates :entrytype_id, :presence => true, :numericality=>true
-    validates :entry, :presence => true, :length => {:within => 10..1000}
+    validates :description, :presence => true, :length => {:within => 10..1000}
     validates :rating, :presence => true, :numericality=>true
     validates :user_id, login_validation_parameters
-
+  
 end

@@ -28,7 +28,7 @@ class AjaxController < ApplicationController
       render :json => @result
     end
     
-    def create_property_img
+    def create_feedback_img
       @photo = Photo.new(params[:photo])
       @result = default_response
       if @photo.save

@@ -1,49 +1,139 @@
-<%=@property.lat %><br/>
-<%=@property.lng %><br/>
-<%=@property.address %><br/>
-<%=@property.postcode %><br/>
-<%=@property.rating %><br/>
-<hr/>
-<%=@feedback.totalmonths %><br/>
-<%=@feedback.lastdate %><br/>
-<%=@feedback.landlord %><br/>
-<%=@feedback.agency %><br/>
-<%=@feedback.rating %><br/>
-<hr/>
-<% @feedback.entries.each do |e| %>
-  <%= e.entry << e.rating.to_s %>
-  <br/>
-<% end %>
-<hr/>
-<% if @entry.errors.any? %>
-<ul>
-  <%@entry.errors.full_messages.each do |msg| %>
-    <li><%= msg %></li>
-  <%end %>
-</ul>
-<% end %>
-<%= form_for(@entry, :as => :entry, :url =>{ :controller=>"feedback", :action=>"entry_create" }) do |e| %>
-    <%= e.hidden_field(:feedback_id) %><br/>
-    <%= e.select(:entrytype_id,  @entrytypes) %><br/>
-    <%= e.text_area(:entry) %><br/>
-    <%= e.text_field(:rating) %><br/>
-    <%= e.submit("add") %>
-<% end %>
-<hr/>
-<% @feedback.comments.each do |c| %>
-  <%= c.text %>
-  <br/>
-<% end %>
-<% if @comment.errors.any? %>
-<ul>
-  <%@comment.errors.full_messages.each do |msg| %>
-    <li><%= msg %></li>
-  <%end %>
-</ul>
-<% end %>
-add comment:
-<%= form_for(@comment, :as => :comment, :url=> { :action=>"comment_create", :id => @feedback.id }) do |c| %>
-           <%= c.hidden_field(:feedback_id) %><br/>
-    comment<%= c.text_field(:text) %><br/>
-           <%= c.submit("add comment") %>
-<% end %>
+<div id="maincontent">
+	<div id="page">
+    <!-- main adress -->
+		<div class="post">
+		  <div class="posthead">
+		    <p class="date"><%= @property.updated_at%></p>
+		    <h1><%=@property.address%></h1>
+		    <h1><%=@property.postcode.upcase%></h1>
+		    <p class="postmeta">Feedback by <%= @feedback.user.full_name%></p>
+		    <h2>Landlord: </h2> <%=@feedback.landlord %>
+		    <h2>Agency: </h2> <%=@feedback.agency %>
+		    <h2>Date moved out: </h2> <%=@feedback.lastdate.to_s %>
+		  </div>
+		  <div><%= star_rating(:rating => @property.rating, :readonly=>true) %></div>
+ 		  <%@property.photos.each do |f| %>
+        <%= image_tag f.photo.url(:thumb) %>
+      <% end %>
+		</div>
+
+		<% if @own_page %>
+		<!-- photos upload -->
+		<div class="post">
+		  <div class="posthead">
+		    <h2>upload photo</h2>
+		  </div>
+		  <div class="form2 formstyle">
+		    <%= form_for(@photo, :as=>:photo, :url=>{:controller=>:ajax,:action=>:create_feedback_img}, :html=>{:multipart=>true}) do |p| %>
+		    <div class="fieldsets">
+	          <%= p.hidden_field(:property_id) %>
+            <div class="textfield fields">
+		          <label>upload picture</label>
+              <%= p.file_field(:photo) %>
+		        </div>  
+		        <%= p.submit('upload') %>
+		    </div>    
+		    <% end %>
+		  </div>
+		</div>
+		<% end %>
+		
+    <!-- ratings if any -->
+		<div class="post">
+		  <div class="posthead">
+		    <h2><%=pluralize(@feedback.entries.count, 'rating')%></h2>
+      </div>
+      <% @feedback.entries.each do |e| %>
+        <blockquote>
+          <p><cite>Category:</cite><%=e.entrytype.name %></p>
+          <p><%=e.description %></p>
+		      <div><%= star_rating(:rating => e.rating, :readonly=>true) %></div>
+          <p>On <%=e.updated_at%></p>
+        </blockquote>
+      <% end %>
+		</div>
+
+    <!-- post a feedback -->
+    <% if @own_page %>
+		<div class="post">
+		  <a name="post_feedback"></a>
+		  <div class="posthead">
+		    <h2>Add rating</h2>
+		  </div>
+      <div class="form2 formstyle">
+        <%= form_for(@entry, :as => :entry, :url =>{ :controller=>"feedback", :action=>"entry_create" }) do |e| %>
+          <%= e.hidden_field(:feedback_id) %>
+   		    <%= render "shared/error_list", :item => @entry %>
+          <div class="fieldsets">
+            <div class="textfield fields">
+		          <label>Rating type</label>
+              <%= e.select(:entrytype_id,  @entrytypes) %>
+            </div>
+            <div class="textfield fields">
+		          <label>Description</label>
+              <%= e.text_area(:description) %>
+            </div>
+            <div class="textfield fields">
+		          <label>Rate</label>
+              <%= rating_field(:name=>:rating)%>
+            </div>
+            <%= f.submit("Add Rating") %>
+          </div>
+        <% end %>
+      </div>
+		</div>
+		<% end %>
+
+    <!-- comments if any -->
+    <% if @feedback.comments.any? %>
+		<div class="post">
+      <a class="anchor" name="comments"></a>
+		  <div class="posthead">
+        <h2>Comments</h2>
+      </div>
+      <div id="comments" class="comments-list">
+        <% @feedback.comments.each do |c| %>
+          <div class="entry">
+             <p class="avt"><%= image_tag user_pic(c.user.alias) %></p>
+             <p class="name"><%=c.user.full_name%></p>
+             <p class="date"><%=c.updated_at%></p>
+             <div class="con">
+               <p><%=c.text%></p>
+             </div>
+          </div>
+        <% end %>
+      </div>
+		</div>
+		<% end %>
+		
+    <!-- post a comment -->
+		<div class="post">
+      <a class="anchor" name="post_comment"></a>
+		  <div class="posthead">
+        <h2>Post a Comment</h2>
+      </div>
+      <div class="form2 formstyle">
+        <%= form_for(@comment, :as=>:comment, :url=> { :action=>"comment_create", :id=>@feedback.id, :anchor=>:post_comment }) do |c| %>
+     		<%= render "shared/error_list", :item => @comment %>
+        <div class="fieldsets">
+          <%= c.hidden_field(:feedback_id) %>
+          <div class="textfield fields">
+			      <label>Comment*</label>
+            <%= c.text_area(:text, :rows=>5) %>
+          </div>    
+          <%= c.submit("Add Comment") %>
+        </div>
+        <% end %>
+      </div>
+		</div>
+
+	</div>
+	<div id="sidebar">
+	  <h1>Map</h1>
+	  <%= google_static_map :lat=>@property.lat, :lng=>@property.lng %>
+	  <div class="clear">&nbsp;</div>
+		<%= render "shared/latest_feedbacks", :feedbacks => @latest_feedbacks %>
+	</div>
+	<div class="clear">	</div>
+</div>
+
