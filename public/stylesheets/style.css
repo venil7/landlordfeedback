@@ -7,7 +7,7 @@ body {background:#242424; font: 14px Georgia, "Times New Roman", Times, serif; c
 #wrap {width:1010px; margin:auto;}
 .clear {clear:both;}
 #homeheader {height:350px;}
-#mainimg {width:980px; height:330px; padding:10px; float:left; border:solid 1px #ac9f87;position:relative;}
+#mainimg {width:990px; height:330px; padding:10px; float:left; border:solid 1px #ac9f87;position:relative;}
 #searchform {position:absolute;bottom:15px;right:15px;}
 #searchform form input {border:1px solid #ac9f87;font:  14px Helvetica;color:#242424;}
 #addbutton {position:absolute;top:15px;right:15px;cursor:pointer;}
@@ -16,7 +16,7 @@ body {background:#242424; font: 14px Georgia, "Times New Roman", Times, serif; c
 #rightboxes .box2 {background:url(/images/rightimg2.jpg) 10px 10px no-repeat; width:250px; height:90px; padding:10px; margin-bottom:8px; border:solid 1px #ac9f87;}
 #rightboxes .box3 {background:url(/images/rightimg3.jpg) 10px 10px no-repeat; width:250px; height:90px; padding:10px; margin-bottom:0; border:solid 1px #ac9f87;}
 #maincontent {padding:10px 10px 0 10px;  font-family:Vollkorn!important;}
-
+#map {width:990px;height:330px;background:#abc;}
 #threecol .col1 {width:300px; float:left; padding:10px;}
 #threecol .col2 {width:300px; float:right; padding:10px;}
 #threecol .col3 {padding:10px; margin:0 335px 0 335px;}
@@ -28,7 +28,7 @@ body {background:#242424; font: 14px Georgia, "Times New Roman", Times, serif; c
 #sitename span {display:block; font:14px Vollkorn, Georgia, "Times New Roman", Times, serif; !important; line-height:17px!important; color:#999; clear:both; }
 #sitename a {color:#f3ebd9; text-decoration:none; display:block;  padding:0 20px 0 0;}
 
-#mainnav {float:right; float:right; height:80px; color:#ccc; min-width:600px;}
+#mainnav {height:80px; color:#ccc; min-width:600px;position:relative;}
 #mainnav ul {list-style:none;}
 #mainnav li {display:inline; font: bold 18px "Trebuchet MS", Arial, Helvetica, sans-serif;}
 #mainnav li a {color:#827b6e; text-decoration:none; padding:25px 30px 0 30px; height:55px; display:block; float:left;}
@@ -36,6 +36,8 @@ body {background:#242424; font: 14px Georgia, "Times New Roman", Times, serif; c
 #mainnav li a:hover {color:#f3ebd9;}
 #mainnav li a:hover span {color:#827b6e!important}
 #mainnav li.active a {color:#f3ebd9; background:url(/images/menuactive.gif) center bottom no-repeat; text-shadow:#222 1px 1px 1px;}
+#mainnav div.credentials {position:absolute;bottom:0px;right:0px;padding: 0 0px 16px 0}
+#mainnav div.credentials img {display:block;float:clear;}
 #page {width:640px; float:left; padding: 0 10px 10px 10px; border-right:solid 1px #ac9f87;}
 #sidebar {width:300px; float:right; padding:10px;}
 .bordered {border-bottom:solid 1px #ac9f87;}
@@ -56,10 +58,12 @@ body {background:#242424; font: 14px Georgia, "Times New Roman", Times, serif; c
 .posthead h3 a {color:#222!important; text-decoration:none;}
 .posthead h3 a:hover {background:#f5eee2;}
 .posthead .postmeta {display:block; font:italic 11px "Trebuchet MS", Arial, Helvetica, sans-serif!important;}
+
 #maincontent a {color:#222;}
 #maincontent a:visited, #maincontent a:active {color:#333;}
 #maincontent a:hover {color:#000; text-decoration:none;}
-.post {background:url(/images/subheadbg.gif) left bottom repeat-x; padding-bottom:10px; margin-bottom:10px; padding-top:10px;}
+.post {background:url(/images/subheadbg.gif) left bottom repeat-x; padding-bottom:10px; margin-bottom:10px; padding-top:10px;position:relative;}
+.post .rating {position:absolute;right:30px;bottom:30px;}
 #sidebar ul {list-style:none; display:block; margin-bottom:15px; }
 #sidebar ul li {display:block;}
 #sidebar .menu {font:bold 16px "Trebuchet MS", Arial, Helvetica, sans-serif;}
@@ -109,6 +113,8 @@ blockquote cite {font:bold italic 12px "Trebuchet MS", Arial, Helvetica, sans-se
 blockquote.alignleft {float:left; width:200px;}
 blockquote.alignright {float:right; width:200px;}
 .post code {font: 12px "Courier New", Courier, monospace; white-space:pre!important; padding:10px; margin:10px; color:#fff!important; background:#706a5f; display:block;}
+.post blockquote {position:relative;}
+.post blockquote .rating {position: absolute; bottom: 20px; right: 20px;}
 
 form { font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;}
 .form2 {padding:10px; }
@@ -155,4 +161,24 @@ h3#respond {color: #fff; font:bold 18px "Trebuchet MS", Arial, Helvetica, sans-s
 #rightboxes div p a span {background:#000; padding:3px; font-size:14px;}
 #rightboxes div p a:hover {color:#ffc;}
 
+.unfolder {cursor:pointer;}
 
+/* jQuery.Rating Plugin CSS - http://www.fyneworks.com/jquery/star-rating/ */
+div.rating-cancel,div.star-rating{float:left;width:17px;height:15px;text-indent:-999em;cursor:pointer;display:block;background:transparent;overflow:hidden}
+div.rating-cancel,div.rating-cancel a{background:url(/images/rating/delete.gif) no-repeat 0 -16px}
+div.star-rating,div.star-rating a{background:url(/images/rating/star.gif) no-repeat 0 0px}
+div.rating-cancel a,div.star-rating a{display:block;width:16px;height:100%;background-position:0 0px;border:0}
+div.star-rating-on a{background-position:0 -16px!important}
+div.star-rating-hover a{background-position:0 -32px}
+/* Read Only CSS */
+div.star-rating-readonly a{cursor:default !important}
+/* Partial Star CSS */
+div.star-rating{background:transparent!important;overflow:hidden!important}
+/* END jQuery.Rating Plugin CSS */
+
+/*notice style*/
+* html .notice-wrap{position:absolute}
+.notice-wrap{position:fixed; top:20px; right:20px; width:250px; z-index:9999}
+.notice-item{height:60px; background:#333; -moz-border-radius:6px; -webkit-border-radius:6px; color:#eee; padding:6px 6px 0 6px; font-family:Arial; font-size:11px; border:2px solid #999; display:block; position:relative; margin:0 0 12px 0}
+.notice-item-close{position:absolute; font-family:Arial; font-size:12px; font-weight:bold; right:6px; top:6px; cursor:pointer}
+/*end notice style*/

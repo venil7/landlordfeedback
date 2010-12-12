@@ -6,39 +6,41 @@
 		    <p class="date"><%= @property.updated_at%></p>
 		    <h1><%=@property.address%></h1>
 		    <h1><%=@property.postcode.upcase%></h1>
-		    <p class="postmeta">Posted by <%= @property.user.full_name%>
+		    <p class="postmeta"><%= image_tag user_pic(@property.user.alias)%><%= @property.user.full_name%>
 		    </p>
 		  </div>
-		  <div><%= star_rating(:rating => @property.rating, :readonly=>true) %></div>
+		  <div class="rating"><%= star_rating(:rating => @property.rating, :readonly=>true) %></div>
  		  <%@property.photos.each do |f| %>
         <%= image_tag f.photo.url(:thumb) %>
       <% end %>
 		</div>
 
     <!-- feedbacks if any -->
-		<div class="post">
-		  <div class="posthead">
-		    <h2><%=pluralize(@property.feedbacks.count, 'feedback')%></h2>
-      </div>
-      <% @property.feedbacks.each do |f| %>
-        <blockquote>
-          <p><cite>Landlord:</cite><%=f.landlord%></p>
-          <p><cite>Agency:</cite><%=f.agency%></p>
-          <p><cite>Last Date:</cite><%=f.lastdate%></p>
-		      <div><%= star_rating(:rating => f.rating, :readonly=>true) %></div>
-          <%= link_to 'More..', :controller =>'feedback', :action=>'view', :id=>f.id %>
-          <p>Posted by <%=f.user.full_name%> on <%=f.updated_at%></p>
-        </blockquote>
-      <% end %>
-		</div>
+    <% if @property.feedbacks.any? %>
+		  <div class="post">
+		    <div class="posthead">
+		      <h2><%=pluralize(@property.feedbacks.count, 'feedback')%></h2>
+        </div>
+        <% @property.feedbacks.each do |f| %>
+          <blockquote>
+            <p><cite>Landlord:</cite><%=f.landlord%></p>
+            <p><cite>Agency:</cite><%=f.agency%></p>
+            <p><cite>Last Date:</cite><%=f.lastdate%></p>
+		        <div class="rating"><%= star_rating(:rating => f.rating, :readonly=>true) %></div>
+            <small>Posted by <%=f.user.full_name %> on <%=f.updated_at %></small>
+            <%= link_to 'Details..', :controller =>'feedback', :action=>'view', :id=>f.id %>
+          </blockquote>
+        <% end %>
+		  </div>
+    <% end %>
 
     <!-- post a feedback -->
 		<div class="post">
-		  <a name="post_feedback"></a>
 		  <div class="posthead">
-		    <h2>Post a Feedback</h2>
+		    <h2 class="unfolder" data_unfolder_id="post_feedback">Post a Feedback if you have lived in this property</h2>
+   		      <%= login_text_link "Please login via Facebook to post a comment" %>
 		  </div>
-      <div class="form2 formstyle">
+      <div class="form2 formstyle hidden" id="post_feedback">
         <%= form_for(@feedback, :as=>:feedback, :url =>{ :controller=>"property", :action=>"feedback_create", :anchor=>:post_feedback }) do |f| %>
           <%= f.hidden_field(:property_id) %>
    		    <%= render "shared/error_list", :item => @feedback %>
@@ -65,11 +67,12 @@
       </div>
 		</div>
 
+    <% if @property.comments.any? %>
     <!-- comments if any -->
 		<div class="post">
       <a class="anchor" name="comments"></a>
 		  <div class="posthead">
-        <h2>Comments</h2>
+        <h2><%=pluralize(@property.comments.count, 'Comments')%></h2>
       </div>
       <div id="comments" class="comments-list">
         <% @property.comments.each do |c| %>
@@ -84,12 +87,14 @@
         <% end %>
       </div>
 		</div>
+    <% end %>
 		
     <!-- post a comment -->
 		<div class="post">
       <a class="anchor" name="post_comment"></a>
 		  <div class="posthead">
         <h2>Post a Comment</h2>
+        <%= login_text_link "Please login via Facebook to post a comment" %>
       </div>
       <div class="form2 formstyle">
         <%= form_for(@comment, :as=>:comment, :url=> { :action=>"comment_create", :id=>@property.id, :anchor=>:post_comment }) do |c| %>
@@ -111,6 +116,7 @@
 	  <h1>Map</h1>
 	  <%= google_static_map :lat=>@property.lat, :lng=>@property.lng %>
 	  <div class="clear">&nbsp;</div>
+    <%= render "shared/latest_properties", :properties => @latest_properties %>
 		<%= render "shared/latest_feedbacks", :feedbacks => @latest_feedbacks %>
 	</div>
 	<div class="clear">	</div>

@@ -4,7 +4,7 @@ class AuthController < ApplicationController
       url_for :action=>:fbcallback, :only_path=>false, 
     end
     #redirects to facebook authorization page
-    def fblogin
+    def fb_login
         @last_page = request.referer
         redirect_to fb_client.authorization.authorize_url(:redirect_uri => fb_callback_uri, 
                                                           :scope => 'email, user_photos')

@@ -2,8 +2,11 @@
 <ul class="posts">
   <% feedbacks.each do |feedback| %>
 	  <li>
-	    <%= link_to feedback.property.address, :controller=>:feedback, :action=>:view, :id=>feedback.id%>
-	    <span><%= feedback.updated_at%> | 12 Comments</span>
+	    <%= link_to (feedback.agency or feedback.landlord), :controller=>:feedback, :action=>:view, :id=>feedback.id%>
+	    <span>
+	      <%= feedback.updated_at%> | 
+	      <%= pluralize(feedback.comments.count, 'Comments') %>
+	    </span>
 	  </li>
 	<% end %>
 </ul>

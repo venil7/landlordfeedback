@@ -6,12 +6,12 @@
 		    <p class="date"><%= @property.updated_at%></p>
 		    <h1><%=@property.address%></h1>
 		    <h1><%=@property.postcode.upcase%></h1>
-		    <p class="postmeta">Feedback by <%= @feedback.user.full_name%></p>
-		    <h2>Landlord: </h2> <%=@feedback.landlord %>
-		    <h2>Agency: </h2> <%=@feedback.agency %>
-		    <h2>Date moved out: </h2> <%=@feedback.lastdate.to_s %>
+		    <h2>Landlord: <%=@feedback.landlord %> </h2> 
+		    <h2>Agency: <%=@feedback.agency %> </h2> 
+		    <h2>Date moved out: <%=@feedback.lastdate.to_s %> </h2>
+		    <p class="postmeta"><%= image_tag user_pic(@feedback.user.alias)%><%= @feedback.user.full_name%>
 		  </div>
-		  <div><%= star_rating(:rating => @property.rating, :readonly=>true) %></div>
+		  <div class="rating"><%= star_rating(:rating => @feedback.rating, :readonly=>true) %></div>
  		  <%@property.photos.each do |f| %>
         <%= image_tag f.photo.url(:thumb) %>
       <% end %>
@@ -39,19 +39,21 @@
 		<% end %>
 		
     <!-- ratings if any -->
+    <% if @feedback.entries.any? %>
 		<div class="post">
 		  <div class="posthead">
 		    <h2><%=pluralize(@feedback.entries.count, 'rating')%></h2>
       </div>
       <% @feedback.entries.each do |e| %>
         <blockquote>
-          <p><cite>Category:</cite><%=e.entrytype.name %></p>
+          <p><cite>Category: </cite><%=e.entrytype.name %></p>
           <p><%=e.description %></p>
-		      <div><%= star_rating(:rating => e.rating, :readonly=>true) %></div>
-          <p>On <%=e.updated_at%></p>
+		      <div class="rating"><%= star_rating(:rating => e.rating, :readonly=>true) %></div>
+          <small>On <%=e.updated_at%></small>
         </blockquote>
       <% end %>
 		</div>
+		<% end %>
 
     <!-- post a feedback -->
     <% if @own_page %>
@@ -132,7 +134,8 @@
 	  <h1>Map</h1>
 	  <%= google_static_map :lat=>@property.lat, :lng=>@property.lng %>
 	  <div class="clear">&nbsp;</div>
-		<%= render "shared/latest_feedbacks", :feedbacks => @latest_feedbacks %>
+      <%= render "shared/latest_properties", :properties => @latest_properties %>
+			<%= render "shared/latest_feedbacks", :feedbacks => @latest_feedbacks %>
 	</div>
 	<div class="clear">	</div>
 </div>

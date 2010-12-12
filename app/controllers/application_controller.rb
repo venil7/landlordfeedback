@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   def initialize()
     super()
     get_latest_feedbacks()
-    @own_page = false;
+    get_latest_properties()
   end
   
   protected
@@ -47,7 +47,11 @@ class ApplicationController < ActionController::Base
   end
   
   def get_latest_feedbacks
-    @latest_feedbacks = Feedback.last(3) or [Feedback.new]
+    @latest_feedbacks = Feedback.last(3) or []
+  end
+  
+  def get_latest_properties
+    @latest_properties = Property.last(3) or []
   end
   
 end

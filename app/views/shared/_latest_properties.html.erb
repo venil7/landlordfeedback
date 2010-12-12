@@ -1,0 +1,12 @@
+<h2>Latest Properties</h2>
+<ul class="posts">
+  <% properties.each do |property| %>
+	  <li>
+	    <%= link_to property.address, :controller=>:property, :action=>:view, :id=>property.id%>
+	    <span>
+	      <%= property.updated_at%> | 
+	      <%= pluralize(property.comments.count, 'Comments') %>
+	    </span>
+	  </li>
+	<% end %>
+</ul>

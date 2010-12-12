@@ -1,6 +1,6 @@
 <div id="homeheader">
 	<div id="mainimg">
-		<div id="map" style="width:980px;height:330px;background:#abc;"></div>
+		<div id="map"></div>
 		<div id="searchform">
 				<form id="propertysearch" class="propertysearch">
 						<input type="text" name="searchaddress" id="searchaddress"/>
@@ -73,13 +73,14 @@
 				  </p>
 			  </div>
 			  <p>
-          <%= post.entry[0,400] %>
+          <%= post.entry[0,800] %>
 			    <%= link_to "more..", url %>
 			  </p>
 		  </div>
 		<% end %>
 	</div>
 	<div id="sidebar">
+    <%= render "shared/latest_properties", :properties => @latest_properties %>
     <%= render "shared/latest_feedbacks", :feedbacks => @latest_feedbacks %>
 	</div>
 	<div class="clear">

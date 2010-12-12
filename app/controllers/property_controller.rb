@@ -20,12 +20,6 @@ class PropertyController < ApplicationController
       @property = Property.find(params[:id])
       @feedback = Feedback.new(:property_id => @property[:id])
       @comment  = Comment.new(:property_id => @property[:id])
-      
-      #subject to refactoring
-      #if @can_upload_images = user_logged_in? && user_id == @property.user_id
-      #  @photo = Photo.new(:property_id => @property.id)
-      #end
-      
     end
     
     def feedback_create

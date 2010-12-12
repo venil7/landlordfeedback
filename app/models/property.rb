@@ -12,6 +12,7 @@ class Property < ActiveRecord::Base
   belongs_to :user
   belongs_to :propertytype
   has_many :entries, :through => :feedbacks, :source => :entries
+  has_many :photos,  :through => :feedbacks
   #validation
   validates :address, :presence => true, :uniqueness => true, :length => { :within => 10..100 }
   validates :postcode, :presence => true, :format => { :with => /^([A-PR-UWYZ0-9][A-HK-Y0-9][AEHMNPRTVXY0-9]?[ABEHMNPRVWXY0-9]?\s*[0-9][ABD-HJLN-UW-Z]{2}|GIR 0AA)$/i }
@@ -21,14 +22,7 @@ class Property < ActiveRecord::Base
   validates :accept_terms, :acceptance => {:message => "of use must be accepted"}
   validates :user_id, login_validation_parameters
   validate  :within_uk_boundary
-  #methods
-  def photos
-    begin
-      feedbacks.last.photos
-    rescue
-      []
-    end
-  end
+
   def rating
     feedback_range = feedbacks.collect{ |f| f.id }
     Entry.average('rating', :conditions => { :feedback_id => feedback_range }).to_i

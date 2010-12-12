@@ -104,11 +104,16 @@ $(function() {
       }
     });
     
-    //edit boxes become yellow
-    $('input[type=text]').focus(function(){
-      $(this).addClass('focus');
-    }).blur(function(){
-      $(this).removeClass('focus');
+    //unfolders
+    $(".unfolder").click(function(){
+      var id = $(this).attr("data_unfolder_id");
+      $("#"+id).fadeToggle();
     });
+    
+    //hidden elements
+    $(".hidden").hide();
+    
+    //fb logo
+    //$("#fb_login_button").effect('pulsate',{},'fast');
     
 });

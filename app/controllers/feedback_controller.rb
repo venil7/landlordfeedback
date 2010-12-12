@@ -2,6 +2,7 @@ class FeedbackController < ApplicationController
   def initialize
     super()
     @comment = Comment.new
+    @own_page = false
   end
 
   def view
@@ -9,10 +10,15 @@ class FeedbackController < ApplicationController
     @property = Property.find(@feedback[:property_id])
     @entrytypes = Entrytype.for_select
     @entry = Entry.new :feedback_id => @feedback.id
+    @photo = Photo.new(:feedback_id => @property.id)
     @comment.feedback_id = @feedback.id
   end
   
   def entry_create
+    if params[:entry] == nil
+      redirect_to :action=>:view, :id=>params[:id]
+      return
+    end 
     @entry = Entry.new(params[:entry])
     @entry[:user_id] = user_id
     if @entry.save
@@ -22,11 +28,16 @@ class FeedbackController < ApplicationController
       @property = Property.find(@feedback.property_id)
       @entrytypes = Entrytype.for_select
       @comment.feedback_id = @feedback.id
+      @photo = Photo.new(:feedback_id => @property.id)
       render :action => 'view'
     end
   end
   
   def comment_create
+    if params[:comment] == nil
+      redirect_to :action=>:view, :id=>params[:id]
+      return
+    end
     @comment = Comment.new(params[:comment])
     @comment[:user_id] = user_id
     if @comment.save
@@ -36,6 +47,7 @@ class FeedbackController < ApplicationController
       @property = Property.find(@feedback.property_id)
       @entrytypes = Entrytype.for_select
       @entry = Entry.new :feedback_id => @feedback.id
+      @photo = Photo.new(:feedback_id => @property.id)
       render :action => 'view'
     end
   end
