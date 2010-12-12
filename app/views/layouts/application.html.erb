@@ -27,8 +27,8 @@
 	      <% unless user_logged_in? %>
 	        <%= link_to((image_tag "fb_login.png", :id=>:fb_login_button), fb_login_path)%>
 	      <%else%>  
-	        <%= image_tag my_user_pic %>
-	        <%= user_name %>
+	        <div class="name"><%= user_name %></div>
+	        <div class="avatar"><%= image_tag my_user_pic %></div>
 	      <% end %>
 			</div>
 		</div>

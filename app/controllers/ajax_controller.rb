@@ -36,7 +36,7 @@ class AjaxController < ApplicationController
       else
         @result.merge!(:message => @photo.errors.full_messages.join(','))
       end
-      render :text => @result
+      render :text => @result.to_json
     end
     
     protected

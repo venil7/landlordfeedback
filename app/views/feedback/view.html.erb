@@ -9,34 +9,37 @@
 		    <h2>Landlord: <%=@feedback.landlord %> </h2> 
 		    <h2>Agency: <%=@feedback.agency %> </h2> 
 		    <h2>Date moved out: <%=@feedback.lastdate.to_s %> </h2>
-		    <p class="postmeta"><%= image_tag user_pic(@feedback.user.alias)%><%= @feedback.user.full_name%>
+		    <p class="avt"><%= image_tag user_pic(@feedback.user.alias)%></p>
+		    <p class="postmeta"><%= @feedback.user.full_name%></p>
 		  </div>
 		  <div class="rating"><%= star_rating(:rating => @feedback.rating, :readonly=>true) %></div>
- 		  <%@property.photos.each do |f| %>
-        <%= image_tag f.photo.url(:thumb) %>
-      <% end %>
 		</div>
 
-		<% if @own_page %>
 		<!-- photos upload -->
+		<%if @feedback.photos.any? or @own_page%>
 		<div class="post">
-		  <div class="posthead">
-		    <h2>upload photo</h2>
-		  </div>
-		  <div class="form2 formstyle">
-		    <%= form_for(@photo, :as=>:photo, :url=>{:controller=>:ajax,:action=>:create_feedback_img}, :html=>{:multipart=>true}) do |p| %>
-		    <div class="fieldsets">
-	          <%= p.hidden_field(:property_id) %>
-            <div class="textfield fields">
-		          <label>upload picture</label>
-              <%= p.file_field(:photo) %>
-		        </div>  
-		        <%= p.submit('upload') %>
-		    </div>    
+		  <%@feedback.photos.each do |f| %>
+        <%= image_tag f.photo.url(:thumb) %>
+      <% end %>
+      <% if @own_page %>
+        <%=link_to "upload photos", {:anchor=>:upload_form}, {:data_unfolder_id=>:upload_form_container, :class=>:unfolder}%>
+		    <a name="upload_form"></a>
+        <iframe name="iframe-post-form" id="iframe-post-form" style="display:none;"></iframe>
+		    <div class="form2 formstyle hidden" id="upload_form_container">
+		      <%= form_for(@photo, :as=>:photo, :url=>{:controller=>:ajax,:action=>:create_feedback_img}, :html=>{:multipart=>true, :id=>:upload_form}) do |p| %>
+		      <div class="fieldsets">
+	            <%= p.hidden_field(:feedback_id) %>
+              <div class="textfield fields">
+		            <label>JPG, PNG images, max 2Mb</label>
+                <%= p.file_field(:photo) %>
+		          </div>  
+		          <%= p.submit('Upload') %>
+		      </div>    
 		    <% end %>
 		  </div>
+		  <% end %>
 		</div>
-		<% end %>
+		<%end%>
 		
     <!-- ratings if any -->
     <% if @feedback.entries.any? %>
@@ -55,10 +58,10 @@
 		</div>
 		<% end %>
 
-    <!-- post a feedback -->
+    <!-- post a rating -->
     <% if @own_page %>
 		<div class="post">
-		  <a name="post_feedback"></a>
+		  <a name="post_rating"></a>
 		  <div class="posthead">
 		    <h2>Add rating</h2>
 		  </div>
@@ -73,13 +76,13 @@
             </div>
             <div class="textfield fields">
 		          <label>Description</label>
-              <%= e.text_area(:description) %>
+              <%= e.text_area(:description, :rows=>4) %>
             </div>
             <div class="textfield fields">
 		          <label>Rate</label>
-              <%= rating_field(:name=>:rating)%>
-            </div>
-            <%= f.submit("Add Rating") %>
+              <%= star_rating(:name=>:rating)%>
+            </div><br/>
+            <%= e.submit("Add Rating") %>
           </div>
         <% end %>
       </div>
@@ -139,4 +142,16 @@
 	</div>
 	<div class="clear">	</div>
 </div>
+
+<script>
+  $(function(){
+    $('#upload_form').iframePostForm({
+      complete:function(response){
+        var obj = $.parseJSON(response);
+        alert(obj.message);
+        alert(obj);
+      }
+    });
+  });
+</script>
 

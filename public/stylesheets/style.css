@@ -37,7 +37,9 @@ body {background:#242424; font: 14px Georgia, "Times New Roman", Times, serif; c
 #mainnav li a:hover span {color:#827b6e!important}
 #mainnav li.active a {color:#f3ebd9; background:url(/images/menuactive.gif) center bottom no-repeat; text-shadow:#222 1px 1px 1px;}
 #mainnav div.credentials {position:absolute;bottom:0px;right:0px;padding: 0 0px 16px 0}
-#mainnav div.credentials img {display:block;float:clear;}
+#mainnav div.credentials img {display:block;border:0px;float:right;}
+#mainnav div.credentials div.name {display:block;border:0px;float:left;margin:35px 5px 0 0;color:#827B6E !important;}
+#mainnav div.credentials div.avatar {display:block;border:0px;float:right;}
 #page {width:640px; float:left; padding: 0 10px 10px 10px; border-right:solid 1px #ac9f87;}
 #sidebar {width:300px; float:right; padding:10px;}
 .bordered {border-bottom:solid 1px #ac9f87;}
@@ -119,7 +121,7 @@ blockquote.alignright {float:right; width:200px;}
 form { font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;}
 .form2 {padding:10px; }
 .formpadding {padding:10px;}
-.formstyle {padding:15px 0 15px 0;}
+.formstyle {padding:0 0 15px 0;}
 .formstyle label {display:block; padding:3px 3px 3px 0;}
 .formstyle label.inline {display:inline;}
 .textfield input, .textfield textarea {display:block; padding:3px; border:solid 1px #ac9f87; background:#f5efe3;}
