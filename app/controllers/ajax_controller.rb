@@ -32,7 +32,7 @@ class AjaxController < ApplicationController
       @photo = Photo.new(params[:photo])
       @result = default_response
       if @photo.save
-        @result.merge!(success)
+        @result.merge!(success).merge!(:thumb_url => @photo.photo.url(:thumb))
       else
         @result.merge!(:message => @photo.errors.full_messages.join(','))
       end

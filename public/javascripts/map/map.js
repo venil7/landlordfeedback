@@ -2,6 +2,8 @@ $(function() {
         (function(LLFB) {
             //const
             var DEFAULT_ZOOM = 14;
+            var REG_ICON = "/images/map/icon2.png";
+            var ADD_ICON = "/images/map/icon3.png";
             //variables
             var london = new google.maps.LatLng(51.49,-0.12);
             var add_marker = false;
@@ -25,15 +27,6 @@ $(function() {
             var searchLocation = function(address){
                 geocoder.geocode({address:address}, onGeoCode(address));
             };
-            //var notify = function(text, life, header) {
-            //    header = header || "";
-            //    life   = life || 7000;
-            //    $.noticeAdd({
-            //        text: text,
-            //        stay: false,
-            //        stayTime: life
-            //    });
-            //};
             var geocodeToPlace = function(obj) {
                 obj = obj || {};
                 var loc = (obj.geometry && obj.geometry.location) ? obj.geometry.location : new google.maps.LatLng(0,0);
@@ -65,7 +58,8 @@ $(function() {
                             map: map, 
                             position: loc,
                             draggable: true,
-                            cursor: 'move'
+                            cursor: 'move',
+                            icon: ADD_ICON
                         });
                         google.maps.event.addListener(add_marker, 'click', onAddMarkerClick(add_marker));
                         google.maps.event.addListener(add_marker, 'dragstart', onAddMarkerDragStart(add_marker));
@@ -108,7 +102,8 @@ $(function() {
                                     var marker = new google.maps.Marker({
                                         map: map, 
                                         position: new google.maps.LatLng(place.lat, place.lng),
-                                        title:place.address
+                                        title:place.address,
+                                        icon: REG_ICON
                                     });
                                     marker.place = place;
                                     markers.push(marker);

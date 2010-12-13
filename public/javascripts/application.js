@@ -113,7 +113,20 @@ $(function() {
     //hidden elements
     $(".hidden").hide();
     
-    //fb logo
-    //$("#fb_login_button").effect('pulsate',{},'fast');
+    //ajax upload behavior
+    $('#upload_form').iframePostForm({
+      complete:function(response){
+        var obj = typeof response === "string" ? $.parseJSON(response) : (typeof response === "object" ? response : false);
+        if (obj) {
+          if (obj.success) {
+            $("#photo-container").prepend($("<img/>").attr('src',obj.thumb_url));
+            LLFB.utils.notify("photo uploaded successfully")
+          } else {
+            LLFB.utils.notify("Failed to upload your image..");
+          }
+          $('#upload_form').find("input[type=file]").val('');
+        }
+      }
+    });
     
 });
