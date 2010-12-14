@@ -1,7 +1,8 @@
 module ApplicationHelper
     def google_static_map(opts)
+      icon = "http://goo.gl/1jfSj"
       opts = {:x => 320, :y => 200, :zoom => 15, :lat => 0, :lng => 0, :attr => {}}.merge(opts.to_hash)
-      url = "http://maps.google.com/maps/api/staticmap?center=#{opts[:lat].to_f},#{opts[:lng].to_f}&zoom=#{opts[:zoom].to_i}&size=#{opts[:x].to_i}x#{opts[:y].to_i}&markers=#{opts[:lat].to_f},#{opts[:lng].to_f}&sensor=false"
+      url = "http://maps.google.com/maps/api/staticmap?center=#{opts[:lat].to_f},#{opts[:lng].to_f}&zoom=#{opts[:zoom].to_i}&size=#{opts[:x].to_i}x#{opts[:y].to_i}&markers=icon:#{icon}|#{opts[:lat].to_f},#{opts[:lng].to_f}&sensor=false"
       raw "<img src='#{url}' width='#{opts[:x].to_i}' height='#{opts[:y].to_i}' />"
     end
     
@@ -10,7 +11,7 @@ module ApplicationHelper
       opts = {:max=>5, :rating=>0, :name=>:rating.to_s << rand(100).to_s, :readonly => false}.merge(opts.to_hash)
       opts[:rating] = opts[:max] if opts[:rating] > opts[:max]
       opts[:rating] = 0 if opts[:rating] < 0
-      opts[:max].to_i.times { |i|
+      (1..opts[:max].to_i).each { |i|
         result << radio_button_tag(opts[:name], i, opts[:rating] == i, :disabled => opts[:readonly], :class=>:star)
       }
       raw result
@@ -37,11 +38,11 @@ module ApplicationHelper
     end
     
     def user_logged_in?
-      @controller.user_logged_in?
+      controller.user_logged_in?
     end
     
     def user_name
-      @controller.user_name
+      controller.user_name
     end
     
     def fb_login_path

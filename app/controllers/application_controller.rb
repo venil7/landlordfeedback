@@ -7,13 +7,6 @@ class ApplicationController < ActionController::Base
     get_latest_properties()
   end
   
-  protected
-  def fb_client
-    @client ||= FBGraph::Client.new(:client_id => '154612174572644',
-                                    :secret_id => '1d805d27dd7492cfe3b2ce6f8c4ccbf5',
-                                    :token => session[:access_token])
-  end
-
   def user_info
       session[:user_info]
   end
@@ -54,4 +47,11 @@ class ApplicationController < ActionController::Base
     @latest_properties = Property.last(3) or []
   end
   
+  protected
+  def fb_client
+    @client ||= FBGraph::Client.new(:client_id => '154612174572644',
+                                    :secret_id => '1d805d27dd7492cfe3b2ce6f8c4ccbf5',
+                                    :token => session[:access_token])
+  end
+
 end

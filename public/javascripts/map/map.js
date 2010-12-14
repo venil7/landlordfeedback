@@ -2,10 +2,9 @@ $(function() {
         (function(LLFB) {
             //const
             var DEFAULT_ZOOM = 14;
-            var REG_ICON = "/images/map/icon2.png";
-            var ADD_ICON = "/images/map/icon3.png";
+            
             //variables
-            var london = new google.maps.LatLng(51.49,-0.12);
+            var london = new google.maps.LatLng(LLFB.constants.LONDON.lat, LLFB.constants.LONDON.lng);
             var add_marker = false;
             var infowindow = new google.maps.InfoWindow({});
             var options = {
@@ -27,7 +26,7 @@ $(function() {
             var searchLocation = function(address){
                 geocoder.geocode({address:address}, onGeoCode(address));
             };
-            var geocodeToPlace = function(obj) {
+            /*var geocodeToPlace = function(obj) {
                 obj = obj || {};
                 var loc = (obj.geometry && obj.geometry.location) ? obj.geometry.location : new google.maps.LatLng(0,0);
                 var address = obj.formatted_address ? obj.formatted_address : "specify address";
@@ -39,7 +38,7 @@ $(function() {
                     postcode = pcodes.length > 0 ? pcodes[0].long_name.trim().strip().toUpperCase() : postcode;
                 }
                 return {id:0, lat:loc.lat(), lng:loc.lng(), address:address, postcode:postcode};
-            };
+            };*/
             var enterAddLocationMode = function() {
                 map.setOptions({draggableCursor:'crosshair'});
                 map.addLocationModeHandler = google.maps.event.addDomListener(map, 'click', onAddLocationModeClick());
@@ -59,7 +58,7 @@ $(function() {
                             position: loc,
                             draggable: true,
                             cursor: 'move',
-                            icon: ADD_ICON
+                            icon: LLFB.constants.ADD_ICON
                         });
                         google.maps.event.addListener(add_marker, 'click', onAddMarkerClick(add_marker));
                         google.maps.event.addListener(add_marker, 'dragstart', onAddMarkerDragStart(add_marker));
@@ -103,7 +102,7 @@ $(function() {
                                         map: map, 
                                         position: new google.maps.LatLng(place.lat, place.lng),
                                         title:place.address,
-                                        icon: REG_ICON
+                                        icon: LLFB.constants.REG_ICON
                                     });
                                     marker.place = place;
                                     markers.push(marker);
@@ -137,7 +136,7 @@ $(function() {
                 };
             };
             var onMarkerClick = function(marker) {
-                var content = "{address}<br/><a href='/property/view/{id}'>feedback..</a><br/>rating: {rating}*";
+                var content = "{address}<br/>rating: {rating} x <img src='/images/rating/star-bubble.png'><br/><a href='/property/view/{id}'>feedback..</a>";
                 return function (event) {
                     infowindow.setContent(content.supplant(marker.place));
                     infowindow.setPosition(marker.getPosition());
@@ -178,7 +177,7 @@ $(function() {
             var onReverseGeoCode = function(marker) {
                 return function(results, status){
                     if (status == google.maps.GeocoderStatus.OK) {
-                        marker.place = geocodeToPlace(results[0]);
+                        marker.place = LLFB.utils.geocodeToPlace(results[0]);
                         //virtually click on it 
                         google.maps.event.trigger(marker, 'click');
                     } else {
@@ -193,12 +192,9 @@ $(function() {
                     searchLocation(search_rx.exec(hash)[1]);
                     break;
                 default:
-                    if(navigator.geolocation) {
-                        navigator.geolocation.getCurrentPosition(function(position) {
-                            initialLocation = new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
-                            map.setCenter(initialLocation);
-                        });
-                    }
+                    LLFB.utils.getCurrentPosition(function(position) {
+                      map.setCenter(position);
+                    });
               }
             };
             //variables
@@ -208,24 +204,17 @@ $(function() {
             var geocoder = new google.maps.Geocoder();
             var throttler = new LLFB.utils.Throttler(5000);
             map.setCenter(london);
-            //detect geopostion or center to london
-            //if(navigator.geolocation) {
-            //    navigator.geolocation.getCurrentPosition(function(position) {
-            //        initialLocation = new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
-            //        map.setCenter(initialLocation);
-            //    });
-            //} 
             //wire up adding new property
-            var addCtrl = document.createElement("DIV");
+            /*var addCtrl = document.createElement("DIV");
             addCtrl.className = "mapcontrol";
             addCtrl.innerHTML = "Add Feedback";
-            map.controls[google.maps.ControlPosition.TOP_RIGHT].push(addCtrl);
+            map.controls[google.maps.ControlPosition.TOP_RIGHT].push(addCtrl);*/
             //search watermark
-            $("#searchaddress").watermark("UK Address or Postcode", {className: "watermark"});
+            //$("#searchaddress").watermark("UK Address or Postcode", {className: "watermark"});
             //search submit form
             $("#propertysearch").submit(onSearchSubmit());
             //event listeners
-            google.maps.event.addDomListener(addCtrl, "click", onAddPropertyFeedbackClick());
+            google.maps.event.addDomListener(document.getElementById('addbutton'), "click", onAddPropertyFeedbackClick());
             google.maps.event.addListener(map, "bounds_changed", onMapMove());
             //hash-changed
             $(window).hashchange(function(){

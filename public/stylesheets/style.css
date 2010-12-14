@@ -9,7 +9,7 @@ body {background:#242424; font: 14px Georgia, "Times New Roman", Times, serif; c
 #homeheader {height:350px;}
 #mainimg {width:990px; height:330px; padding:10px; float:left; border:solid 1px #ac9f87;position:relative;}
 #searchform {position:absolute;bottom:15px;right:15px;}
-#searchform form input {border:1px solid #ac9f87;font:  14px Helvetica;color:#242424;}
+#searchform form input[type=text] {border:2px solid #706a5f;font: 14px Helvetica;}
 #addbutton {position:absolute;top:15px;right:15px;cursor:pointer;}
 #rightboxes {float:right; width:272px; float:right;}
 #rightboxes .box1 {background:url(/images/rightimg1.jpg) 10px 10px no-repeat; width:250px; height:90px; padding:10px; margin-bottom:8px; border:solid 1px #ac9f87;}
@@ -17,6 +17,7 @@ body {background:#242424; font: 14px Georgia, "Times New Roman", Times, serif; c
 #rightboxes .box3 {background:url(/images/rightimg3.jpg) 10px 10px no-repeat; width:250px; height:90px; padding:10px; margin-bottom:0; border:solid 1px #ac9f87;}
 #maincontent {padding:10px 10px 0 10px;  font-family:Vollkorn!important;}
 #map {width:990px;height:330px;background:#abc;}
+#add-map {display:block;width:320px;height:320px;background:#abc;}
 #threecol .col1 {width:300px; float:left; padding:10px;}
 #threecol .col2 {width:300px; float:right; padding:10px;}
 #threecol .col3 {padding:10px; margin:0 335px 0 335px;}
@@ -27,7 +28,7 @@ body {background:#242424; font: 14px Georgia, "Times New Roman", Times, serif; c
 #sitename img {float: left; margin: 8px 8px 0pt 0pt;}
 #sitename span {display:block; font:14px Vollkorn, Georgia, "Times New Roman", Times, serif; !important; line-height:17px!important; color:#999; clear:both; }
 #sitename a {color:#f3ebd9; text-decoration:none; display:block;  padding:0 20px 0 0;}
-
+input.watermark {color:#ccc;}
 #mainnav {height:80px; color:#ccc; min-width:600px;position:relative;}
 #mainnav ul {list-style:none;}
 #mainnav li {display:inline; font: bold 18px "Trebuchet MS", Arial, Helvetica, sans-serif;}
@@ -139,9 +140,9 @@ form { font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;}
 .fields .smallselect {padding:3px; border:solid 1px #ac9f87;}
 .widefields {padding:3px; margin-bottom:5px;}
 .textadblock2 {padding:5px; background:#ffc; border:solid 1px #666; margin-bottom:8px; margin-right:35px;}
-input[type=submit] {background:#706a5f; padding:8px 10px 8px 10px; text-align:center; font:bold 14px "Trebuchet MS", Arial, Helvetica, sans-serif; color:#efe9df; border:none;}
+input[type=submit] {background:#706a5f; padding:2px 5px 2px 5px; text-align:center; font:bold 14px "Trebuchet MS", Arial, Helvetica, sans-serif; color:#efe9df; border:none;}
 .focus {background:#ffffaa;}
-
+#sidesearch input[type=text] {float:left; width:220px;margin-right:5px;}
 #comments h2 {background:#c7bdaa; padding:10px; font-size:18px!important;}
 #comments .entry {padding:10px; background:#c7bdaa; margin-bottom:10px;}
 #comments .entry p {display:block; margin-bottom:8px!important;}
@@ -166,21 +167,21 @@ h3#respond {color: #fff; font:bold 18px "Trebuchet MS", Arial, Helvetica, sans-s
 .unfolder {cursor:pointer;}
 
 /* jQuery.Rating Plugin CSS - http://www.fyneworks.com/jquery/star-rating/ */
-div.rating-cancel,div.star-rating{float:left;width:17px;height:15px;text-indent:-999em;cursor:pointer;display:block;background:transparent;overflow:hidden}
-div.rating-cancel,div.rating-cancel a{background:url(/images/rating/delete.gif) no-repeat 0 -16px}
-div.star-rating,div.star-rating a{background:url(/images/rating/star.gif) no-repeat 0 0px}
+div.rating-cancel,div.star-rating{float:left;width:16px;height:16px;text-indent:-999em;cursor:pointer;display:block;background:transparent;overflow:hidden;margin-left:5px;}
+div.rating-cancel,div.rating-cancel a{background:url(/images/rating/delete.png) no-repeat 0 -16px}
+div.star-rating,div.star-rating a{background:url(/images/rating/star.png) no-repeat 0 0px}
 div.rating-cancel a,div.star-rating a{display:block;width:16px;height:100%;background-position:0 0px;border:0}
-div.star-rating-on a{background-position:0 -16px!important}
-div.star-rating-hover a{background-position:0 -32px}
+div.star-rating-on a{background-position:0 -32px!important}
+div.star-rating-hover a{background-position:0 -16px}
 /* Read Only CSS */
 div.star-rating-readonly a{cursor:default !important}
 /* Partial Star CSS */
 div.star-rating{background:transparent!important;overflow:hidden!important}
 /* END jQuery.Rating Plugin CSS */
 
-/*notice style*/
+/*notification style*/
 * html .notice-wrap{position:absolute}
 .notice-wrap{position:fixed; top:20px; right:20px; width:250px; z-index:9999}
 .notice-item{height:60px; background:#333; -moz-border-radius:6px; -webkit-border-radius:6px; color:#eee; padding:6px 6px 0 6px; font-family:Arial; font-size:11px; border:2px solid #999; display:block; position:relative; margin:0 0 12px 0}
 .notice-item-close{position:absolute; font-family:Arial; font-size:12px; font-weight:bold; right:6px; top:6px; cursor:pointer}
-/*end notice style*/
+/*end notification style*/

@@ -1,6 +1,8 @@
 // Place your application-specific JavaScript functions and classes here
 // This file is automatically included by javascript_include_tag :defaults
 
+//dependency: jquery, google maps
+
 (function($) {
     //(c) douglas crockford funcs x 2
     if (!String.prototype.trim) {
@@ -48,6 +50,11 @@
     window.LLFB = {};
     window.LLFB.utils = {};
     window.LLFB.map = {};
+    //site wide constants
+    LLFB.constants = {};
+    LLFB.constants.REG_ICON = "/images/map/icon2.png";
+    LLFB.constants.ADD_ICON = "/images/map/icon3.png";
+    LLFB.constants.LONDON = {lat:51.49,lng:-0.12};
     //other functions
     LLFB.utils.contains = function(a, v, p) {
         a = a || [];
@@ -59,6 +66,27 @@
             }
         }
         return false;
+    };
+    LLFB.utils.geocodeToPlace = function(obj) {
+        obj = obj || {};
+        var loc = (obj.geometry && obj.geometry.location) ? obj.geometry.location : new google.maps.LatLng(0,0);
+        var address = obj.formatted_address ? obj.formatted_address : "specify address";
+        var postcode = "specify postcode";
+        if ($.isArray(obj.address_components)) {
+            var pcodes = $.grep(obj.address_components, function(v,i){
+                return $.inArray("postal_code", v.types);
+            }, true);
+            postcode = pcodes.length > 0 ? pcodes[0].long_name.trim().strip().toUpperCase() : postcode;
+        }
+        return {id:0, lat:loc.lat(), lng:loc.lng(), address:address, postcode:postcode};
+    };
+    LLFB.utils.getCurrentPosition = function(callback) {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function(position){
+          var loc = new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
+          callback(loc);
+        });
+      } 
     };
     //throttler
     LLFB.utils.Throttler = function(delay) {
@@ -74,6 +102,7 @@
             this.handlers[name] = setTimeout(func, customDelay);
         } 
     };
+    
 })(jQuery);    
 
 
@@ -120,7 +149,7 @@ $(function() {
         if (obj) {
           if (obj.success) {
             $("#photo-container").prepend($("<img/>").attr('src',obj.thumb_url));
-            LLFB.utils.notify("photo uploaded successfully")
+            LLFB.utils.notify("photo uploaded successfully");
           } else {
             LLFB.utils.notify("Failed to upload your image..");
           }
@@ -128,5 +157,16 @@ $(function() {
         }
       }
     });
-    
+    //side search
+    $('#sidesearch').submit(function() {
+      var term = $(this).find("input[type=text]").val();
+      if (term) {
+        window.location = "/#search="+term;
+      }
+      return false;
+    });
+    //watremarks
+    $("#sidesearch").find("input[type=text]").add("#searchaddress").watermark("UK Address or Postcode", {className: "watermark"});
+    //calendars
+    $("input.calendar").datepicker();
 });

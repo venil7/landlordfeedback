@@ -40,7 +40,7 @@ CREATE TABLE `comments` (
   `abuse` int(11) NOT NULL DEFAULT '0' COMMENT 'increases with every abuse report',
   `updated_at` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=18 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=21 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -49,7 +49,7 @@ CREATE TABLE `comments` (
 
 LOCK TABLES `comments` WRITE;
 /*!40000 ALTER TABLE `comments` DISABLE KEYS */;
-INSERT INTO `comments` VALUES (1,NULL,NULL,NULL,2,'some text',2,'2010-11-28 13:19:34'),(2,NULL,NULL,NULL,2,'some text',6,'2010-11-28 13:20:34'),(6,NULL,NULL,17,2,'some comments',0,'2010-11-28 22:36:44'),(4,NULL,NULL,NULL,2,'some text',7,'0000-00-00 00:00:00'),(5,NULL,NULL,NULL,2,'ASDAFWCFW',1,'0000-00-00 00:00:00'),(7,NULL,NULL,17,2,'some comments',0,'2010-11-28 22:37:19'),(8,NULL,NULL,17,2,'some comments',0,'2010-11-28 22:37:45'),(9,NULL,21,NULL,2,'some text',0,'2010-11-28 22:46:56'),(10,NULL,21,NULL,2,'some text',0,'2010-11-28 22:47:12'),(11,NULL,NULL,17,2,'sss',0,'2010-11-28 22:47:32'),(12,NULL,NULL,17,2,'another comment',0,'2010-11-28 22:56:21'),(13,NULL,NULL,17,2,'@@comm',0,'2010-11-28 22:58:15'),(14,NULL,23,NULL,2,'sssssssssssss',0,'2010-11-28 23:01:38'),(15,NULL,23,NULL,2,'xxxxxxxxxxxxxxxxxxx',0,'2010-11-28 23:01:49'),(16,NULL,18,NULL,2,'my latest comment',0,'2010-12-04 15:28:51'),(17,NULL,NULL,15,2,'qwerty comment!!',0,'2010-12-04 15:36:10');
+INSERT INTO `comments` VALUES (1,NULL,NULL,NULL,2,'some text',2,'2010-11-28 13:19:34'),(2,NULL,NULL,NULL,2,'some text',6,'2010-11-28 13:20:34'),(6,NULL,NULL,17,2,'some comments',0,'2010-11-28 22:36:44'),(4,NULL,NULL,NULL,2,'some text',7,'0000-00-00 00:00:00'),(5,NULL,NULL,NULL,2,'ASDAFWCFW',1,'0000-00-00 00:00:00'),(7,NULL,NULL,17,2,'some comments',0,'2010-11-28 22:37:19'),(8,NULL,NULL,17,2,'some comments',0,'2010-11-28 22:37:45'),(9,NULL,21,NULL,2,'some text',0,'2010-11-28 22:46:56'),(10,NULL,21,NULL,2,'some text',0,'2010-11-28 22:47:12'),(11,NULL,NULL,17,2,'sss',0,'2010-11-28 22:47:32'),(12,NULL,NULL,17,2,'another comment',0,'2010-11-28 22:56:21'),(13,NULL,NULL,17,2,'@@comm',0,'2010-11-28 22:58:15'),(14,NULL,23,NULL,2,'sssssssssssss',0,'2010-11-28 23:01:38'),(15,NULL,23,NULL,2,'xxxxxxxxxxxxxxxxxxx',0,'2010-11-28 23:01:49'),(16,NULL,18,NULL,2,'my latest comment',0,'2010-12-04 15:28:51'),(17,NULL,NULL,15,2,'qwerty comment!!',0,'2010-12-04 15:36:10'),(18,NULL,14,NULL,3,'Some comments by svetlana ;))',0,'2010-12-12 10:12:31'),(19,NULL,14,NULL,2,'Some comments by Art ;)',0,'2010-12-12 10:16:00'),(20,NULL,14,NULL,2,'another one',0,'2010-12-12 10:17:37');
 /*!40000 ALTER TABLE `comments` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -175,7 +175,7 @@ CREATE TABLE `photos` (
   `photo_file_size` int(11) DEFAULT NULL,
   `photo_updated_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -184,7 +184,7 @@ CREATE TABLE `photos` (
 
 LOCK TABLES `photos` WRITE;
 /*!40000 ALTER TABLE `photos` DISABLE KEYS */;
-INSERT INTO `photos` VALUES (1,11,'2010-12-04 22:22:58','2010-12-04 22:22:58','Ubuntu_Grunge_by_undeathspawn.jpg','image/jpeg',23865,'2010-12-04 22:22:56'),(2,11,'2010-12-05 00:34:55','2010-12-05 00:34:55','scorched-sydney.jpg','image/jpeg',14026,'2010-12-05 00:34:54');
+INSERT INTO `photos` VALUES (1,14,'2010-12-12 16:07:22','2010-12-12 16:07:22','ubuntu-gold-sur-bois.jpg','image/jpeg',139913,'2010-12-12 16:07:22'),(2,14,'2010-12-12 16:07:51','2010-12-12 16:07:51','ubuntu-gold-sur-bois.jpg','image/jpeg',139913,'2010-12-12 16:07:51'),(3,14,'2010-12-12 16:08:10','2010-12-12 16:08:10','scorched-sydney.jpg','image/jpeg',48202,'2010-12-12 16:08:09'),(4,14,'2010-12-12 16:09:15','2010-12-12 16:09:15','Ubu_Icon2.png','image/png',78871,'2010-12-12 16:09:15'),(5,14,'2010-12-12 16:11:54','2010-12-12 16:11:54','Ubu_Icon2.png','image/png',78871,'2010-12-12 16:11:54'),(6,14,'2010-12-12 16:17:35','2010-12-12 16:17:35','scorched-sydney.jpg','image/jpeg',48202,'2010-12-12 16:17:35');
 /*!40000 ALTER TABLE `photos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -350,7 +350,7 @@ CREATE TABLE `comments` (
   `abuse` int(11) NOT NULL DEFAULT '0' COMMENT 'increases with every abuse report',
   `updated_at` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=18 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=21 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -359,7 +359,7 @@ CREATE TABLE `comments` (
 
 LOCK TABLES `comments` WRITE;
 /*!40000 ALTER TABLE `comments` DISABLE KEYS */;
-INSERT INTO `comments` VALUES (1,NULL,NULL,NULL,2,'some text',2,'2010-11-28 13:19:34'),(2,NULL,NULL,NULL,2,'some text',6,'2010-11-28 13:20:34'),(6,NULL,NULL,17,2,'some comments',0,'2010-11-28 22:36:44'),(4,NULL,NULL,NULL,2,'some text',7,'0000-00-00 00:00:00'),(5,NULL,NULL,NULL,2,'ASDAFWCFW',1,'0000-00-00 00:00:00'),(7,NULL,NULL,17,2,'some comments',0,'2010-11-28 22:37:19'),(8,NULL,NULL,17,2,'some comments',0,'2010-11-28 22:37:45'),(9,NULL,21,NULL,2,'some text',0,'2010-11-28 22:46:56'),(10,NULL,21,NULL,2,'some text',0,'2010-11-28 22:47:12'),(11,NULL,NULL,17,2,'sss',0,'2010-11-28 22:47:32'),(12,NULL,NULL,17,2,'another comment',0,'2010-11-28 22:56:21'),(13,NULL,NULL,17,2,'@@comm',0,'2010-11-28 22:58:15'),(14,NULL,23,NULL,2,'sssssssssssss',0,'2010-11-28 23:01:38'),(15,NULL,23,NULL,2,'xxxxxxxxxxxxxxxxxxx',0,'2010-11-28 23:01:49'),(16,NULL,18,NULL,2,'my latest comment',0,'2010-12-04 15:28:51'),(17,NULL,NULL,15,2,'qwerty comment!!',0,'2010-12-04 15:36:10');
+INSERT INTO `comments` VALUES (1,NULL,NULL,NULL,2,'some text',2,'2010-11-28 13:19:34'),(2,NULL,NULL,NULL,2,'some text',6,'2010-11-28 13:20:34'),(6,NULL,NULL,17,2,'some comments',0,'2010-11-28 22:36:44'),(4,NULL,NULL,NULL,2,'some text',7,'0000-00-00 00:00:00'),(5,NULL,NULL,NULL,2,'ASDAFWCFW',1,'0000-00-00 00:00:00'),(7,NULL,NULL,17,2,'some comments',0,'2010-11-28 22:37:19'),(8,NULL,NULL,17,2,'some comments',0,'2010-11-28 22:37:45'),(9,NULL,21,NULL,2,'some text',0,'2010-11-28 22:46:56'),(10,NULL,21,NULL,2,'some text',0,'2010-11-28 22:47:12'),(11,NULL,NULL,17,2,'sss',0,'2010-11-28 22:47:32'),(12,NULL,NULL,17,2,'another comment',0,'2010-11-28 22:56:21'),(13,NULL,NULL,17,2,'@@comm',0,'2010-11-28 22:58:15'),(14,NULL,23,NULL,2,'sssssssssssss',0,'2010-11-28 23:01:38'),(15,NULL,23,NULL,2,'xxxxxxxxxxxxxxxxxxx',0,'2010-11-28 23:01:49'),(16,NULL,18,NULL,2,'my latest comment',0,'2010-12-04 15:28:51'),(17,NULL,NULL,15,2,'qwerty comment!!',0,'2010-12-04 15:36:10'),(18,NULL,14,NULL,3,'Some comments by svetlana ;))',0,'2010-12-12 10:12:31'),(19,NULL,14,NULL,2,'Some comments by Art ;)',0,'2010-12-12 10:16:00'),(20,NULL,14,NULL,2,'another one',0,'2010-12-12 10:17:37');
 /*!40000 ALTER TABLE `comments` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -485,7 +485,7 @@ CREATE TABLE `photos` (
   `photo_file_size` int(11) DEFAULT NULL,
   `photo_updated_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -494,7 +494,7 @@ CREATE TABLE `photos` (
 
 LOCK TABLES `photos` WRITE;
 /*!40000 ALTER TABLE `photos` DISABLE KEYS */;
-INSERT INTO `photos` VALUES (1,11,'2010-12-04 22:22:58','2010-12-04 22:22:58','Ubuntu_Grunge_by_undeathspawn.jpg','image/jpeg',23865,'2010-12-04 22:22:56'),(2,11,'2010-12-05 00:34:55','2010-12-05 00:34:55','scorched-sydney.jpg','image/jpeg',14026,'2010-12-05 00:34:54');
+INSERT INTO `photos` VALUES (1,14,'2010-12-12 16:07:22','2010-12-12 16:07:22','ubuntu-gold-sur-bois.jpg','image/jpeg',139913,'2010-12-12 16:07:22'),(2,14,'2010-12-12 16:07:51','2010-12-12 16:07:51','ubuntu-gold-sur-bois.jpg','image/jpeg',139913,'2010-12-12 16:07:51'),(3,14,'2010-12-12 16:08:10','2010-12-12 16:08:10','scorched-sydney.jpg','image/jpeg',48202,'2010-12-12 16:08:09'),(4,14,'2010-12-12 16:09:15','2010-12-12 16:09:15','Ubu_Icon2.png','image/png',78871,'2010-12-12 16:09:15'),(5,14,'2010-12-12 16:11:54','2010-12-12 16:11:54','Ubu_Icon2.png','image/png',78871,'2010-12-12 16:11:54'),(6,14,'2010-12-12 16:17:35','2010-12-12 16:17:35','scorched-sydney.jpg','image/jpeg',48202,'2010-12-12 16:17:35');
 /*!40000 ALTER TABLE `photos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -694,4 +694,4 @@ USE `llfb`;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2010-12-11 13:25:42
+-- Dump completed on 2010-12-13  0:09:29

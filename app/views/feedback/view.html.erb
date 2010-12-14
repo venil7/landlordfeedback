@@ -82,7 +82,7 @@
             </div>
             <div class="textfield fields">
 		          <label>Rate</label>
-              <%= star_rating(:name=>:rating)%>
+              <%= star_rating(:name=>"#{:entry}[#{:rating}]")%>
             </div><br/>
             <%= e.submit("Add Rating") %>
           </div>
@@ -139,6 +139,7 @@
 	  <h1>Map</h1>
 	  <%= google_static_map :lat=>@property.lat, :lng=>@property.lng %>
 	  <div class="clear">&nbsp;</div>
+      <%= render "shared/side_search" %>
       <%= render "shared/latest_properties", :properties => @latest_properties %>
 			<%= render "shared/latest_feedbacks", :feedbacks => @latest_feedbacks %>
 	</div>

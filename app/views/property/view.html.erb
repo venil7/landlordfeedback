@@ -6,7 +6,8 @@
 		    <p class="date"><%= @property.updated_at%></p>
 		    <h1><%=@property.address%></h1>
 		    <h1><%=@property.postcode.upcase%></h1>
-		    <p class="postmeta"><%= image_tag user_pic(@property.user.alias)%><%= @property.user.full_name%>
+		    <p class="avt"><%= image_tag user_pic(@property.user.alias)%></p>
+		    <p class="postmeta"><%= @property.user.full_name%></p>
 		    </p>
 		  </div>
 		  <div class="rating"><%= star_rating(:rating => @property.rating, :readonly=>true) %></div>
@@ -51,7 +52,7 @@
             </div>
             <div class="textfield fields">
 		          <label>Date moved out</label>
-              <%= f.text_field(:lastdate) %>
+              <%= f.text_field(:lastdate, {:readonly=>:readonly, :class=>:calendar}) %>
             </div>
             <div class="textfield fields">
 		          <label>Landlord name</label>
@@ -116,6 +117,7 @@
 	  <h1>Map</h1>
 	  <%= google_static_map :lat=>@property.lat, :lng=>@property.lng %>
 	  <div class="clear">&nbsp;</div>
+    <%= render "shared/side_search" %>
     <%= render "shared/latest_properties", :properties => @latest_properties %>
 		<%= render "shared/latest_feedbacks", :feedbacks => @latest_feedbacks %>
 	</div>
