@@ -10,10 +10,13 @@
 		    <p class="postmeta"><%= @property.user.full_name%></p>
 		    </p>
 		  </div>
-		  <div class="rating"><%= star_rating(:rating => @property.rating, :readonly=>true) %></div>
- 		  <%@property.photos.each do |f| %>
+ 		  <%@property.photos.last(4).each do |f| %>
         <%= image_tag f.photo.url(:thumb) %>
       <% end %>
+      <div class="rating"><%= star_rating(:rating => @property.rating, :readonly=>true) %></div>
+      <div>
+        <%= facebook_like %>
+      </div>
 		</div>
 
     <!-- feedbacks if any -->
@@ -27,7 +30,7 @@
             <p><cite>Landlord:</cite><%=f.landlord%></p>
             <p><cite>Agency:</cite><%=f.agency%></p>
             <p><cite>Last Date:</cite><%=f.lastdate%></p>
-		        <div class="rating"><%= star_rating(:rating => f.rating, :readonly=>true) %></div>
+		        <div class="rating"><%= star_rating(:rating => f.rating, :readonly=>true, :name=>"feedback-rating-#{f.id}") %></div>
             <small>Posted by <%=f.user.full_name %> on <%=f.updated_at %></small>
             <%= link_to 'Details..', :controller =>'feedback', :action=>'view', :id=>f.id %>
           </blockquote>
@@ -36,13 +39,15 @@
     <% end %>
 
     <!-- post a feedback -->
+    
 		<div class="post">
+		  <a class="anchor" name="post_feedback"></a>
 		  <div class="posthead">
 		    <h2 class="unfolder" data_unfolder_id="post_feedback">Post a Feedback if you have lived in this property</h2>
    		      <%= login_text_link "Please login via Facebook to post a comment" %>
 		  </div>
       <div class="form2 formstyle hidden" id="post_feedback">
-        <%= form_for(@feedback, :as=>:feedback, :url =>{ :controller=>"property", :action=>"feedback_create", :anchor=>:post_feedback }) do |f| %>
+        <%= form_for(@feedback, :as=>:feedback, :url =>{ :action=>:feedback_create, :id=>@property.id, :anchor=>:post_feedback }) do |f| %>
           <%= f.hidden_field(:property_id) %>
    		    <%= render "shared/error_list", :item => @feedback %>
           <div class="fieldsets">

@@ -61,6 +61,7 @@ input.watermark {color:#ccc;}
 .posthead h3 a {color:#222!important; text-decoration:none;}
 .posthead h3 a:hover {background:#f5eee2;}
 .posthead .postmeta {display:block; font:italic 11px "Trebuchet MS", Arial, Helvetica, sans-serif!important;}
+.posthead a {text-decoration:none;}
 
 #maincontent a {color:#222;}
 #maincontent a:visited, #maincontent a:active {color:#333;}

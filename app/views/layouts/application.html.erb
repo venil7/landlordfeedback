@@ -19,9 +19,10 @@
     </h1>
 		<div id="mainnav">
 			<ul>
-				<li class="<%=:active if @menu_item == :home%>"><a href="<%= url_for :controller=>:home, :action=>:index %>">Welcome <span>home..</span></a></li>
+				<li class="<%=:active if @menu_item == :home %>"><a href="<%= url_for :controller=>:home, :action=>:index %>">Welcome <span>home..</span></a></li>
+				<li class="<%=:active if @menu_item == :add_property%>"><a href="<%= url_for :controller=>:property, :action=>:add %>">Add <span>your feedback</span></a></li>
 				<li class="<%=:active if @menu_item == :about%>"><a href="<%= url_for :controller=>:home, :action=>:about %>">About <span>this project</span></a></li>
-				<li class=""><a href="<%= url_for :controller=>:home, :action=>:index %>">Donate <span>to keep this site running</span></a></li>
+				<li class="<%=:active if @menu_item == :donate%>"><a href="<%= url_for :controller=>:home, :action=>:donate %>">Donate <span>Please support us</span></a></li>
 			</ul>
 			<div class="credentials">
 	      <% unless user_logged_in? %>
@@ -48,34 +49,23 @@
 		<div class="col1">
 			<h2>Follow</h2>
 			<p>
-				raesent tempor, diam at egestas mollis, nisi sapien tristique sem, ac feugiat lectus sapien in turpis. Nam viverra nibh quis arcu aliquam non hendrerit velit vehicula.
+			  Please follow us in the following social  environments<br/>
+			  <img src="/images/social/facebook_16.png" /> <a href=<%=facebook_link%>>Facebook</a><br/>
+			  <img src="/images/social/twitter_16.png" /> <a href=<%=twitter_link%>>Twitter</a><br/>
 			</p>
-			<ul>
-				<li><a href="#">raesent tempor</a></li>
-				<li><a href="#"> diam at egestas mollis</a></li>
-			</ul>
 		</div>
 		<div class="col2">
 			<h2>Donate</h2>
 			<p>
-				raesent tempor, diam at egestas mollis, nisi sapien tristique sem, ac feugiat lectus sapien in turpis. Nam viverra nibh quis arcu aliquam non hendrerit velit vehicula.
+        Your donation will help us to keep this website running, as we need to pay for hosting and maintenance
+				<%= paypal_form %>
 			</p>
-			<ul>
-				<li><a href="#">Nam viverra nibh quis </a></li>
-				<li><a href="#">arcu aliquam non hendrerit </a></li>
-				<li><a href="#">velit vehicula</a></li>
-			</ul>
 		</div>
 		<div class="col3">
 			<h2>Contact</h2>
 			<p>
-				raesent tempor, diam at egestas mollis, nisi sapien tristique sem, ac feugiat lectus sapien in turpis. Nam viverra nibh quis arcu aliquam non hendrerit velit vehicula.
+				If you wish to contact us, please email to <a href="mailto:landlord.feedback@gmail.com">landlord.feedback@gmail.com</a>
 			</p>
-			<ul>
-				<li><a href="#">Nam viverra nibh quis </a></li>
-				<li><a href="#">arcu aliquam non hendrerit </a></li>
-				<li><a href="#">velit vehicula</a></li>
-			</ul>
 		</div>
 		<div class="clear">
 		</div>

@@ -6,6 +6,10 @@ class Photo < ActiveRecord::Base
                     :path => ":rails_root/public/assets/photos/:id/:style/basename.:extension"
 
   validates :feedback_id, :presence => true, :numericality => true
+
+  validates :photo_file_name, :presence => true
+  validates :photo_content_type, :presence => true
+  validates :photo_file_size, :presence => true
   
   validates_attachment_size :photo, :less_than => 3.megabytes
   validates_attachment_content_type :photo, :content_type => ['image/jpeg', 'image/pjpeg', 'image/png', 'image/gif']

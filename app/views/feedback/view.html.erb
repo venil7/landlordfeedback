@@ -4,8 +4,8 @@
 		<div class="post">
 		  <div class="posthead">
 		    <p class="date"><%= @property.updated_at%></p>
-		    <h1><%=@property.address%></h1>
-		    <h1><%=@property.postcode.upcase%></h1>
+		    <h1><%= link_to @property.address, {:controller=>:property,:action=>:view,:id=>@property.id}%></h1>
+		    <h1><%= link_to @property.postcode.upcase, {:controller=>:property,:action=>:view,:id=>@property.id}%></h1>
 		    <h2>Landlord: <%=@feedback.landlord %> </h2> 
 		    <h2>Agency: <%=@feedback.agency %> </h2> 
 		    <h2>Date moved out: <%=@feedback.lastdate.to_s %> </h2>
@@ -13,6 +13,9 @@
 		    <p class="postmeta"><%= @feedback.user.full_name%></p>
 		  </div>
 		  <div class="rating"><%= star_rating(:rating => @feedback.rating, :readonly=>true) %></div>
+		  <div>
+        <%= facebook_like %>
+      </div>
 		</div>
 
 		<!-- photos list & upload -->
@@ -46,6 +49,7 @@
     <!-- ratings if any -->
     <% if @feedback.entries.any? %>
 		<div class="post">
+		  <a class="anchor" name="ratings"></a>
 		  <div class="posthead">
 		    <h2><%=pluralize(@feedback.entries.count, 'rating')%></h2>
       </div>
@@ -53,7 +57,7 @@
         <blockquote>
           <p><cite>Category: </cite><%=e.entrytype.name %></p>
           <p><%=e.description %></p>
-		      <div class="rating"><%= star_rating(:rating => e.rating, :readonly=>true) %></div>
+		      <div class="rating"><%= star_rating(:rating => e.rating, :readonly=>true, :name=>"entry-rating-#{e.id}") %></div>
           <small>On <%=e.updated_at%></small>
         </blockquote>
       <% end %>
@@ -63,12 +67,12 @@
     <!-- post a rating -->
     <% if @own_page %>
 		<div class="post">
-		  <a name="post_rating"></a>
+		  <a class="anchor" name="post_rating"></a>
 		  <div class="posthead">
 		    <h2>Add rating</h2>
 		  </div>
       <div class="form2 formstyle">
-        <%= form_for(@entry, :as => :entry, :url =>{ :controller=>"feedback", :action=>"entry_create" }) do |e| %>
+        <%= form_for(@entry, :as => :entry, :url =>{ :action=>:entry_create, :id=>@feedback.id, :anchor=>:post_rating }) do |e| %>
           <%= e.hidden_field(:feedback_id) %>
    		    <%= render "shared/error_list", :item => @entry %>
           <div class="fieldsets">
@@ -120,7 +124,7 @@
         <h2>Post a Comment</h2>
       </div>
       <div class="form2 formstyle">
-        <%= form_for(@comment, :as=>:comment, :url=> { :action=>"comment_create", :id=>@feedback.id, :anchor=>:post_comment }) do |c| %>
+        <%= form_for(@comment, :as=>:comment, :url=> { :action=>:comment_create, :id=>@feedback.id, :anchor=>:post_comment }) do |c| %>
      		<%= render "shared/error_list", :item => @comment %>
         <div class="fieldsets">
           <%= c.hidden_field(:feedback_id) %>

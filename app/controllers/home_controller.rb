@@ -10,6 +10,7 @@ class HomeController < ApplicationController
     end
     
     def donate
+      @menu_item = :donate
     end
     
     #def index

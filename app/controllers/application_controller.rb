@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
+  before_filter :no_id_check, :only=>[:view]
   
   def initialize()
     super()
@@ -28,7 +29,7 @@ class ApplicationController < ActionController::Base
   end
   
   def redirect_to_login
-    redirect_to :controller=>"auth", :action=>"fblogin"
+    redirect_to :controller=>:auth, :action=>:fblogin
   end
   
   def is_returning_user!
@@ -49,9 +50,14 @@ class ApplicationController < ActionController::Base
   
   protected
   def fb_client
-    @client ||= FBGraph::Client.new(:client_id => '154612174572644',
-                                    :secret_id => '1d805d27dd7492cfe3b2ce6f8c4ccbf5',
+    @client ||= FBGraph::Client.new(:client_id => APP_CONFIG['client_id'],
+                                    :secret_id => APP_CONFIG['secret_id'],
                                     :token => session[:access_token])
   end
-
+  
+  
+  private 
+  def no_id_check
+    redirect_to root_path if params[:id] == nil
+  end
 end
