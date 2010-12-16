@@ -41,6 +41,14 @@ module ApplicationHelper
       return link_to txt, fb_login_path unless user_logged_in?
     end
     
+    def flash_notice
+      str = String.new
+      flash.each do |category, message|
+        str << content_tag(:p, message, :class=>[:flash, category].join(' '))
+      end
+      return raw str
+    end
+    
     def paypal_form
       raw APP_CONFIG['paypal_donate_html'];
     end
@@ -56,5 +64,12 @@ module ApplicationHelper
     def facebook_like
       raw APP_CONFIG['facebook_like'];
     end
-
+    
+    def twitter_tweet
+      raw APP_CONFIG['twitter_tweet'];
+    end
+    
+    def google_buzz
+      raw APP_CONFIG['google_buzz'];
+    end
 end

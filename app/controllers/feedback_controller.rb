@@ -23,9 +23,11 @@ class FeedbackController < ApplicationController
     @entry = Entry.new(params[:entry])
     @entry[:user_id] = user_id
     if @entry.save
+      flash[:success] = added_successfully_message :rating
       redirect_to :action => 'view', :id => @entry.feedback_id, :anchor=>:ratings
       return
     else
+      flash.now[:error] = added_unsuccessfully_message :rating
       @feedback = Feedback.find(@entry.feedback_id)
       @property = Property.find(@feedback.property_id)
       @entrytypes = Entrytype.for_select
@@ -44,8 +46,10 @@ class FeedbackController < ApplicationController
     @comment = Comment.new(params[:comment])
     @comment[:user_id] = user_id
     if @comment.save
+      flash[:success] = added_successfully_message :comment
       redirect_to :action => "view", :id => @comment.feedback_id, :anchor => :comments
     else
+      flash.now[:error] = added_unsuccessfully_message :comment
       @feedback = Feedback.find(@comment.feedback_id)
       @property = Property.find(@feedback.property_id)
       @entrytypes = Entrytype.for_select

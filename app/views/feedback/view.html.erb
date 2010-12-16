@@ -13,9 +13,7 @@
 		    <p class="postmeta"><%= @feedback.user.full_name%></p>
 		  </div>
 		  <div class="rating"><%= star_rating(:rating => @feedback.rating, :readonly=>true) %></div>
-		  <div>
-        <%= facebook_like %>
-      </div>
+      <%= render "shared/social_widgets" %>
 		</div>
 
 		<!-- photos list & upload -->
@@ -26,7 +24,7 @@
       <% end %>
       <% if @own_page %>
    		  <div class="posthead">
-   		    <p class="postmeta unfolder" data_unfolder_id="upload_form_container">Upload photos..</p>
+   		    <p class="postmeta unfolder hideself" data_unfolder_id="upload_form_container"><input type="submit" value="Upload Photos"></p>
         </div>
 		    <a name="upload_form"></a>
         <iframe name="iframe-post-form" id="iframe-post-form" style="display:none;"></iframe>

@@ -109,14 +109,11 @@
 //this script runs on all pages on DOM-ready
 $(function() {
     //common functionality, dependant on 3d party plugins
-    LLFB.utils.notify = function(text, life, header) {
-      header = header || "";
-      life   = life || 7000;
-      $.noticeAdd({
-          text: text,
-          stay: false,
-          stayTime: life
-      });
+    LLFB.utils.notify = function(text, type, life) {
+      type = type ||"notice";
+      life = life || 7000;
+      var sticky = typeof life === "boolean" ? life : false;
+      $.jnotify(text, {type:type, delay:life, sticky:sticky});
     };
     
     //jquery ui defaults
@@ -135,8 +132,13 @@ $(function() {
     
     //unfolders
     $(".unfolder").click(function(){
-      var id = $(this).attr("data_unfolder_id");
+      var that = $(this);
+      var id = that.attr("data_unfolder_id");
+      if (that.hasClass('hideself')) {
+        that.hide();
+      }
       $("#"+id).fadeToggle();
+      
     });
     
     //hidden elements
@@ -158,15 +160,27 @@ $(function() {
       }
     });
     //side search
-    $('#sidesearch').submit(function() {
-      var term = $(this).find("input[type=text]").val();
-      if (term) {
-        window.location = "/#search="+term;
-      }
-      return false;
-    });
+    //$('#sidesearch').submit(function() {
+    //  var term = $(this).find("input[type=text]").val();
+    //  if (term) {
+    //    window.location = "/#search="+term;
+    //  }
+    //  return false;
+    //});
     //watremarks
     $("#sidesearch").find("input[type=text]").add("#searchaddress").watermark("UK Address or Postcode", {className: "watermark"});
     //calendars
     $("input.calendar").datepicker();
+    //notifications
+    $("p.flash").each(function(){
+      var that = $(this);
+      var type = "notice";
+      if (that.hasClass('success')) {
+        type = "success";
+      } else
+      if (that.hasClass('error')) {
+        type = "error";
+      }
+      LLFB.utils.notify(that.html(), type);
+    });
 });

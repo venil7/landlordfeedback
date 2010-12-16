@@ -14,9 +14,7 @@
         <%= image_tag f.photo.url(:thumb) %>
       <% end %>
       <div class="rating"><%= star_rating(:rating => @property.rating, :readonly=>true) %></div>
-      <div>
-        <%= facebook_like %>
-      </div>
+      <%= render "shared/social_widgets" %>
 		</div>
 
     <!-- feedbacks if any -->
@@ -43,7 +41,7 @@
 		<div class="post">
 		  <a class="anchor" name="post_feedback"></a>
 		  <div class="posthead">
-		    <h2 class="unfolder" data_unfolder_id="post_feedback">Post a Feedback if you have lived in this property</h2>
+		    <h3 class="unfolder" data_unfolder_id="post_feedback">Lived in this property? <input type="submit" value="Add Feedback"></h3>
    		      <%= login_text_link "Please login via Facebook to post a comment" %>
 		  </div>
       <div class="form2 formstyle hidden" id="post_feedback">

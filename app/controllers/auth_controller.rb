@@ -21,7 +21,10 @@ class AuthController < ApplicationController
         session[:user_id] = User.add_if_not_present(:alias => @user[:id], :name => @user[:first_name], 
                                                     :surname => @user[:last_name], 
                                                     :email => @user[:email])
+        flash[:notice] = "Hi #{@user[:first_name]}, welcome to Landlord Feedback!!"
+        #set permanent cokies
         is_returning_user!
+        #redirect to where they came from
         redirect_to @last_page ? @last_page : root_path
     end
     

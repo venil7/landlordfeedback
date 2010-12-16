@@ -31,9 +31,9 @@ class Property < ActiveRecord::Base
   before_save :on_before_save
   def on_before_save
     #trim/uppercase postcode
-    postcode.upcase!.gsub!(/ /, '')
+    postcode = postcode.upcase.gsub(/ /, '') if postcode
     #trim address
-    address.strip!
+    address.strip! if address
   end
   private
   def within_uk_boundary
