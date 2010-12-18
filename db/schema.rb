@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101206195354) do
+ActiveRecord::Schema.define(:version => 0) do
 
   create_table "comments", :force => true do |t|
     t.integer  "entry_id"
@@ -22,13 +22,28 @@ ActiveRecord::Schema.define(:version => 20101206195354) do
     t.datetime "updated_at",                                :null => false
   end
 
+  add_index "comments", ["abuse"], :name => "abuse"
+  add_index "comments", ["entry_id"], :name => "entry_id"
+  add_index "comments", ["feedback_id"], :name => "feedback_id"
+  add_index "comments", ["property_id"], :name => "property_id"
+  add_index "comments", ["user_id"], :name => "user_id"
+
   create_table "entries", :force => true do |t|
     t.integer  "entrytype_id", :null => false
     t.integer  "feedback_id",  :null => false
     t.integer  "user_id",      :null => false
-    t.text     "entry",        :null => false
+    t.text     "description"
     t.integer  "rating",       :null => false
     t.datetime "updated_at",   :null => false
+  end
+
+  add_index "entries", ["entrytype_id"], :name => "entrytype_id"
+  add_index "entries", ["feedback_id"], :name => "feedback_id"
+  add_index "entries", ["user_id"], :name => "user_id"
+
+  create_table "entrytypes", :force => true do |t|
+    t.string "name",    :limit => 50, :null => false
+    t.text   "comment"
   end
 
   create_table "feedbackproperties", :id => false, :force => true do |t|
@@ -39,7 +54,7 @@ ActiveRecord::Schema.define(:version => 20101206195354) do
     t.decimal  "lat",                           :precision => 11, :scale => 7,                 :null => false
     t.decimal  "lng",                           :precision => 11, :scale => 7,                 :null => false
     t.integer  "propertytype_id",                                                              :null => false
-    t.datetime "updated_at",                                                                   :null => false
+    t.datetime "updated_at"
     t.integer  "user_id",                                                                      :null => false
   end
 
@@ -50,16 +65,16 @@ ActiveRecord::Schema.define(:version => 20101206195354) do
     t.date     "lastdate"
     t.string   "landlord",    :limit => 50,                :null => false
     t.string   "agency",      :limit => 50,                :null => false
-    t.datetime "updated_at",                               :null => false
+    t.boolean  "anonymous",                                :null => false
+    t.datetime "updated_at"
+    t.datetime "created_at"
   end
 
-  create_table "feedbacktypes", :force => true do |t|
-    t.string "name",    :limit => 50, :null => false
-    t.text   "comment"
-  end
+  add_index "feedbacks", ["property_id"], :name => "property_id"
+  add_index "feedbacks", ["user_id"], :name => "user_id"
 
   create_table "photos", :force => true do |t|
-    t.integer  "property_id"
+    t.integer  "feedback_id",        :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "photo_file_name"
@@ -67,6 +82,8 @@ ActiveRecord::Schema.define(:version => 20101206195354) do
     t.integer  "photo_file_size"
     t.datetime "photo_updated_at"
   end
+
+  add_index "photos", ["feedback_id"], :name => "feedback_id"
 
   create_table "posts", :force => true do |t|
     t.string   "title"
@@ -83,8 +100,14 @@ ActiveRecord::Schema.define(:version => 20101206195354) do
     t.string   "postcode",        :limit => 50,                                :null => false
     t.decimal  "lat",                           :precision => 11, :scale => 7, :null => false
     t.decimal  "lng",                           :precision => 11, :scale => 7, :null => false
-    t.datetime "updated_at",                                                   :null => false
+    t.datetime "updated_at"
+    t.datetime "created_at"
   end
+
+  add_index "properties", ["lat"], :name => "lat"
+  add_index "properties", ["lng"], :name => "lng"
+  add_index "properties", ["propertytype_id"], :name => "propertytype_id"
+  add_index "properties", ["user_id"], :name => "user_id"
 
   create_table "propertytypes", :force => true do |t|
     t.string "name",    :limit => 50, :null => false

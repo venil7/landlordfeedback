@@ -39,7 +39,12 @@ CREATE TABLE `comments` (
   `text` varchar(400) NOT NULL,
   `abuse` int(11) NOT NULL DEFAULT '0' COMMENT 'increases with every abuse report',
   `updated_at` datetime NOT NULL,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  KEY `entry_id` (`entry_id`),
+  KEY `feedback_id` (`feedback_id`),
+  KEY `property_id` (`property_id`),
+  KEY `user_id` (`user_id`),
+  KEY `abuse` (`abuse`)
 ) ENGINE=MyISAM AUTO_INCREMENT=23 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -68,7 +73,10 @@ CREATE TABLE `entries` (
   `description` text CHARACTER SET latin1,
   `rating` int(11) NOT NULL,
   `updated_at` datetime NOT NULL,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  KEY `feedback_id` (`feedback_id`),
+  KEY `user_id` (`user_id`),
+  KEY `entrytype_id` (`entrytype_id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=29 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -141,13 +149,15 @@ CREATE TABLE `feedbacks` (
   `user_id` int(11) NOT NULL,
   `totalmonths` int(11) NOT NULL DEFAULT '6',
   `lastdate` date DEFAULT NULL,
-  `landlord` varchar(50) CHARACTER SET latin1 NOT NULL,
-  `agency` varchar(50) CHARACTER SET latin1 NOT NULL,
+  `landlord` varchar(50) NOT NULL,
+  `agency` varchar(50) NOT NULL,
   `anonymous` tinyint(1) NOT NULL,
   `updated_at` datetime DEFAULT NULL,
   `created_at` datetime DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=29 DEFAULT CHARSET=utf8;
+  PRIMARY KEY (`id`),
+  KEY `property_id` (`property_id`),
+  KEY `user_id` (`user_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=30 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -156,7 +166,7 @@ CREATE TABLE `feedbacks` (
 
 LOCK TABLES `feedbacks` WRITE;
 /*!40000 ALTER TABLE `feedbacks` DISABLE KEYS */;
-INSERT INTO `feedbacks` VALUES (15,11,2,12,'2010-10-31','some name','some agency',0,'2010-11-01 19:47:01','0000-00-00 00:00:00'),(8,15,2,12,'2010-10-31','aaaaaaaaaaa','sssssssssss',0,'2010-11-01 19:47:01','0000-00-00 00:00:00'),(14,15,2,1,'2010-10-31','aaaa','fffff',0,'2010-11-01 19:47:01','0000-00-00 00:00:00'),(13,15,2,1,'2010-10-31','landlord','agency',0,'2010-11-01 19:47:01','0000-00-00 00:00:00'),(16,15,2,12,'2010-10-31','<a >xxx</a>','<a >xxx</a>',0,'2010-11-01 19:47:01','0000-00-00 00:00:00'),(17,16,2,6,'2009-10-01','John Smith','Northfiels',0,'2010-11-01 19:47:01','0000-00-00 00:00:00'),(18,17,2,6,'2010-12-12','aaaaaaa','',0,'2010-11-20 15:06:49','0000-00-00 00:00:00'),(19,17,2,6,'1982-03-22','aaaaaaa','',0,'2010-11-20 15:08:15','0000-00-00 00:00:00'),(20,17,2,6,'2010-12-12','some fucker','',0,'2010-11-20 15:35:02','0000-00-00 00:00:00'),(21,17,2,48,'2010-12-12','','bad agency',0,'2010-11-20 15:52:23','0000-00-00 00:00:00'),(22,16,2,12,'1982-03-22','some fucker','agency 1',0,'2010-11-28 20:21:04','0000-00-00 00:00:00'),(23,17,2,6,'2010-12-12','ssssssss','xxxxxxxxxxxxxxx',0,'2010-11-28 22:58:27','0000-00-00 00:00:00'),(24,22,2,18,'2010-12-31','David Smith','Easter Estates, PLC',0,'2010-12-14 14:53:16','0000-00-00 00:00:00'),(25,14,2,18,'2010-12-07','David Smith','Central London Estates, Ltd',0,'2010-12-14 15:00:35','0000-00-00 00:00:00'),(26,29,2,12,'2010-12-08','aaaaaaa','agency 1',0,'2010-12-15 22:45:39','0000-00-00 00:00:00'),(27,15,2,18,'2010-12-01','ssssssss','aaaaaaaaaaaaaaa',0,'2010-12-17 23:27:18','0000-00-00 00:00:00'),(28,15,2,12,'2010-12-01','qqq','ff',1,'2010-12-18 12:36:01','2010-12-18 12:36:01');
+INSERT INTO `feedbacks` VALUES (15,11,2,12,'2010-10-31','some name','some agency',0,'2010-11-01 19:47:01','0000-00-00 00:00:00'),(8,15,2,12,'2010-10-31','aaaaaaaaaaa','sssssssssss',0,'2010-11-01 19:47:01','0000-00-00 00:00:00'),(14,15,2,1,'2010-10-31','aaaa','fffff',0,'2010-11-01 19:47:01','0000-00-00 00:00:00'),(13,15,2,1,'2010-10-31','landlord','agency',0,'2010-11-01 19:47:01','0000-00-00 00:00:00'),(16,15,2,12,'2010-10-31','<a >xxx</a>','<a >xxx</a>',0,'2010-11-01 19:47:01','0000-00-00 00:00:00'),(17,16,2,6,'2009-10-01','John Smith','Northfiels',0,'2010-11-01 19:47:01','0000-00-00 00:00:00'),(18,17,2,6,'2010-12-12','aaaaaaa','',0,'2010-11-20 15:06:49','0000-00-00 00:00:00'),(19,17,2,6,'1982-03-22','aaaaaaa','',0,'2010-11-20 15:08:15','0000-00-00 00:00:00'),(20,17,2,6,'2010-12-12','some fucker','',0,'2010-11-20 15:35:02','0000-00-00 00:00:00'),(21,17,2,48,'2010-12-12','','bad agency',0,'2010-11-20 15:52:23','0000-00-00 00:00:00'),(22,16,2,12,'1982-03-22','some fucker','agency 1',0,'2010-11-28 20:21:04','0000-00-00 00:00:00'),(23,17,2,6,'2010-12-12','ssssssss','xxxxxxxxxxxxxxx',0,'2010-11-28 22:58:27','0000-00-00 00:00:00'),(24,22,2,18,'2010-12-31','David Smith','Easter Estates, PLC',0,'2010-12-14 14:53:16','0000-00-00 00:00:00'),(25,14,2,18,'2010-12-07','David Smith','Central London Estates, Ltd',0,'2010-12-14 15:00:35','0000-00-00 00:00:00'),(26,29,2,12,'2010-12-08','aaaaaaa','agency 1',0,'2010-12-15 22:45:39','0000-00-00 00:00:00'),(27,15,2,18,'2010-12-01','ssssssss','aaaaaaaaaaaaaaa',0,'2010-12-17 23:27:18','0000-00-00 00:00:00'),(28,15,2,12,'2010-12-01','qqq','ff',1,'2010-12-18 12:36:01','2010-12-18 12:36:01'),(29,17,2,12,'2010-12-14','aaaaaaa','aaaaaaaaaaaaa',1,'2010-12-18 21:14:03','2010-12-18 21:14:03');
 /*!40000 ALTER TABLE `feedbacks` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -172,12 +182,13 @@ CREATE TABLE `photos` (
   `feedback_id` int(11) NOT NULL,
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
-  `photo_file_name` varchar(255) DEFAULT NULL,
-  `photo_content_type` varchar(255) DEFAULT NULL,
+  `photo_file_name` varchar(255) CHARACTER SET latin1 DEFAULT NULL,
+  `photo_content_type` varchar(255) CHARACTER SET latin1 DEFAULT NULL,
   `photo_file_size` int(11) DEFAULT NULL,
   `photo_updated_at` datetime DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  PRIMARY KEY (`id`),
+  KEY `feedback_id` (`feedback_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -204,7 +215,7 @@ CREATE TABLE `posts` (
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -234,7 +245,11 @@ CREATE TABLE `properties` (
   `lng` decimal(11,7) NOT NULL,
   `updated_at` datetime DEFAULT NULL,
   `created_at` datetime DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  KEY `propertytype_id` (`propertytype_id`),
+  KEY `user_id` (`user_id`),
+  KEY `lat` (`lat`),
+  KEY `lng` (`lng`)
 ) ENGINE=MyISAM AUTO_INCREMENT=34 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -281,9 +296,9 @@ DROP TABLE IF EXISTS `schema_migrations`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `schema_migrations` (
-  `version` varchar(255) NOT NULL,
+  `version` varchar(255) CHARACTER SET latin1 NOT NULL,
   UNIQUE KEY `unique_schema_migrations` (`version`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -314,7 +329,7 @@ CREATE TABLE `users` (
   `updated_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `alias` (`alias`)
-) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -351,7 +366,12 @@ CREATE TABLE `comments` (
   `text` varchar(400) NOT NULL,
   `abuse` int(11) NOT NULL DEFAULT '0' COMMENT 'increases with every abuse report',
   `updated_at` datetime NOT NULL,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  KEY `entry_id` (`entry_id`),
+  KEY `feedback_id` (`feedback_id`),
+  KEY `property_id` (`property_id`),
+  KEY `user_id` (`user_id`),
+  KEY `abuse` (`abuse`)
 ) ENGINE=MyISAM AUTO_INCREMENT=23 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -380,7 +400,10 @@ CREATE TABLE `entries` (
   `description` text CHARACTER SET latin1,
   `rating` int(11) NOT NULL,
   `updated_at` datetime NOT NULL,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  KEY `feedback_id` (`feedback_id`),
+  KEY `user_id` (`user_id`),
+  KEY `entrytype_id` (`entrytype_id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=29 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -453,13 +476,15 @@ CREATE TABLE `feedbacks` (
   `user_id` int(11) NOT NULL,
   `totalmonths` int(11) NOT NULL DEFAULT '6',
   `lastdate` date DEFAULT NULL,
-  `landlord` varchar(50) CHARACTER SET latin1 NOT NULL,
-  `agency` varchar(50) CHARACTER SET latin1 NOT NULL,
+  `landlord` varchar(50) NOT NULL,
+  `agency` varchar(50) NOT NULL,
   `anonymous` tinyint(1) NOT NULL,
   `updated_at` datetime DEFAULT NULL,
   `created_at` datetime DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=29 DEFAULT CHARSET=utf8;
+  PRIMARY KEY (`id`),
+  KEY `property_id` (`property_id`),
+  KEY `user_id` (`user_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=30 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -468,7 +493,7 @@ CREATE TABLE `feedbacks` (
 
 LOCK TABLES `feedbacks` WRITE;
 /*!40000 ALTER TABLE `feedbacks` DISABLE KEYS */;
-INSERT INTO `feedbacks` VALUES (15,11,2,12,'2010-10-31','some name','some agency',0,'2010-11-01 19:47:01','0000-00-00 00:00:00'),(8,15,2,12,'2010-10-31','aaaaaaaaaaa','sssssssssss',0,'2010-11-01 19:47:01','0000-00-00 00:00:00'),(14,15,2,1,'2010-10-31','aaaa','fffff',0,'2010-11-01 19:47:01','0000-00-00 00:00:00'),(13,15,2,1,'2010-10-31','landlord','agency',0,'2010-11-01 19:47:01','0000-00-00 00:00:00'),(16,15,2,12,'2010-10-31','<a >xxx</a>','<a >xxx</a>',0,'2010-11-01 19:47:01','0000-00-00 00:00:00'),(17,16,2,6,'2009-10-01','John Smith','Northfiels',0,'2010-11-01 19:47:01','0000-00-00 00:00:00'),(18,17,2,6,'2010-12-12','aaaaaaa','',0,'2010-11-20 15:06:49','0000-00-00 00:00:00'),(19,17,2,6,'1982-03-22','aaaaaaa','',0,'2010-11-20 15:08:15','0000-00-00 00:00:00'),(20,17,2,6,'2010-12-12','some fucker','',0,'2010-11-20 15:35:02','0000-00-00 00:00:00'),(21,17,2,48,'2010-12-12','','bad agency',0,'2010-11-20 15:52:23','0000-00-00 00:00:00'),(22,16,2,12,'1982-03-22','some fucker','agency 1',0,'2010-11-28 20:21:04','0000-00-00 00:00:00'),(23,17,2,6,'2010-12-12','ssssssss','xxxxxxxxxxxxxxx',0,'2010-11-28 22:58:27','0000-00-00 00:00:00'),(24,22,2,18,'2010-12-31','David Smith','Easter Estates, PLC',0,'2010-12-14 14:53:16','0000-00-00 00:00:00'),(25,14,2,18,'2010-12-07','David Smith','Central London Estates, Ltd',0,'2010-12-14 15:00:35','0000-00-00 00:00:00'),(26,29,2,12,'2010-12-08','aaaaaaa','agency 1',0,'2010-12-15 22:45:39','0000-00-00 00:00:00'),(27,15,2,18,'2010-12-01','ssssssss','aaaaaaaaaaaaaaa',0,'2010-12-17 23:27:18','0000-00-00 00:00:00'),(28,15,2,12,'2010-12-01','qqq','ff',1,'2010-12-18 12:36:01','2010-12-18 12:36:01');
+INSERT INTO `feedbacks` VALUES (15,11,2,12,'2010-10-31','some name','some agency',0,'2010-11-01 19:47:01','0000-00-00 00:00:00'),(8,15,2,12,'2010-10-31','aaaaaaaaaaa','sssssssssss',0,'2010-11-01 19:47:01','0000-00-00 00:00:00'),(14,15,2,1,'2010-10-31','aaaa','fffff',0,'2010-11-01 19:47:01','0000-00-00 00:00:00'),(13,15,2,1,'2010-10-31','landlord','agency',0,'2010-11-01 19:47:01','0000-00-00 00:00:00'),(16,15,2,12,'2010-10-31','<a >xxx</a>','<a >xxx</a>',0,'2010-11-01 19:47:01','0000-00-00 00:00:00'),(17,16,2,6,'2009-10-01','John Smith','Northfiels',0,'2010-11-01 19:47:01','0000-00-00 00:00:00'),(18,17,2,6,'2010-12-12','aaaaaaa','',0,'2010-11-20 15:06:49','0000-00-00 00:00:00'),(19,17,2,6,'1982-03-22','aaaaaaa','',0,'2010-11-20 15:08:15','0000-00-00 00:00:00'),(20,17,2,6,'2010-12-12','some fucker','',0,'2010-11-20 15:35:02','0000-00-00 00:00:00'),(21,17,2,48,'2010-12-12','','bad agency',0,'2010-11-20 15:52:23','0000-00-00 00:00:00'),(22,16,2,12,'1982-03-22','some fucker','agency 1',0,'2010-11-28 20:21:04','0000-00-00 00:00:00'),(23,17,2,6,'2010-12-12','ssssssss','xxxxxxxxxxxxxxx',0,'2010-11-28 22:58:27','0000-00-00 00:00:00'),(24,22,2,18,'2010-12-31','David Smith','Easter Estates, PLC',0,'2010-12-14 14:53:16','0000-00-00 00:00:00'),(25,14,2,18,'2010-12-07','David Smith','Central London Estates, Ltd',0,'2010-12-14 15:00:35','0000-00-00 00:00:00'),(26,29,2,12,'2010-12-08','aaaaaaa','agency 1',0,'2010-12-15 22:45:39','0000-00-00 00:00:00'),(27,15,2,18,'2010-12-01','ssssssss','aaaaaaaaaaaaaaa',0,'2010-12-17 23:27:18','0000-00-00 00:00:00'),(28,15,2,12,'2010-12-01','qqq','ff',1,'2010-12-18 12:36:01','2010-12-18 12:36:01'),(29,17,2,12,'2010-12-14','aaaaaaa','aaaaaaaaaaaaa',1,'2010-12-18 21:14:03','2010-12-18 21:14:03');
 /*!40000 ALTER TABLE `feedbacks` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -484,12 +509,13 @@ CREATE TABLE `photos` (
   `feedback_id` int(11) NOT NULL,
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
-  `photo_file_name` varchar(255) DEFAULT NULL,
-  `photo_content_type` varchar(255) DEFAULT NULL,
+  `photo_file_name` varchar(255) CHARACTER SET latin1 DEFAULT NULL,
+  `photo_content_type` varchar(255) CHARACTER SET latin1 DEFAULT NULL,
   `photo_file_size` int(11) DEFAULT NULL,
   `photo_updated_at` datetime DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  PRIMARY KEY (`id`),
+  KEY `feedback_id` (`feedback_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -516,7 +542,7 @@ CREATE TABLE `posts` (
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -546,7 +572,11 @@ CREATE TABLE `properties` (
   `lng` decimal(11,7) NOT NULL,
   `updated_at` datetime DEFAULT NULL,
   `created_at` datetime DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  KEY `propertytype_id` (`propertytype_id`),
+  KEY `user_id` (`user_id`),
+  KEY `lat` (`lat`),
+  KEY `lng` (`lng`)
 ) ENGINE=MyISAM AUTO_INCREMENT=34 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -593,9 +623,9 @@ DROP TABLE IF EXISTS `schema_migrations`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `schema_migrations` (
-  `version` varchar(255) NOT NULL,
+  `version` varchar(255) CHARACTER SET latin1 NOT NULL,
   UNIQUE KEY `unique_schema_migrations` (`version`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -626,7 +656,7 @@ CREATE TABLE `users` (
   `updated_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `alias` (`alias`)
-) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -698,4 +728,4 @@ USE `llfb`;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2010-12-18 13:07:07
+-- Dump completed on 2010-12-18 21:14:56

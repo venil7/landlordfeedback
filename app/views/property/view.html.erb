@@ -3,9 +3,9 @@
     <!-- main adress -->
 		<div class="post">
 		  <div class="posthead">
-		    <p class="date"><%= @property.updated_at%></p>
   		    <h1><%=@property.address%></h1>
 	  	    <h1><%=@property.postcode.upcase%></h1>
+		      <p class="date">Added <%= @property.updated_at%></p>
 		    </p>
 		  </div>
  		  <%@property.photos.last(4).each do |f| %>
@@ -32,7 +32,8 @@
             <p><cite>Agency:</cite><%=f.agency%></p>
             <p><cite>Last Date:</cite><%=f.lastdate%></p>
 		        <div class="rating"><%= star_rating(:rating => f.rating, :readonly=>true, :name=>"feedback-rating-#{f.id}") %></div>
-            <small>Posted by <%=f.user.full_name %> on <%=f.updated_at %></small>
+		        <div class="avatar"><p class="avt2"><%= image_tag user_pic(f.owner.alias)%></p></div>
+            <small>Posted by <%=f.owner.full_name %> on <%=f.updated_at %></small>
             <%= link_to 'Details..', :controller =>:feedback, :action=>:view, :id=>f.id %>
           </blockquote>
         <% end %>
