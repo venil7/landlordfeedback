@@ -46,8 +46,18 @@
 		          <label>Agency name*</label>
               <%= f.text_field(:agency) %>
             </div>
-            <%= f.submit("Add Feedback") %>
           </div>
+          <div class="fieldsets">
+	          <div class="textfield fields">
+			        <%= f.check_box(:accept_terms, :class=>:inline) %>
+			        <label class="inline">I Agree to Landlord Feedback <%= link_to "terms", :anchor=>:terms %> of posting*</label>
+		        </div>
+		        <%= f.submit("Add feedback", :class=>:btn1) %>
+	        </div>
+	        <div class="textfield fields">
+		        <%= f.check_box(:anonymous, :class=>:inline) %>
+		        <label class="inline descreet">Post as anonymous</label>
+	        </div>
         <% end %>
       </div>
 		</div>

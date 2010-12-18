@@ -1,8 +1,9 @@
 class Property < ActiveRecord::Base
   self.include_root_in_json = false
   extend Application
+  
   attr_accessor :accept_terms
-  attr_accessor :post_as_anonymous
+  #attr_accessor :post_as_anonymous
   
   default_scope order("updated_at desc")
   
@@ -19,7 +20,7 @@ class Property < ActiveRecord::Base
   validates :lat, :presence => true, :numericality => true
   validates :lng, :presence => true, :numericality => true
   validates :propertytype_id, :presence => true, :numericality => true
-  validates :accept_terms, :acceptance => {:message => "of use must be accepted"}
+  validates :accept_terms, terms_must_be_accepted 
   validates :user_id, login_validation_parameters
   validate  :within_uk_boundary
 

@@ -7,6 +7,10 @@ class PropertyController < PageController
     end
     
     def create
+      if params[:property] == nil
+        redirect_to :action=>:add
+        return
+      end 
       @menu_item = :add_property
       @property = Property.new(params[:property])
       @property[:user_id] = user_id

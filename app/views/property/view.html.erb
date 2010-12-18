@@ -4,10 +4,8 @@
 		<div class="post">
 		  <div class="posthead">
 		    <p class="date"><%= @property.updated_at%></p>
-		    <h1><%=@property.address%></h1>
-		    <h1><%=@property.postcode.upcase%></h1>
-		    <p class="avt"><%= image_tag user_pic(@property.user.alias)%></p>
-		    <p class="postmeta"><%= @property.user.full_name%></p>
+  		    <h1><%=@property.address%></h1>
+	  	    <h1><%=@property.postcode.upcase%></h1>
 		    </p>
 		  </div>
  		  <%@property.photos.last(4).each do |f| %>
@@ -41,55 +39,11 @@
 		  </div>
     <% end %>
 
-    <% if @property.comments.any? %>
     <!-- comments if any -->
-		<div class="post">
-      <a class="anchor" name="comments"></a>
-		  <div class="posthead">
-        <h2><%=pluralize(@property.comments.count, 'Comments')%></h2>
-      </div>
-      <div id="comments" class="comments-list">
-        <% @property.comments.each do |c| %>
-          <div class="entry">
-             <p class="avt"><%= image_tag user_pic(c.user.alias) %></p>
-             <p class="name"><%=c.user.full_name%></p>
-             <p class="date"><%=c.updated_at%></p>
-             <div class="con">
-               <p><%=c.text%></p>
-             </div>
-          </div>
-        <% end %>
-      </div>
-		</div>
-    <% end %>
-		
+ 		<%= render "shared/comments", :comments => @property.comments %>
+
     <!-- post a comment -->
-		<div class="post">
-      <a class="anchor" name="post_comment"></a>
-		  <div class="posthead">
-        <h2>Post a Comment</h2>
-        <%= login_text_link "Please login via Facebook to post a comment" %>
-      </div>
-      <div class="form2 formstyle">
-        <%= form_for(@comment, :as=>:comment, :url=> { :action=>"comment_create", :id=>@property.id, :anchor=>:post_comment }) do |c| %>
-        <div class="fieldsets">
-          <h3>New Comment</h3>
-	        <div class="clear">
-	        </div>
-	        <p class="info">
-		         All fields marked with * are mandatory
-	        </p>
-      		<%= render "shared/error_list", :item => @comment %>
-          <%= c.hidden_field(:property_id) %>
-          <div class="textfield fields">
-			      <label>Comment*</label>
-            <%= c.text_area(:text, :rows=>5) %>
-          </div>    
-          <%= c.submit("Add Comment") %>
-        </div>
-        <% end %>
-      </div>
-		</div>
+ 		<%= render "shared/post_comment", :comment => @comment, :parent_field_name => :property_id %>
 
 	</div>
 	<div id="sidebar">

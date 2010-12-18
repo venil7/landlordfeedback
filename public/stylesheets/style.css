@@ -127,6 +127,7 @@ form { font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;}
 .formstyle {padding:0 0 15px 0;}
 .formstyle label {display:block; padding:3px 3px 3px 0;}
 .formstyle label.inline {display:inline;}
+.formstyle label.descreet {color:#aaa;}
 .textfield input, .textfield textarea {display:block; padding:3px; border:solid 1px #ac9f87; background:#f5efe3;}
 .textfield input.inline {display:inline;width:30px;}
 .textfield input:hover, .textfield textarea:hover {background:#fff;}

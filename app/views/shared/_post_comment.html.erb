@@ -1,0 +1,28 @@
+<!-- post a comment -->
+<%# parent_field_name (symbol) is a name of a field which relates comment to its parent, eg. :property_id, :feedback_id%>
+<div class="post">
+  <a class="anchor" name="post_comment"></a>
+  <div class="posthead">
+    <h2>Post a Comment</h2>
+    <%= login_text_link "Please login via Facebook to post a comment" %>
+  </div>
+  <div class="form2 formstyle">
+    <%= form_for(comment, :as=>:comment, :url=> { :action=>:comment_create, :id=>comment[parent_field_name], :anchor=>:post_comment }) do |c| %>
+    <div class="fieldsets">
+      <h3>New Comment</h3>
+      <div class="clear">
+      </div>
+      <p class="info">
+         All fields marked with * are mandatory
+      </p>
+  		<%= render "shared/error_list", :item => comment %>
+      <%= c.hidden_field(parent_field_name) %>
+      <div class="textfield fields">
+	      <label>Comment*</label>
+        <%= c.text_area(:text, :rows=>5) %>
+      </div>    
+      <%= c.submit("Add Comment") %>
+    </div>
+    <% end %>
+  </div>
+</div>

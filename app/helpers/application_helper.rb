@@ -1,6 +1,6 @@
 module ApplicationHelper
     def google_static_map(opts)
-      icon = APP_CONFIG['static_marker_url'] #"http://goo.gl/1jfSj"
+      icon = APP_CONFIG['static_marker_url']
       opts = {:x => 320, :y => 200, :zoom => 15, :lat => 0, :lng => 0, :attr => {}}.merge(opts.to_hash)
       url = "http://maps.google.com/maps/api/staticmap?center=#{opts[:lat].to_f},#{opts[:lng].to_f}&zoom=#{opts[:zoom].to_i}&size=#{opts[:x].to_i}x#{opts[:y].to_i}&markers=icon:#{icon}|#{opts[:lat].to_f},#{opts[:lng].to_f}&sensor=false"
       raw "<img src='#{url}' width='#{opts[:x].to_i}' height='#{opts[:y].to_i}' />"
@@ -18,7 +18,7 @@ module ApplicationHelper
     end
     
     def user_pic(id)
-      return "http://graph.facebook.com/#{id}/picture"
+      return id ? "http://graph.facebook.com/#{id}/picture" : "/images/social/anonymous.gif"
     end
     
     def my_user_pic

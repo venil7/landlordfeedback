@@ -13,5 +13,8 @@ class Entry < ActiveRecord::Base
     validates :description, :presence => true, :length => {:within => 10..1000}
     validates :rating, :presence => true, :numericality=>true
     validates :user_id, login_validation_parameters
-  
+    #methods
+    def owner
+      feedback.owner
+    end
 end

@@ -9,8 +9,8 @@
 		    <h2>Landlord: <%=@feedback.landlord %> </h2> 
 		    <h2>Agency: <%=@feedback.agency %> </h2> 
 		    <h2>Date moved out: <%=@feedback.lastdate.to_s %> </h2>
-		    <p class="avt"><%= image_tag user_pic(@feedback.user.alias)%></p>
-		    <p class="postmeta"><%= @feedback.user.full_name%></p>
+		    <p class="avt"><%= image_tag user_pic(@feedback.owner.alias)%></p>
+		    <p class="postmeta"><%= @feedback.owner.full_name%></p>
 		  </div>
 		  <div class="rating"><%= star_rating(:rating => @feedback.rating, :readonly=>true) %></div>
       <%= render "shared/social_widgets" %>
@@ -100,55 +100,11 @@
 		<% end %>
 
     <!-- comments if any -->
-    <% if @feedback.comments.any? %>
-		<div class="post">
-      <a class="anchor" name="comments"></a>
-		  <div class="posthead">
-        <h2>Comments</h2>
-      </div>
-      <div id="comments" class="comments-list">
-        <% @feedback.comments.each do |c| %>
-          <div class="entry">
-             <p class="avt"><%= image_tag user_pic(c.user.alias) %></p>
-             <p class="name"><%=c.user.full_name%></p>
-             <p class="date"><%=c.updated_at%></p>
-             <div class="con">
-               <p><%=c.text%></p>
-             </div>
-          </div>
-        <% end %>
-      </div>
-		</div>
-		<% end %>
-		
-    <!-- post a comment -->
-		<div class="post">
-      <a class="anchor" name="post_comment"></a>
-		  <div class="posthead">
-        <h2>Post a Comment</h2>
-      </div>
-      <div class="form2 formstyle">
-        <%= form_for(@comment, :as=>:comment, :url=> { :action=>:comment_create, :id=>@feedback.id, :anchor=>:post_comment }) do |c| %>
-     		
-        <div class="fieldsets">
-          <h3>New Comment</h3>
-	        <div class="clear">
-	        </div>
-	        <p class="info">
-		         All fields marked with * are mandatory
-	        </p>
-      		<%= render "shared/error_list", :item => @comment %>
-          <%= c.hidden_field(:feedback_id) %>
-          <div class="textfield fields">
-			      <label>Comment*</label>
-            <%= c.text_area(:text, :rows=>5) %>
-          </div>    
-          <%= c.submit("Add Comment") %>
-        </div>
-        <% end %>
-      </div>
-		</div>
+ 		<%= render "shared/comments", :comments => @feedback.comments %>
 
+    <!-- post a comment -->
+ 		<%= render "shared/post_comment", :comment => @comment, :parent_field_name => :feedback_id %>
+ 		
 	</div>
 	<div id="sidebar">
 	  <h1>Map</h1>

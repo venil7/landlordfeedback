@@ -159,14 +159,6 @@ $(function() {
         }
       }
     });
-    //side search
-    //$('#sidesearch').submit(function() {
-    //  var term = $(this).find("input[type=text]").val();
-    //  if (term) {
-    //    window.location = "/#search="+term;
-    //  }
-    //  return false;
-    //});
     //watremarks
     $("#sidesearch").find("input[type=text]").add("#searchaddress").watermark("UK Address or Postcode", {className: "watermark"});
     //calendars
@@ -182,5 +174,15 @@ $(function() {
         type = "error";
       }
       LLFB.utils.notify(that.html(), type);
+    });
+    //disallow double submits
+    $("form").not(".ajax").submit(function(){
+      var that = $(this);
+      if (that.data('submitted')) {
+        return false;
+      } else {
+        that.data('submitted', true);
+        return true;
+      }
     });
 });

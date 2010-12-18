@@ -8,7 +8,7 @@
       </p>
       </div>
       <div class="form2 formstyle">
-        <%= form_for(@property,:as=> :property, :url =>{ :controller=>:property, :action=>"create" }) do |p| %>
+        <%= form_for(@property,:as=> :property, :url =>{ :controller=>:property, :action=>:create }) do |p| %>
           <%= p.hidden_field(:lat) %>
           <%= p.hidden_field(:lng) %>
 	        <div class="fieldsets">
@@ -41,10 +41,10 @@
 	        </div>
 	        <div class="fieldsets">
 	          <div class="textfield fields">
-			        <%= p.check_box(:accept_terms, :class=>"inline") %>
-			        <label class="inline">I Agree to Landlord feedback <%= link_to "terms", :anchor=>:terms %> of posting*</label>
+			        <%= p.check_box(:accept_terms, :class=>:inline) %>
+			        <label class="inline">I Agree to Landlord Feedback <%= link_to "terms", :anchor=>:terms %> of posting*</label>
 		        </div>
-		        <%= p.submit("Submit", :class=>:btn1) %>
+		        <%= p.submit("Add property", :class=>:btn1) %>
 	        </div>
         <% end %>
       </div>
@@ -60,7 +60,7 @@
 	</div>
 	<div id="sidebar">
 	  <h1>Map</h1>
-	  <p>Please position a cursor at the exact location of property you are adding</p>
+	  <p>Please move a pink marker at the exact location of property you are adding</p>
 	  <div id="add-map"></div>
 	  <% #google_static_map :lat=>@property.lat, :lng=>@property.lng %>
 	  <div class="clear">&nbsp;

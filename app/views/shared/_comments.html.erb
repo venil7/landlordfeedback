@@ -1,0 +1,21 @@
+<% if comments.any? %>
+<!-- comments if any -->
+<div class="post">
+  <a class="anchor" name="comments"></a>
+  <div class="posthead">
+    <h2><%=pluralize(comments.count, 'Comments')%></h2>
+  </div>
+  <div id="comments" class="comments-list">
+    <% comments.each do |c| %>
+      <div class="entry">
+         <p class="avt"><%= image_tag user_pic(c.user.alias) %></p>
+         <p class="name"><%=c.user.full_name%></p>
+         <p class="date"><%=c.updated_at%></p>
+         <div class="con">
+           <p><%=c.text%></p>
+         </div>
+      </div>
+    <% end %>
+  </div>
+</div>
+<% end %>
