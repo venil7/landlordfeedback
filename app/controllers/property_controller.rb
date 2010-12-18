@@ -1,4 +1,4 @@
-class PropertyController < ApplicationController
+class PropertyController < PageController
 
     def add
       @menu_item = :add_property
@@ -12,7 +12,7 @@ class PropertyController < ApplicationController
       @property[:user_id] = user_id
       if @property.save
         flash[:success] = added_successfully_message :property, :feedback
-        redirect_to :controller => :property, :action => :view, :id => @property.id #, :anchor=>:post_feedback
+        redirect_to :controller => :feedback, :action => :add, :id => @property.id
       else
         flash.now[:error] = added_unsuccessfully_message :property
         @propertytypes = Propertytype.for_select
@@ -22,26 +22,7 @@ class PropertyController < ApplicationController
     
     def view
       @property = Property.find(params[:id])
-      @feedback = Feedback.new(:property_id => @property.id)
       @comment  = Comment.new(:property_id => @property.id)
-    end
-    
-    def feedback_create
-      if params[:feedback] == nil
-        redirect_to :action=>:view, :id=>params[:id]
-        return
-      end 
-      @feedback = Feedback.new(params[:feedback])
-      @feedback[:user_id] = user_id
-      if @feedback.save
-        flash[:success] = added_successfully_message :feedback, :rating
-        redirect_to :controller=>:feedback, :action => :view, :id=>@feedback.id
-      else
-        flash.now[:error] = added_unsuccessfully_message :fedback
-        @property = Property.find(@feedback[:property_id])
-        @comment  = Comment.new(:property_id => @property.id)
-        render :action=>:view
-      end
     end
     
     def comment_create
@@ -57,7 +38,6 @@ class PropertyController < ApplicationController
       else
         flash.now[:error] = added_unsuccessfully_message :comment
         @property = Property.find(@comment.property_id)
-        @feedback = Feedback.new(:property_id => @property.id)
         render :action=>:view
       end
   end

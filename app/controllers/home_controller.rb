@@ -1,4 +1,4 @@
-class HomeController < ApplicationController
+class HomeController < PageController
 
     def index
       @menu_item = :home
@@ -16,9 +16,8 @@ class HomeController < ApplicationController
       @menu_item = :donate
     end
     
-    #def index
-    #  @user_logged_in = user_logged_in?
-    #  @user_id = user_id
-    #  @user_name = user_name
-    #end
+    def search
+      redirect_to :action => :index, :anchor => "search=#{params[:term]}"
+    end
+
 end

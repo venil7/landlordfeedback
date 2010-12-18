@@ -16,6 +16,11 @@
       <div class="rating"><%= star_rating(:rating => @property.rating, :readonly=>true) %></div>
       <%= render "shared/social_widgets" %>
 		</div>
+		
+    <!-- add new feedback link -->
+		<div>
+       <h2><%= link_to (raw "Lived in this #{@property.propertytype.name}? <input type='submit' value='add feedback'/>"), {:controller=>:feedback, :action=>:add, :id=>@property.id}, {:class=>:nounder}%></h2>
+		</div>
 
     <!-- feedbacks if any -->
     <% if @property.feedbacks.any? %>
@@ -30,46 +35,11 @@
             <p><cite>Last Date:</cite><%=f.lastdate%></p>
 		        <div class="rating"><%= star_rating(:rating => f.rating, :readonly=>true, :name=>"feedback-rating-#{f.id}") %></div>
             <small>Posted by <%=f.user.full_name %> on <%=f.updated_at %></small>
-            <%= link_to 'Details..', :controller =>'feedback', :action=>'view', :id=>f.id %>
+            <%= link_to 'Details..', :controller =>:feedback, :action=>:view, :id=>f.id %>
           </blockquote>
         <% end %>
 		  </div>
     <% end %>
-
-    <!-- post a feedback -->
-    
-		<div class="post">
-		  <a class="anchor" name="post_feedback"></a>
-		  <div class="posthead">
-		    <h3 class="unfolder" data_unfolder_id="post_feedback">Lived in this property? <input type="submit" value="Add Feedback"></h3>
-   		      <%= login_text_link "Please login via Facebook to post a comment" %>
-		  </div>
-      <div class="form2 formstyle hidden" id="post_feedback">
-        <%= form_for(@feedback, :as=>:feedback, :url =>{ :action=>:feedback_create, :id=>@property.id, :anchor=>:post_feedback }) do |f| %>
-          <%= f.hidden_field(:property_id) %>
-   		    <%= render "shared/error_list", :item => @feedback %>
-          <div class="fieldsets">
-            <div class="textfield fields">
-		          <label>Total months in this property</label>
-              <%= f.select(:totalmonths,  (6..52).step(6).to_a) %>
-            </div>
-            <div class="textfield fields">
-		          <label>Date moved out</label>
-              <%= f.text_field(:lastdate, {:readonly=>:readonly, :class=>:calendar}) %>
-            </div>
-            <div class="textfield fields">
-		          <label>Landlord name</label>
-              <%= f.text_field(:landlord) %>
-            </div>
-            <div class="textfield fields">
-		          <label>Agency name</label>
-              <%= f.text_field(:agency) %>
-            </div>
-            <%= f.submit("Add Feedback") %>
-          </div>
-        <% end %>
-      </div>
-		</div>
 
     <% if @property.comments.any? %>
     <!-- comments if any -->
@@ -102,8 +72,14 @@
       </div>
       <div class="form2 formstyle">
         <%= form_for(@comment, :as=>:comment, :url=> { :action=>"comment_create", :id=>@property.id, :anchor=>:post_comment }) do |c| %>
-     		<%= render "shared/error_list", :item => @comment %>
         <div class="fieldsets">
+          <h3>New Comment</h3>
+	        <div class="clear">
+	        </div>
+	        <p class="info">
+		         All fields marked with * are mandatory
+	        </p>
+      		<%= render "shared/error_list", :item => @comment %>
           <%= c.hidden_field(:property_id) %>
           <div class="textfield fields">
 			      <label>Comment*</label>

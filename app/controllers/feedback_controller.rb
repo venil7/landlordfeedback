@@ -1,4 +1,4 @@
-class FeedbackController < ApplicationController
+class FeedbackController < PageController
   def initialize
     super()
     @comment = Comment.new
@@ -7,12 +7,35 @@ class FeedbackController < ApplicationController
 
   def view
     @feedback = Feedback.find(params[:id])
-    @property = Property.find(@feedback[:property_id])
+    @property = Property.find(@feedback.property_id)
     @entrytypes = Entrytype.for_select
     @entry = Entry.new :feedback_id => @feedback.id
     @photo = Photo.new(:feedback_id => @feedback.id)
     @comment.feedback_id = @feedback.id
     @own_page = @feedback.user.id == user_id
+  end
+  
+  def add 
+    @property = Property.find(params[:id])
+    @feedback = Feedback.new(:property_id => @property.id)
+  end
+  
+  def create
+    if params[:feedback] == nil
+      redirect_to :action=>:add, :id=>params[:id]
+      return
+    end 
+    @feedback = Feedback.new(params[:feedback])
+    @feedback[:user_id] = user_id
+    if @feedback.save
+      flash[:success] = added_successfully_message :feedback, :rating
+      redirect_to :controller=>:feedback, :action =>:view, :id=>@feedback.id
+    else
+      flash.now[:error] = added_unsuccessfully_message :fedback
+      @property = Property.find(@feedback[:property_id])
+      @comment  = Comment.new(:property_id => @property.id)
+      render :action=>:add
+    end
   end
   
   def entry_create

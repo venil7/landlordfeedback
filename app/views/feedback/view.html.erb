@@ -72,8 +72,14 @@
       <div class="form2 formstyle">
         <%= form_for(@entry, :as => :entry, :url =>{ :action=>:entry_create, :id=>@feedback.id, :anchor=>:post_rating }) do |e| %>
           <%= e.hidden_field(:feedback_id) %>
-   		    <%= render "shared/error_list", :item => @entry %>
-          <div class="fieldsets">
+           <div class="fieldsets">
+            <h3>New rating</h3>
+	          <div class="clear">
+	          </div>
+	          <p class="info">
+		           All fields marked with * are mandatory
+	          </p>
+        		<%= render "shared/error_list", :item => @entry %>
             <div class="textfield fields">
 		          <label>Rating type</label>
               <%= e.select(:entrytype_id,  @entrytypes) %>
@@ -123,8 +129,15 @@
       </div>
       <div class="form2 formstyle">
         <%= form_for(@comment, :as=>:comment, :url=> { :action=>:comment_create, :id=>@feedback.id, :anchor=>:post_comment }) do |c| %>
-     		<%= render "shared/error_list", :item => @comment %>
+     		
         <div class="fieldsets">
+          <h3>New Comment</h3>
+	        <div class="clear">
+	        </div>
+	        <p class="info">
+		         All fields marked with * are mandatory
+	        </p>
+      		<%= render "shared/error_list", :item => @comment %>
           <%= c.hidden_field(:feedback_id) %>
           <div class="textfield fields">
 			      <label>Comment*</label>

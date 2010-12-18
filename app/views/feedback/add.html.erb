@@ -1,0 +1,66 @@
+<div id="maincontent">
+	<div id="page">
+    <!-- main adress -->
+		<div class="post">
+		  <div class="posthead">
+		    <p class="date"><%= @property.updated_at%></p>
+		    <h1><%= link_to @property.address, {:controller=>:property,:action=>:view,:id=>@property.id}%></h1>
+		    <h1><%= link_to @property.postcode.upcase, {:controller=>:property,:action=>:view,:id=>@property.id}%></h1>
+		    </p>
+		  </div>
+      <div class="rating"><%= star_rating(:rating => @property.rating, :readonly=>true) %></div>
+		</div>
+
+    <!-- post a feedback -->
+    
+		<div class="post">
+		  <div class="posthead">
+		    <p>Please only add feedback if you actually live(d) in this property</p>
+		    <p>You will add rating on next step</p>
+		    <p><%= "You will be required to login before you post" if !user_logged_in?%></p>
+		  </div>
+      <div class="form2 formstyle">
+        <%= form_for(@feedback, :as=>:feedback, :url =>{ :action=>:create, :id=>@property.id }) do |f| %>
+          <%= f.hidden_field(:property_id) %>
+          <div class="fieldsets">
+            <h3>New Feedback</h3>
+            <div class="clear">
+		        </div>
+		        <p class="info">
+			         All fields marked with * are mandatory
+		        </p>
+    		    <%= render "shared/error_list", :item => @feedback %>
+            <div class="textfield fields">
+		          <label>Total months in this property*</label>
+              <%= f.select(:totalmonths,  (6..52).step(6).to_a) %>
+            </div>
+            <div class="textfield fields">
+		          <label>Date moved out*</label>
+              <%= f.text_field(:lastdate, {:readonly=>:readonly, :class=>:calendar}) %>
+            </div>
+            <div class="textfield fields">
+		          <label>Landlord name*</label>
+              <%= f.text_field(:landlord) %>
+            </div>
+            <div class="textfield fields">
+		          <label>Agency name*</label>
+              <%= f.text_field(:agency) %>
+            </div>
+            <%= f.submit("Add Feedback") %>
+          </div>
+        <% end %>
+      </div>
+		</div>
+
+	</div>
+	<div id="sidebar">
+	  <h1>Map</h1>
+	  <%= google_static_map :lat=>@property.lat, :lng=>@property.lng %>
+	  <div class="clear">&nbsp;</div>
+    <%= render "shared/side_search" %>
+    <%= render "shared/latest_properties", :properties => @latest_properties %>
+		<%= render "shared/latest_feedbacks", :feedbacks => @latest_feedbacks %>
+	</div>
+	<div class="clear">	</div>
+</div>
+

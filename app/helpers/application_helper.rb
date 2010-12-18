@@ -72,4 +72,9 @@ module ApplicationHelper
     def google_buzz
       raw APP_CONFIG['google_buzz'];
     end
+    
+    def google_analytics
+      raw APP_TRACKING['google_analytics'];
+    end 
+    
 end

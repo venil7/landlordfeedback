@@ -1,4 +1,4 @@
-class BlogController < ApplicationController
+class BlogController < PageController
   def view
     @post = Post.find(params[:id])
   end

@@ -1,4 +1,4 @@
-class AuthController < ApplicationController
+class AuthController < PageController
     attr_reader :redirect_uri
     def fb_callback_uri
       url_for :action=>:fbcallback, :only_path=>false, 
@@ -12,7 +12,7 @@ class AuthController < ApplicationController
     end
     #gets called after facebook authorization
     def fbcallback
-        @last_page = request.cookies[:last_page.to_s] #!important to_s
+        @last_page = request.cookies[:last_page.to_s] 
         
         access_token = fb_client.authorization.process_callback(params[:code], :redirect_uri => fb_callback_uri)
         session[:access_token] = access_token

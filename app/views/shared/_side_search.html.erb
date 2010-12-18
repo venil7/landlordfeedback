@@ -1,11 +1,10 @@
 <h2>Search Properties</h2>
 <div>
-  <form id="sidesearch">
+  <%= form_tag({:controller=>:home, :action=>:search}, :method => :post) do %>
     <div class="textfield fields">
             <label></label>
-            <input type="text" size="30">
-
+            <%= text_field_tag(:term) %>
     </div>
-    <input  type="submit" value="search">
-  </form>
+    <%= submit_tag("search") %>
+  <% end %>
 </div>
