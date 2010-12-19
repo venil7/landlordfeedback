@@ -1,6 +1,6 @@
 <h2>Search Properties</h2>
 <div class="sidesearch">
-  <%= form_tag({:controller=>:home, :action=>:search}, :method => :post) do %>
+  <%= form_tag({:controller=>:home, :action=>:search}, :method => :post, :id=>:sidesearch) do %>
     <div class="textfield fields">
             <label></label>
             <%= text_field_tag(:term) %>

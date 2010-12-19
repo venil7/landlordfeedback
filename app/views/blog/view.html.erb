@@ -1,1 +1,29 @@
-<%=@post.entry%>
+<div id="maincontent">
+	<div id="page">
+		
+		<div class="post">
+		  <div class="posthead">
+		      <p class="date"><%=@post.updated_at%></p>
+  		    <h1><%=@post.title%></h1>
+		      <p class="postmeta">By <%=@post.author%></p>
+		  </div>
+		  <div>
+		    <%=@post.entry%>
+		  </div>
+		</div>
+		<div>
+		   <%if @post.hasprev?%>
+	  	   <p style="float:left;"><%= link_to "<< Earlier posts", :id => @post.id-1%></p>
+		   <%end%>
+		   <%if @post.hasnext?%>
+	  	   <p style="float:right;"><%= link_to "Later posts >>", :id => @post.id+1%></p>
+		   <%end%>
+		</div>
+
+	</div>
+	<div id="sidebar">
+	  <%= render "shared/side_pane" %>
+	</div>
+	<div class="clear">	</div>
+</div>
+

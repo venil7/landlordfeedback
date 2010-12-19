@@ -1,4 +1,5 @@
 class PageController < ApplicationController
+  #rescue_from ActionController::RoutingError, :with => :render_error
   protect_from_forgery
   before_filter :no_id_check, :only=>[:view]
   
@@ -27,9 +28,18 @@ class PageController < ApplicationController
   def get_latest_properties
     @latest_properties = Property.last(3) or []
   end
+  
   def added_unsuccessfully_message(entry = :entry)
     "Can't add #{entry}, please check all fields and try agan"
   end
+  
+  #def render_error
+  #  respond_to do |type| 
+  #    type.html { render :template => "layouts/error", :status => 404 } 
+  #    type.all  { render :nothing => true, :status => 404 } 
+  #  end
+  #  true
+  #end
   
   def added_successfully_message(entry = :entry, entries = nil)
     message = "Thank you, #{entry} added successfully"

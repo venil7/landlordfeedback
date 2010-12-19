@@ -102,7 +102,24 @@
             this.handlers[name] = setTimeout(func, customDelay);
         } 
     };
-    
+    //LLFB.utils.Throttler.prototype.add = function(name, func, delay) {
+    //   var that = this;
+    //    if (typeof name === "string" && typeof func === "function") {
+    //       var customDelay = delay ? parseInt(delay, 10) : this.delay;
+    //        if (name in this.handlers) {
+    //          clearTimeout(this.handlers[name]);
+    //          this.handlers[name] = setTimeout(func, customDelay);
+    //        } else {
+    //          func();
+    //         this.handlers[name] = -1;
+    //        }
+    //    }
+    //};
+    LLFB.utils.Throttler.prototype.remove = function(name) {
+      var deleted = "__deleted"
+      this.handlers[name]=deleted;
+      this.handlers = this.handlers.splice(this.handlers.indexOf(deleted), 1);
+    };
 })(jQuery);    
 
 

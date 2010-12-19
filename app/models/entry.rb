@@ -1,7 +1,7 @@
 class Entry < ActiveRecord::Base
     extend Application
     
-    default_scope order("updated_at desc")
+    default_scope order("updated_at asc")
     
     belongs_to :feedback
     belongs_to :user

@@ -12,33 +12,14 @@ $(function() {
                 mapTypeId: google.maps.MapTypeId.ROADMAP,
                 mapTypeControl: false
             };
-            //funcs 
-            var addLocationHash = function() {
-                /*var args = Array.prototype.slice.call(arguments);
-                var result = '#';
-                for(var i in args) {
-                    var elem = args[i];
-                    if typeof elem === 'String' || typeof elem === 'Number' {
-                      result += args[i]+'|';
-                    }
-                }*/
+            //extensions
+            google.maps.LatLngBounds.prototype.containsBounds = function(latLngBounds) {
+              return this.contains(latLngBounds.getNorthEast()) && this.contains(latLngBounds.getNorthEast());
             };
+            //funcs 
             var searchLocation = function(address){
                 geocoder.geocode({address:address}, onGeoCode(address));
             };
-            /*var geocodeToPlace = function(obj) {
-                obj = obj || {};
-                var loc = (obj.geometry && obj.geometry.location) ? obj.geometry.location : new google.maps.LatLng(0,0);
-                var address = obj.formatted_address ? obj.formatted_address : "specify address";
-                var postcode = "specify postcode";
-                if ($.isArray(obj.address_components)) {
-                    var pcodes = $.grep(obj.address_components, function(v,i){
-                        return $.inArray("postal_code", v.types);
-                    }, true);
-                    postcode = pcodes.length > 0 ? pcodes[0].long_name.trim().strip().toUpperCase() : postcode;
-                }
-                return {id:0, lat:loc.lat(), lng:loc.lng(), address:address, postcode:postcode};
-            };*/
             var enterAddLocationMode = function() {
                 map.setOptions({draggableCursor:'crosshair'});
                 map.addLocationModeHandler = google.maps.event.addDomListener(map, 'click', onAddLocationModeClick());
@@ -88,34 +69,38 @@ $(function() {
             var onMapMove = function() {
                 var contains = LLFB.utils.contains;
                 var compare = function(m,p){ return m.place.id === p.id; };
+                var old_bounds = map.getBounds();
                 return function() {
-                    throttler.add('bounds_changed', function(){
-                        var mb = map.getBounds();
-                        var ne = mb.getNorthEast();
-                        var sw = mb.getSouthWest();
-                        var bounds = {start_lat:sw.lat(),start_lng:sw.lng(),end_lat:ne.lat(),end_lng:ne.lng()};
-                        $.post("/ajax/props/", bounds, function(json){
-                            for(var i in json) {
-                                var place = json[i];
-                                if (!contains(markers, place, compare)) {
-                                    var marker = new google.maps.Marker({
-                                        map: map, 
-                                        position: new google.maps.LatLng(place.lat, place.lng),
-                                        title:place.address,
-                                        icon: LLFB.constants.REG_ICON
-                                    });
-                                    marker.place = place;
-                                    markers.push(marker);
-                                    google.maps.event.addDomListener(marker, 'click', onMarkerClick(marker));
-                                }
-                            }
-                        });
-                    });
+                    var mb = map.getBounds();
+                    if (!old_bounds || !old_bounds.equals(mb)) {
+                      old_bounds = mb;
+                      throttler.add('bounds_changed', function(){
+                          var ne = mb.getNorthEast();
+                          var sw = mb.getSouthWest();
+                          var bounds = {start_lat:sw.lat(),start_lng:sw.lng(),end_lat:ne.lat(),end_lng:ne.lng()};
+                          $.post("/ajax/props/", bounds, function(json){
+                              for(var i in json) {
+                                  var place = json[i];
+                                  if (!contains(markers, place, compare)) {
+                                      var marker = new google.maps.Marker({
+                                          map: map, 
+                                          position: new google.maps.LatLng(place.lat, place.lng),
+                                          title:place.address,
+                                          icon: LLFB.constants.REG_ICON
+                                      });
+                                      marker.place = place;
+                                      markers.push(marker);
+                                      google.maps.event.addDomListener(marker, 'click', onMarkerClick(marker));
+                                  }
+                              }
+                          });
+                      });
+                    }
                 };
             };
             var onAddMarkerDragStart = function(marker) {
                 return function(event) {
-                    //only close if iw is attahed to this particular marker
+                    //only close if iw is attached to this particular marker
                     if (infowindow.getPosition().equals(marker.getPosition())) {
                         infowindow.close();
                     }
@@ -127,7 +112,7 @@ $(function() {
                 };
             };
             var onAddMarkerClick = function(marker) {
-                var content = "{address}<br/><a href='/property/add/?{params}'>add</a>";
+                var content = "{address}<br/><a href=\"/property/add/?{params}\">add</a>";
                 return function(event) {
                     marker.place.params = $.param(marker.place, true);
                     infowindow.setContent(content.supplant(marker.place));
@@ -202,16 +187,8 @@ $(function() {
             var map = new google.maps.Map(mapElement, options);
             var markers = [];
             var geocoder = new google.maps.Geocoder();
-            var throttler = new LLFB.utils.Throttler(5000);
+            var throttler = new LLFB.utils.Throttler(3000);
             map.setCenter(london);
-            //wire up adding new property
-            /*var addCtrl = document.createElement("DIV");
-            addCtrl.className = "mapcontrol";
-            addCtrl.innerHTML = "Add Feedback";
-            map.controls[google.maps.ControlPosition.TOP_RIGHT].push(addCtrl);*/
-            //search watermark
-            //$("#searchaddress").watermark("UK Address or Postcode", {className: "watermark"});
-            //search submit form
             $("#propertysearch").submit(onSearchSubmit());
             //event listeners
             google.maps.event.addDomListener(document.getElementById('addbutton'), "click", onAddPropertyFeedbackClick());

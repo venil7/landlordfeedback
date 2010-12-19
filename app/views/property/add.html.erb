@@ -62,12 +62,7 @@
 	  <h1>Map</h1>
 	  <p>Please move a pink marker at the exact location of property you are adding</p>
 	  <div id="add-map"></div>
-	  <% #google_static_map :lat=>@property.lat, :lng=>@property.lng %>
-	  <div class="clear">&nbsp;
-		        </div>
-      <%= render "shared/side_search" %>
-      <%= render "shared/latest_properties", :properties => @latest_properties %>
-			<%= render "shared/latest_feedbacks", :feedbacks => @latest_feedbacks %>
+    <%= render "shared/side_pane" %>
 	</div>
 	<div class="clear">
 	</div>

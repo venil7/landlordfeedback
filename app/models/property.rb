@@ -5,7 +5,7 @@ class Property < ActiveRecord::Base
   attr_accessor :accept_terms
   #attr_accessor :post_as_anonymous
   
-  default_scope order("updated_at desc")
+  default_scope order("updated_at asc")
   
   #relations
   has_many :feedbacks
@@ -28,6 +28,7 @@ class Property < ActiveRecord::Base
     feedback_range = feedbacks.collect{ |f| f.id }
     Entry.average('rating', :conditions => { :feedback_id => feedback_range }).to_i
   end
+  
   #callbacks
   before_save :on_before_save
   def on_before_save

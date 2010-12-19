@@ -2,7 +2,7 @@
 <ul class="posts">
   <% feedbacks.each do |feedback| %>
 	  <li>
-	    <%= link_to (feedback.agency or feedback.landlord), :controller=>:feedback, :action=>:view, :id=>feedback.id%>
+	    <%= link_to (feedback.agency or feedback.landlord)[0,30], :controller=>:feedback, :action=>:view, :id=>feedback.id%>
 	    <span>
 	      <%= feedback.updated_at%> | 
 	      <%= pluralize(feedback.comments.count, 'Comments') %>

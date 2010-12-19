@@ -7,9 +7,6 @@ class HomeController < PageController
     
     def about
       @menu_item = :about
-      flash.now[:success]="message"
-      flash.now[:error]="message"
-      flash.now[:notice]="message"
     end
     
     def donate
