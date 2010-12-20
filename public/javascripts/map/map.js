@@ -20,14 +20,16 @@ $(function() {
             var searchLocation = function(address){
                 geocoder.geocode({address:address}, onGeoCode(address));
             };
-            var enterAddLocationMode = function() {
+            var enterAddLocationMode = function(btnElem) {
                 map.setOptions({draggableCursor:'crosshair'});
                 map.addLocationModeHandler = google.maps.event.addDomListener(map, 'click', onAddLocationModeClick());
                 LLFB.utils.notify('Click on a map to add a location');
+                $(btnElem).children('input').swapAttr('value', 'data-alt-value');
             };
-            var leaveAddLocationMode = function() {
+            var leaveAddLocationMode = function(btnElem) {
                 map.setOptions({draggableCursor:null});
                 google.maps.event.removeListener(map.addLocationModeHandler || null);
+                $(btnElem).children('input').swapAttr('data-alt-value','value');
             };
             //event handlers
             var onAddLocationModeClick = function() {
@@ -48,7 +50,7 @@ $(function() {
                       add_marker.setPosition(loc);
                     }
                     geocoder.geocode({latLng:loc}, onReverseGeoCode(add_marker));
-                    leaveAddLocationMode();
+                    leaveAddLocationMode(addbutton);
                 };
             };
             var onSearchSubmit = function() {
@@ -59,10 +61,10 @@ $(function() {
                     return false;
                 };
             };
-            var onAddPropertyFeedbackClick = function() {
+            var onAddPropertyFeedbackClick = function(btnElem) {
                 var toggle = true;
                 return function () {
-                    toggle ? enterAddLocationMode() : leaveAddLocationMode();
+                    toggle ? enterAddLocationMode(btnElem) : leaveAddLocationMode(btnElem);
                     toggle = !toggle;
                 };
             };
@@ -191,7 +193,8 @@ $(function() {
             map.setCenter(london);
             $("#propertysearch").submit(onSearchSubmit());
             //event listeners
-            google.maps.event.addDomListener(document.getElementById('addbutton'), "click", onAddPropertyFeedbackClick());
+            var addbutton = document.getElementById('addbutton');
+            google.maps.event.addDomListener(addbutton, "click", onAddPropertyFeedbackClick(addbutton));
             google.maps.event.addListener(map, "bounds_changed", onMapMove());
             //hash-changed
             $(window).hashchange(function(){

@@ -20,6 +20,13 @@
             );
         };
     }
+    //jQuery plugins
+    $.fn.swapAttr = function(a1,a2){
+      var that = $(this);
+      var save1 = that.attr(a1);
+      var save2 = that.attr(a2);
+      $(this).attr(a2,save1).attr(a1,save2);
+    };
     //jQuery utility functions
     if (!$.submit) {
         $.submit = function(url, map, method) {
@@ -102,19 +109,6 @@
             this.handlers[name] = setTimeout(func, customDelay);
         } 
     };
-    //LLFB.utils.Throttler.prototype.add = function(name, func, delay) {
-    //   var that = this;
-    //    if (typeof name === "string" && typeof func === "function") {
-    //       var customDelay = delay ? parseInt(delay, 10) : this.delay;
-    //        if (name in this.handlers) {
-    //          clearTimeout(this.handlers[name]);
-    //          this.handlers[name] = setTimeout(func, customDelay);
-    //        } else {
-    //          func();
-    //         this.handlers[name] = -1;
-    //        }
-    //    }
-    //};
     LLFB.utils.Throttler.prototype.remove = function(name) {
       var deleted = "__deleted"
       this.handlers[name]=deleted;
