@@ -22,6 +22,14 @@ class ApplicationController < ActionController::Base
   def user_name
       user_info[:name] if user_logged_in?
   end
+
+  def user_first_name
+      user_info[:first_name] if user_logged_in?
+  end
+  
+  def user_last_name
+      user_info[:last_name] if user_logged_in?
+  end
   
   protected
   def fb_client

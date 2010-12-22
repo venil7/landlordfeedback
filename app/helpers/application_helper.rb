@@ -33,6 +33,14 @@ module ApplicationHelper
       controller.user_name
     end
     
+    def user_first_name
+      controller.user_first_name
+    end
+    
+    def user_last_name
+      controller.user_last_name
+    end
+    
     def fb_login_path
       return {:controller => :auth, :action => :fb_login}
     end

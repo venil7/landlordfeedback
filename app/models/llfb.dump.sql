@@ -45,7 +45,7 @@ CREATE TABLE `comments` (
   KEY `property_id` (`property_id`),
   KEY `user_id` (`user_id`),
   KEY `abuse` (`abuse`)
-) ENGINE=MyISAM AUTO_INCREMENT=23 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -54,7 +54,6 @@ CREATE TABLE `comments` (
 
 LOCK TABLES `comments` WRITE;
 /*!40000 ALTER TABLE `comments` DISABLE KEYS */;
-INSERT INTO `comments` VALUES (1,NULL,NULL,NULL,2,'some text',2,'2010-11-28 13:19:34'),(2,NULL,NULL,NULL,2,'some text',6,'2010-11-28 13:20:34'),(6,NULL,NULL,17,2,'some comments',0,'2010-11-28 22:36:44'),(4,NULL,NULL,NULL,2,'some text',7,'0000-00-00 00:00:00'),(5,NULL,NULL,NULL,2,'ASDAFWCFW',1,'0000-00-00 00:00:00'),(7,NULL,NULL,17,2,'some comments',0,'2010-11-28 22:37:19'),(8,NULL,NULL,17,2,'some comments',0,'2010-11-28 22:37:45'),(9,NULL,21,NULL,2,'some text',0,'2010-11-28 22:46:56'),(10,NULL,21,NULL,2,'some text',0,'2010-11-28 22:47:12'),(11,NULL,NULL,17,2,'sss',0,'2010-11-28 22:47:32'),(12,NULL,NULL,17,2,'another comment',0,'2010-11-28 22:56:21'),(13,NULL,NULL,17,2,'@@comm',0,'2010-11-28 22:58:15'),(14,NULL,23,NULL,2,'sssssssssssss',0,'2010-11-28 23:01:38'),(15,NULL,23,NULL,2,'xxxxxxxxxxxxxxxxxxx',0,'2010-11-28 23:01:49'),(16,NULL,18,NULL,2,'my latest comment',0,'2010-12-04 15:28:51'),(17,NULL,NULL,15,2,'qwerty comment!!',0,'2010-12-04 15:36:10'),(18,NULL,14,NULL,3,'Some comments by svetlana ;))',0,'2010-12-12 10:12:31'),(19,NULL,14,NULL,2,'Some comments by Art ;)',0,'2010-12-12 10:16:00'),(20,NULL,14,NULL,2,'another one',0,'2010-12-12 10:17:37'),(21,NULL,14,NULL,2,'my latest comment',0,'2010-12-17 23:25:55'),(22,NULL,NULL,15,2,'latest comment',0,'2010-12-17 23:26:53');
 /*!40000 ALTER TABLE `comments` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -77,7 +76,7 @@ CREATE TABLE `entries` (
   KEY `feedback_id` (`feedback_id`),
   KEY `user_id` (`user_id`),
   KEY `entrytype_id` (`entrytype_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=29 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -86,7 +85,6 @@ CREATE TABLE `entries` (
 
 LOCK TABLES `entries` WRITE;
 /*!40000 ALTER TABLE `entries` DISABLE KEYS */;
-INSERT INTO `entries` VALUES (1,1,1,2,'very baad apartment',1,'2010-10-17 22:04:44'),(2,3,1,2,'very bad landlord',1,'2010-10-17 22:05:28'),(9,4,15,2,'neigbours are very good',0,'2010-10-24 02:02:47'),(8,2,15,2,'shittiest agency ever',0,'2010-10-24 01:20:14'),(7,2,15,2,'agency just suxx',3,'2010-10-24 00:21:33'),(10,3,15,2,'area is so-so',3,'2010-10-24 02:03:59'),(11,2,8,2,'suxx',1,'2010-10-25 20:50:46'),(12,3,8,2,'<a href=\'http://google.com\'>click me </a>',3,'2010-10-25 20:55:01'),(13,1,16,2,'<a href=\'#\'>sss</a>',3,'2010-10-25 21:03:40'),(14,2,13,2,'some text',3,'2010-10-25 21:23:51'),(15,1,17,2,'Very decent landlord',5,'2010-10-31 10:15:20'),(16,2,17,2,'Agency, is so so, but it didnt matter',3,'2010-10-31 10:15:48'),(17,4,17,2,'neighbours are fine',4,'2010-10-31 10:16:02'),(18,3,17,2,'are is good',5,'2010-10-31 10:16:16'),(19,2,18,2,'agency suxx',2,'2010-11-20 18:56:16'),(20,3,18,2,'rea is all right',3,'2010-11-20 20:45:10'),(21,3,21,2,'area is allriigh',3,'2010-11-28 12:31:11'),(22,2,22,2,'agency suxx',2,'2010-11-28 20:23:25'),(23,3,23,2,'qaqaqasdsds',5,'2010-11-28 23:01:14'),(24,1,23,2,'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',5,'2010-11-28 23:02:03'),(25,1,25,2,'its all right',3,'2010-12-14 15:08:17'),(26,3,26,2,'somewhat allright',3,'2010-12-15 22:46:19'),(27,2,26,2,'agency shit',1,'2010-12-15 22:49:55'),(28,3,14,2,'fff gggggggggggggg',3,'2010-12-17 23:25:44');
 /*!40000 ALTER TABLE `entries` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -102,7 +100,7 @@ CREATE TABLE `entrytypes` (
   `name` varchar(50) CHARACTER SET latin1 NOT NULL,
   `comment` text CHARACTER SET latin1,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -111,7 +109,7 @@ CREATE TABLE `entrytypes` (
 
 LOCK TABLES `entrytypes` WRITE;
 /*!40000 ALTER TABLE `entrytypes` DISABLE KEYS */;
-INSERT INTO `entrytypes` VALUES (1,'Ladnlord Feedback','Anything you have to say about landlord..'),(2,'Agency','Anything you want to say about agency'),(3,'Area','Anything you want to say about area'),(4,'Neighbours','Anything about neighbours ');
+INSERT INTO `entrytypes` VALUES (1,'Landlord',NULL),(2,'Agency',NULL),(3,'Neighbors',NULL),(4,'Neighborhood',NULL),(5,'Area',NULL),(6,'Local Council',NULL),(7,'Local shops/facilities',NULL),(8,'Garden',NULL),(9,'Bills',NULL),(10,'Other',NULL);
 /*!40000 ALTER TABLE `entrytypes` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -157,7 +155,7 @@ CREATE TABLE `feedbacks` (
   PRIMARY KEY (`id`),
   KEY `property_id` (`property_id`),
   KEY `user_id` (`user_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=30 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -166,7 +164,6 @@ CREATE TABLE `feedbacks` (
 
 LOCK TABLES `feedbacks` WRITE;
 /*!40000 ALTER TABLE `feedbacks` DISABLE KEYS */;
-INSERT INTO `feedbacks` VALUES (15,11,2,12,'2010-10-31','some name','some agency',0,'2010-11-01 19:47:01','0000-00-00 00:00:00'),(8,15,2,12,'2010-10-31','aaaaaaaaaaa','sssssssssss',0,'2010-11-01 19:47:01','0000-00-00 00:00:00'),(14,15,2,1,'2010-10-31','aaaa','fffff',0,'2010-11-01 19:47:01','0000-00-00 00:00:00'),(13,15,2,1,'2010-10-31','landlord','agency',0,'2010-11-01 19:47:01','0000-00-00 00:00:00'),(16,15,2,12,'2010-10-31','<a >xxx</a>','<a >xxx</a>',0,'2010-11-01 19:47:01','0000-00-00 00:00:00'),(17,16,2,6,'2009-10-01','John Smith','Northfiels',0,'2010-11-01 19:47:01','0000-00-00 00:00:00'),(18,17,2,6,'2010-12-12','aaaaaaa','',0,'2010-11-20 15:06:49','0000-00-00 00:00:00'),(19,17,2,6,'1982-03-22','aaaaaaa','',0,'2010-11-20 15:08:15','0000-00-00 00:00:00'),(20,17,2,6,'2010-12-12','some fucker','',0,'2010-11-20 15:35:02','0000-00-00 00:00:00'),(21,17,2,48,'2010-12-12','','bad agency',0,'2010-11-20 15:52:23','0000-00-00 00:00:00'),(22,16,2,12,'1982-03-22','some fucker','agency 1',0,'2010-11-28 20:21:04','0000-00-00 00:00:00'),(23,17,2,6,'2010-12-12','ssssssss','xxxxxxxxxxxxxxx',0,'2010-11-28 22:58:27','0000-00-00 00:00:00'),(24,22,2,18,'2010-12-31','David Smith','Easter Estates, PLC',0,'2010-12-14 14:53:16','0000-00-00 00:00:00'),(25,14,2,18,'2010-12-07','David Smith','Central London Estates, Ltd',0,'2010-12-14 15:00:35','0000-00-00 00:00:00'),(26,29,2,12,'2010-12-08','aaaaaaa','agency 1',0,'2010-12-15 22:45:39','0000-00-00 00:00:00'),(27,15,2,18,'2010-12-01','ssssssss','aaaaaaaaaaaaaaa',0,'2010-12-17 23:27:18','0000-00-00 00:00:00'),(28,15,2,12,'2010-12-01','qqq','ff',1,'2010-12-18 12:36:01','2010-12-18 12:36:01'),(29,17,2,12,'2010-12-14','aaaaaaa','aaaaaaaaaaaaa',1,'2010-12-18 21:14:03','2010-12-18 21:14:03');
 /*!40000 ALTER TABLE `feedbacks` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -215,7 +212,7 @@ CREATE TABLE `posts` (
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -224,7 +221,7 @@ CREATE TABLE `posts` (
 
 LOCK TABLES `posts` WRITE;
 /*!40000 ALTER TABLE `posts` DISABLE KEYS */;
-INSERT INTO `posts` VALUES (1,'Welcome to Landlord Feedback','landlordfeedback@gmail.com','Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?','2010-12-06 20:22:00','2010-12-06 20:22:00');
+INSERT INTO `posts` VALUES (1,'Welcome to Landlord Feedback','landlordfeedback@gmail.com','Hello and welcome to Landlord Feedback. This website is for everyone who is renting a property in the UK and is made to help prospective tenants make decisions based on others\' previous experience. It allows you to see how well your potential future landlord maintains their property and how quickly they fix any faults with it.\nTo get started with Landlord Feedback you need a Facebook account. (Who doesn’t have one these days?). Login, add your property by locating it on a map, or navigating to Add Property section. If you are using a good browser (like Firefox or Chrome) your location should be automatically determined, however if it didn’t you can move the map around to find the exact spot. Once added the property – add some information about your tenancy, and start rating your renting experience in different categories. You can add as many feedbacks as you like for all properties or landlords you’ve ever stayed with. \nYou can also search for properties on a map, or by typing address or postcode into a search box. Properties appear on a screen as blue houses.\n','2010-12-06 20:22:00','2010-12-06 20:22:00');
 /*!40000 ALTER TABLE `posts` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -250,7 +247,7 @@ CREATE TABLE `properties` (
   KEY `user_id` (`user_id`),
   KEY `lat` (`lat`),
   KEY `lng` (`lng`)
-) ENGINE=MyISAM AUTO_INCREMENT=34 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -259,7 +256,6 @@ CREATE TABLE `properties` (
 
 LOCK TABLES `properties` WRITE;
 /*!40000 ALTER TABLE `properties` DISABLE KEYS */;
-INSERT INTO `properties` VALUES (12,1,'some address',2,'w110rl','51.5128532','-0.2064232','2010-11-01 19:47:34',NULL),(15,5,'Not far from ealing common',2,'w57xy','51.5133102','-0.3015194','2010-11-01 19:47:34',NULL),(14,2,'wimbledon',2,'sw190rl','51.4255246','-0.2079919','2010-11-01 19:47:34',NULL),(11,3,'sme adderss',2,'w130rl','51.5112045','-0.3291383','2010-11-01 19:47:34',NULL),(16,2,'3 northfields avenue',2,'w133rl','51.5132486','-0.3222908','2010-11-01 19:47:34',NULL),(17,3,'9 Northfields road',2,'w139rt','51.5034118','-0.3168871','2010-11-01 20:51:09',NULL),(18,4,'closer to center',2,'w40rl','51.4884455','-0.2644328','2010-11-04 22:29:24',NULL),(19,1,'Hammersmith, London W12 0RL, UK',2,'w120rl','51.5121634','-0.2397666','2010-11-18 21:47:44',NULL),(20,1,'Hammersmith, London W12 0RG, UK',2,'w120rg','51.5152502','-0.2387253','2010-11-19 13:42:54',NULL),(21,2,'Lambeth, London SW12 0AA, UK',2,'sw120aa','51.4482630','-0.1424348','2010-11-19 13:47:22',NULL),(22,1,'London E12, UK',2,'e12 0rl','51.5531202','0.0499553','2010-11-19 16:31:08',NULL),(23,1,'1-19 Greenham Close, Lambeth, Greater London SE1 7, UK',2,'SE175UU','51.4994080','-0.1109391','2010-11-20 12:47:33',NULL),(24,1,'Wolverhampton, West Midlands WV1 4SA, UK',2,'wv14sa','52.5867040','-2.1415773','2010-11-21 13:43:26',NULL),(25,3,'Wolverhampton WV2, UK',2,'WV24SA','52.5771935','-2.1178501','2010-11-21 13:49:15',NULL),(26,1,'5-9 Bridge St, Westminster, London SW1A 2, UK',2,'SW1A2BB','51.5008793','-0.1246457','2010-11-22 22:29:33',NULL),(27,1,'N Circular Rd, Ealing, Greater London W5 1, UK',2,'W514RL','51.5315164','-0.2937811','2010-11-23 22:07:48',NULL),(28,1,'14 Eccleston Rd, Ealing, Greater London W7 3, UK',2,'W30RL','51.5107310','-0.3283969','2010-12-14 01:20:12',NULL),(29,1,'4-5 Church Pl, Ealing, Greater London W5 4, UK',2,'W544EL','51.5040998','-0.3056779','2010-12-15 22:45:04',NULL),(30,1,'City of London, London EC4N 8BS, UK',2,'EC4N8BS','51.5123869','-0.0894657','2010-12-16 21:53:41',NULL),(31,1,'King William St, Camberwell, Greater London SE1 9, UK',2,'SE19 4ee','51.5078413','-0.0877668','2010-12-17 23:10:52',NULL),(32,2,'Westminster, London WC2B 4EZ, UK',2,'WC2B4EZ','51.5130327','-0.1168285','2010-12-17 23:12:43',NULL),(33,1,'Brad St, Lambeth, Greater London SE1 8, UK',2,'SE18 2as','51.5044673','-0.1083485','2010-12-18 12:11:15','2010-12-18 12:11:15');
 /*!40000 ALTER TABLE `properties` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -275,7 +271,7 @@ CREATE TABLE `propertytypes` (
   `name` varchar(50) CHARACTER SET latin1 NOT NULL,
   `comment` text CHARACTER SET latin1 NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -284,7 +280,7 @@ CREATE TABLE `propertytypes` (
 
 LOCK TABLES `propertytypes` WRITE;
 /*!40000 ALTER TABLE `propertytypes` DISABLE KEYS */;
-INSERT INTO `propertytypes` VALUES (1,'flat',''),(2,'apartment',''),(3,'house',''),(4,'mansion',''),(5,'studio',''),(6,'room','');
+INSERT INTO `propertytypes` VALUES (1,'flat',''),(2,'apartment',''),(3,'house',''),(4,'maisonette',''),(5,'studio',''),(6,'room',''),(7,'bedsit',''),(8,'other','');
 /*!40000 ALTER TABLE `propertytypes` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -307,7 +303,6 @@ CREATE TABLE `schema_migrations` (
 
 LOCK TABLES `schema_migrations` WRITE;
 /*!40000 ALTER TABLE `schema_migrations` DISABLE KEYS */;
-INSERT INTO `schema_migrations` VALUES ('20101204101103'),('20101204103647'),('20101204131924'),('20101204185032'),('20101204185434'),('20101204185823'),('20101206195354');
 /*!40000 ALTER TABLE `schema_migrations` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -329,7 +324,7 @@ CREATE TABLE `users` (
   `updated_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `alias` (`alias`)
-) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -338,7 +333,6 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'1234','art','deineka','a@one.lv',NULL,'2010-12-04 14:38:57','2010-12-04 14:38:57'),(2,'1033864170','Art','Deineka','fighting_1r1sh@yahoo.ie',NULL,'2010-12-04 15:00:21','2010-12-04 15:00:21'),(3,'837178900','Svetlana','Kleimenova','mstemper1@gmail.com',NULL,'2010-12-04 15:03:10','2010-12-04 15:03:10'),(4,'6789','test',NULL,NULL,NULL,'2010-12-04 15:32:00','2010-12-04 15:32:00');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -372,7 +366,7 @@ CREATE TABLE `comments` (
   KEY `property_id` (`property_id`),
   KEY `user_id` (`user_id`),
   KEY `abuse` (`abuse`)
-) ENGINE=MyISAM AUTO_INCREMENT=23 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -381,7 +375,6 @@ CREATE TABLE `comments` (
 
 LOCK TABLES `comments` WRITE;
 /*!40000 ALTER TABLE `comments` DISABLE KEYS */;
-INSERT INTO `comments` VALUES (1,NULL,NULL,NULL,2,'some text',2,'2010-11-28 13:19:34'),(2,NULL,NULL,NULL,2,'some text',6,'2010-11-28 13:20:34'),(6,NULL,NULL,17,2,'some comments',0,'2010-11-28 22:36:44'),(4,NULL,NULL,NULL,2,'some text',7,'0000-00-00 00:00:00'),(5,NULL,NULL,NULL,2,'ASDAFWCFW',1,'0000-00-00 00:00:00'),(7,NULL,NULL,17,2,'some comments',0,'2010-11-28 22:37:19'),(8,NULL,NULL,17,2,'some comments',0,'2010-11-28 22:37:45'),(9,NULL,21,NULL,2,'some text',0,'2010-11-28 22:46:56'),(10,NULL,21,NULL,2,'some text',0,'2010-11-28 22:47:12'),(11,NULL,NULL,17,2,'sss',0,'2010-11-28 22:47:32'),(12,NULL,NULL,17,2,'another comment',0,'2010-11-28 22:56:21'),(13,NULL,NULL,17,2,'@@comm',0,'2010-11-28 22:58:15'),(14,NULL,23,NULL,2,'sssssssssssss',0,'2010-11-28 23:01:38'),(15,NULL,23,NULL,2,'xxxxxxxxxxxxxxxxxxx',0,'2010-11-28 23:01:49'),(16,NULL,18,NULL,2,'my latest comment',0,'2010-12-04 15:28:51'),(17,NULL,NULL,15,2,'qwerty comment!!',0,'2010-12-04 15:36:10'),(18,NULL,14,NULL,3,'Some comments by svetlana ;))',0,'2010-12-12 10:12:31'),(19,NULL,14,NULL,2,'Some comments by Art ;)',0,'2010-12-12 10:16:00'),(20,NULL,14,NULL,2,'another one',0,'2010-12-12 10:17:37'),(21,NULL,14,NULL,2,'my latest comment',0,'2010-12-17 23:25:55'),(22,NULL,NULL,15,2,'latest comment',0,'2010-12-17 23:26:53');
 /*!40000 ALTER TABLE `comments` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -404,7 +397,7 @@ CREATE TABLE `entries` (
   KEY `feedback_id` (`feedback_id`),
   KEY `user_id` (`user_id`),
   KEY `entrytype_id` (`entrytype_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=29 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -413,7 +406,6 @@ CREATE TABLE `entries` (
 
 LOCK TABLES `entries` WRITE;
 /*!40000 ALTER TABLE `entries` DISABLE KEYS */;
-INSERT INTO `entries` VALUES (1,1,1,2,'very baad apartment',1,'2010-10-17 22:04:44'),(2,3,1,2,'very bad landlord',1,'2010-10-17 22:05:28'),(9,4,15,2,'neigbours are very good',0,'2010-10-24 02:02:47'),(8,2,15,2,'shittiest agency ever',0,'2010-10-24 01:20:14'),(7,2,15,2,'agency just suxx',3,'2010-10-24 00:21:33'),(10,3,15,2,'area is so-so',3,'2010-10-24 02:03:59'),(11,2,8,2,'suxx',1,'2010-10-25 20:50:46'),(12,3,8,2,'<a href=\'http://google.com\'>click me </a>',3,'2010-10-25 20:55:01'),(13,1,16,2,'<a href=\'#\'>sss</a>',3,'2010-10-25 21:03:40'),(14,2,13,2,'some text',3,'2010-10-25 21:23:51'),(15,1,17,2,'Very decent landlord',5,'2010-10-31 10:15:20'),(16,2,17,2,'Agency, is so so, but it didnt matter',3,'2010-10-31 10:15:48'),(17,4,17,2,'neighbours are fine',4,'2010-10-31 10:16:02'),(18,3,17,2,'are is good',5,'2010-10-31 10:16:16'),(19,2,18,2,'agency suxx',2,'2010-11-20 18:56:16'),(20,3,18,2,'rea is all right',3,'2010-11-20 20:45:10'),(21,3,21,2,'area is allriigh',3,'2010-11-28 12:31:11'),(22,2,22,2,'agency suxx',2,'2010-11-28 20:23:25'),(23,3,23,2,'qaqaqasdsds',5,'2010-11-28 23:01:14'),(24,1,23,2,'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',5,'2010-11-28 23:02:03'),(25,1,25,2,'its all right',3,'2010-12-14 15:08:17'),(26,3,26,2,'somewhat allright',3,'2010-12-15 22:46:19'),(27,2,26,2,'agency shit',1,'2010-12-15 22:49:55'),(28,3,14,2,'fff gggggggggggggg',3,'2010-12-17 23:25:44');
 /*!40000 ALTER TABLE `entries` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -429,7 +421,7 @@ CREATE TABLE `entrytypes` (
   `name` varchar(50) CHARACTER SET latin1 NOT NULL,
   `comment` text CHARACTER SET latin1,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -438,7 +430,7 @@ CREATE TABLE `entrytypes` (
 
 LOCK TABLES `entrytypes` WRITE;
 /*!40000 ALTER TABLE `entrytypes` DISABLE KEYS */;
-INSERT INTO `entrytypes` VALUES (1,'Ladnlord Feedback','Anything you have to say about landlord..'),(2,'Agency','Anything you want to say about agency'),(3,'Area','Anything you want to say about area'),(4,'Neighbours','Anything about neighbours ');
+INSERT INTO `entrytypes` VALUES (1,'Landlord',NULL),(2,'Agency',NULL),(3,'Neighbors',NULL),(4,'Neighborhood',NULL),(5,'Area',NULL),(6,'Local Council',NULL),(7,'Local shops/facilities',NULL),(8,'Garden',NULL),(9,'Bills',NULL),(10,'Other',NULL);
 /*!40000 ALTER TABLE `entrytypes` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -484,7 +476,7 @@ CREATE TABLE `feedbacks` (
   PRIMARY KEY (`id`),
   KEY `property_id` (`property_id`),
   KEY `user_id` (`user_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=30 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -493,7 +485,6 @@ CREATE TABLE `feedbacks` (
 
 LOCK TABLES `feedbacks` WRITE;
 /*!40000 ALTER TABLE `feedbacks` DISABLE KEYS */;
-INSERT INTO `feedbacks` VALUES (15,11,2,12,'2010-10-31','some name','some agency',0,'2010-11-01 19:47:01','0000-00-00 00:00:00'),(8,15,2,12,'2010-10-31','aaaaaaaaaaa','sssssssssss',0,'2010-11-01 19:47:01','0000-00-00 00:00:00'),(14,15,2,1,'2010-10-31','aaaa','fffff',0,'2010-11-01 19:47:01','0000-00-00 00:00:00'),(13,15,2,1,'2010-10-31','landlord','agency',0,'2010-11-01 19:47:01','0000-00-00 00:00:00'),(16,15,2,12,'2010-10-31','<a >xxx</a>','<a >xxx</a>',0,'2010-11-01 19:47:01','0000-00-00 00:00:00'),(17,16,2,6,'2009-10-01','John Smith','Northfiels',0,'2010-11-01 19:47:01','0000-00-00 00:00:00'),(18,17,2,6,'2010-12-12','aaaaaaa','',0,'2010-11-20 15:06:49','0000-00-00 00:00:00'),(19,17,2,6,'1982-03-22','aaaaaaa','',0,'2010-11-20 15:08:15','0000-00-00 00:00:00'),(20,17,2,6,'2010-12-12','some fucker','',0,'2010-11-20 15:35:02','0000-00-00 00:00:00'),(21,17,2,48,'2010-12-12','','bad agency',0,'2010-11-20 15:52:23','0000-00-00 00:00:00'),(22,16,2,12,'1982-03-22','some fucker','agency 1',0,'2010-11-28 20:21:04','0000-00-00 00:00:00'),(23,17,2,6,'2010-12-12','ssssssss','xxxxxxxxxxxxxxx',0,'2010-11-28 22:58:27','0000-00-00 00:00:00'),(24,22,2,18,'2010-12-31','David Smith','Easter Estates, PLC',0,'2010-12-14 14:53:16','0000-00-00 00:00:00'),(25,14,2,18,'2010-12-07','David Smith','Central London Estates, Ltd',0,'2010-12-14 15:00:35','0000-00-00 00:00:00'),(26,29,2,12,'2010-12-08','aaaaaaa','agency 1',0,'2010-12-15 22:45:39','0000-00-00 00:00:00'),(27,15,2,18,'2010-12-01','ssssssss','aaaaaaaaaaaaaaa',0,'2010-12-17 23:27:18','0000-00-00 00:00:00'),(28,15,2,12,'2010-12-01','qqq','ff',1,'2010-12-18 12:36:01','2010-12-18 12:36:01'),(29,17,2,12,'2010-12-14','aaaaaaa','aaaaaaaaaaaaa',1,'2010-12-18 21:14:03','2010-12-18 21:14:03');
 /*!40000 ALTER TABLE `feedbacks` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -542,7 +533,7 @@ CREATE TABLE `posts` (
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -551,7 +542,7 @@ CREATE TABLE `posts` (
 
 LOCK TABLES `posts` WRITE;
 /*!40000 ALTER TABLE `posts` DISABLE KEYS */;
-INSERT INTO `posts` VALUES (1,'Welcome to Landlord Feedback','landlordfeedback@gmail.com','Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?','2010-12-06 20:22:00','2010-12-06 20:22:00');
+INSERT INTO `posts` VALUES (1,'Welcome to Landlord Feedback','landlordfeedback@gmail.com','Hello and welcome to Landlord Feedback. This website is for everyone who is renting a property in the UK and is made to help prospective tenants make decisions based on others\' previous experience. It allows you to see how well your potential future landlord maintains their property and how quickly they fix any faults with it.\nTo get started with Landlord Feedback you need a Facebook account. (Who doesn’t have one these days?). Login, add your property by locating it on a map, or navigating to Add Property section. If you are using a good browser (like Firefox or Chrome) your location should be automatically determined, however if it didn’t you can move the map around to find the exact spot. Once added the property – add some information about your tenancy, and start rating your renting experience in different categories. You can add as many feedbacks as you like for all properties or landlords you’ve ever stayed with. \nYou can also search for properties on a map, or by typing address or postcode into a search box. Properties appear on a screen as blue houses.\n','2010-12-06 20:22:00','2010-12-06 20:22:00');
 /*!40000 ALTER TABLE `posts` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -577,7 +568,7 @@ CREATE TABLE `properties` (
   KEY `user_id` (`user_id`),
   KEY `lat` (`lat`),
   KEY `lng` (`lng`)
-) ENGINE=MyISAM AUTO_INCREMENT=34 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -586,7 +577,6 @@ CREATE TABLE `properties` (
 
 LOCK TABLES `properties` WRITE;
 /*!40000 ALTER TABLE `properties` DISABLE KEYS */;
-INSERT INTO `properties` VALUES (12,1,'some address',2,'w110rl','51.5128532','-0.2064232','2010-11-01 19:47:34',NULL),(15,5,'Not far from ealing common',2,'w57xy','51.5133102','-0.3015194','2010-11-01 19:47:34',NULL),(14,2,'wimbledon',2,'sw190rl','51.4255246','-0.2079919','2010-11-01 19:47:34',NULL),(11,3,'sme adderss',2,'w130rl','51.5112045','-0.3291383','2010-11-01 19:47:34',NULL),(16,2,'3 northfields avenue',2,'w133rl','51.5132486','-0.3222908','2010-11-01 19:47:34',NULL),(17,3,'9 Northfields road',2,'w139rt','51.5034118','-0.3168871','2010-11-01 20:51:09',NULL),(18,4,'closer to center',2,'w40rl','51.4884455','-0.2644328','2010-11-04 22:29:24',NULL),(19,1,'Hammersmith, London W12 0RL, UK',2,'w120rl','51.5121634','-0.2397666','2010-11-18 21:47:44',NULL),(20,1,'Hammersmith, London W12 0RG, UK',2,'w120rg','51.5152502','-0.2387253','2010-11-19 13:42:54',NULL),(21,2,'Lambeth, London SW12 0AA, UK',2,'sw120aa','51.4482630','-0.1424348','2010-11-19 13:47:22',NULL),(22,1,'London E12, UK',2,'e12 0rl','51.5531202','0.0499553','2010-11-19 16:31:08',NULL),(23,1,'1-19 Greenham Close, Lambeth, Greater London SE1 7, UK',2,'SE175UU','51.4994080','-0.1109391','2010-11-20 12:47:33',NULL),(24,1,'Wolverhampton, West Midlands WV1 4SA, UK',2,'wv14sa','52.5867040','-2.1415773','2010-11-21 13:43:26',NULL),(25,3,'Wolverhampton WV2, UK',2,'WV24SA','52.5771935','-2.1178501','2010-11-21 13:49:15',NULL),(26,1,'5-9 Bridge St, Westminster, London SW1A 2, UK',2,'SW1A2BB','51.5008793','-0.1246457','2010-11-22 22:29:33',NULL),(27,1,'N Circular Rd, Ealing, Greater London W5 1, UK',2,'W514RL','51.5315164','-0.2937811','2010-11-23 22:07:48',NULL),(28,1,'14 Eccleston Rd, Ealing, Greater London W7 3, UK',2,'W30RL','51.5107310','-0.3283969','2010-12-14 01:20:12',NULL),(29,1,'4-5 Church Pl, Ealing, Greater London W5 4, UK',2,'W544EL','51.5040998','-0.3056779','2010-12-15 22:45:04',NULL),(30,1,'City of London, London EC4N 8BS, UK',2,'EC4N8BS','51.5123869','-0.0894657','2010-12-16 21:53:41',NULL),(31,1,'King William St, Camberwell, Greater London SE1 9, UK',2,'SE19 4ee','51.5078413','-0.0877668','2010-12-17 23:10:52',NULL),(32,2,'Westminster, London WC2B 4EZ, UK',2,'WC2B4EZ','51.5130327','-0.1168285','2010-12-17 23:12:43',NULL),(33,1,'Brad St, Lambeth, Greater London SE1 8, UK',2,'SE18 2as','51.5044673','-0.1083485','2010-12-18 12:11:15','2010-12-18 12:11:15');
 /*!40000 ALTER TABLE `properties` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -602,7 +592,7 @@ CREATE TABLE `propertytypes` (
   `name` varchar(50) CHARACTER SET latin1 NOT NULL,
   `comment` text CHARACTER SET latin1 NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -611,7 +601,7 @@ CREATE TABLE `propertytypes` (
 
 LOCK TABLES `propertytypes` WRITE;
 /*!40000 ALTER TABLE `propertytypes` DISABLE KEYS */;
-INSERT INTO `propertytypes` VALUES (1,'flat',''),(2,'apartment',''),(3,'house',''),(4,'mansion',''),(5,'studio',''),(6,'room','');
+INSERT INTO `propertytypes` VALUES (1,'flat',''),(2,'apartment',''),(3,'house',''),(4,'maisonette',''),(5,'studio',''),(6,'room',''),(7,'bedsit',''),(8,'other','');
 /*!40000 ALTER TABLE `propertytypes` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -634,7 +624,6 @@ CREATE TABLE `schema_migrations` (
 
 LOCK TABLES `schema_migrations` WRITE;
 /*!40000 ALTER TABLE `schema_migrations` DISABLE KEYS */;
-INSERT INTO `schema_migrations` VALUES ('20101204101103'),('20101204103647'),('20101204131924'),('20101204185032'),('20101204185434'),('20101204185823'),('20101206195354');
 /*!40000 ALTER TABLE `schema_migrations` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -656,7 +645,7 @@ CREATE TABLE `users` (
   `updated_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `alias` (`alias`)
-) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -665,7 +654,6 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'1234','art','deineka','a@one.lv',NULL,'2010-12-04 14:38:57','2010-12-04 14:38:57'),(2,'1033864170','Art','Deineka','fighting_1r1sh@yahoo.ie',NULL,'2010-12-04 15:00:21','2010-12-04 15:00:21'),(3,'837178900','Svetlana','Kleimenova','mstemper1@gmail.com',NULL,'2010-12-04 15:03:10','2010-12-04 15:03:10'),(4,'6789','test',NULL,NULL,NULL,'2010-12-04 15:32:00','2010-12-04 15:32:00');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -728,4 +716,4 @@ USE `llfb`;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2010-12-18 21:14:56
+-- Dump completed on 2010-12-22 22:30:33
