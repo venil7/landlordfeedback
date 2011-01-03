@@ -1,26 +1,49 @@
-static_marker_url: http://goo.gl/1jfSj
+development:
+  static_marker_url: http://goo.gl/1jfSj
+  
+  client_id: 175005175873101
+  secret_id: 699e53c1d614ee4270a1df567040ac71
 
-client_id: 154612174572644
-secret_id: 1d805d27dd7492cfe3b2ce6f8c4ccbf5
+  facebook_link: http://goo.gl/y0Z7E
 
-facebook_link: http://goo.gl/y0Z7E
+  twitter_link: http://goo.gl/gF9yo
 
-twitter_link: http://goo.gl/gF9yo
+  paypal_donate_html: >
+      [paypal donate goes here]
 
-paypal_donate_html: >
-    <form action="https://www.paypal.com/cgi-bin/webscr" method="post">
-    <input type="hidden" name="cmd" value="_s-xclick">
-    <input type="hidden" name="hosted_button_id" value="FDNQJCZVW3MTN">
-    <input type="image" src="https://www.paypal.com/en_US/i/btn/btn_donateCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
-    <!-- img alt="" border="0" src="https://www.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1" -->
-    </form>
+  facebook_like: >
+      [fb like goes here]
+      
+  twitter_tweet: >
+      [tweet here]
 
-facebook_like: >
-    <script src="http://connect.facebook.net/en_US/all.js#xfbml=1"></script><fb:like show_faces="true" width="200" font="trebuchet ms"></fb:like>
-    
-twitter_tweet: >
-    <a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
+  google_buzz: >
+      [buzz here]
+            
+production:
+  static_marker_url: http://goo.gl/1jfSj
 
-google_buzz: >
-    <a title="Post to Google Buzz" class="google-buzz-button" href="http://www.google.com/buzz/post" data-button-style="small-count"></a>
-    <script type="text/javascript" src="http://www.google.com/buzz/api/button.js"></script>    
+  client_id: 154612174572644
+  secret_id: 1d805d27dd7492cfe3b2ce6f8c4ccbf5
+
+  facebook_link: http://goo.gl/y0Z7E
+
+  twitter_link: http://goo.gl/gF9yo
+
+  paypal_donate_html: >
+      <form action="https://www.paypal.com/cgi-bin/webscr" method="post">
+      <input type="hidden" name="cmd" value="_s-xclick">
+      <input type="hidden" name="hosted_button_id" value="FDNQJCZVW3MTN">
+      <input type="image" src="https://www.paypal.com/en_US/i/btn/btn_donateCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+      <!-- img alt="" border="0" src="https://www.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1" -->
+      </form>
+
+  facebook_like: >
+      <script src="http://connect.facebook.net/en_US/all.js#xfbml=1"></script><fb:like show_faces="true" width="200" font="trebuchet ms"></fb:like>
+      
+  twitter_tweet: >
+      <a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
+
+  google_buzz: >
+      <a title="Post to Google Buzz" class="google-buzz-button" href="http://www.google.com/buzz/post" data-button-style="small-count"></a>
+      <script type="text/javascript" src="http://www.google.com/buzz/api/button.js"></script>    

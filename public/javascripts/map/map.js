@@ -88,7 +88,8 @@ $(function() {
                                           map: map, 
                                           position: new google.maps.LatLng(place.lat, place.lng),
                                           title:place.address,
-                                          icon: LLFB.constants.REG_ICON
+                                          icon: LLFB.constants.REG_ICON,
+                                          animation: google.maps.Animation.DROP
                                       });
                                       marker.place = place;
                                       markers.push(marker);
@@ -138,24 +139,6 @@ $(function() {
                         var obj = {address:address.strip().toLowerCase(),lat:loc.lat(),lng:loc.lng()};
                         map.setCenter(loc);
                         map.setZoom(DEFAULT_ZOOM);
-                        /*if (add) {
-                            if (!add_marker) {
-                                add_marker = new google.maps.Marker({
-                                    map: map, 
-                                    position: loc,
-                                    draggable: true,
-                                    cursor: 'move'
-                                });
-                                google.maps.event.addListener(add_marker, 'click', onAddMarkerClick(add_marker));
-                                google.maps.event.addListener(add_marker, 'dragstart', onAddMarkerDragStart(add_marker));
-                                google.maps.event.addListener(add_marker, 'dragend', onAddMarkerDragEnd(add_marker));
-                            } else {
-                                add_marker.setPosition(loc);
-                            }
-                            add_marker.place = geocodeToPlace(results[0]);
-                            //virtually click on it 
-                            google.maps.event.trigger(add_marker, 'click');
-                        }*/
                     } else {
                         LLFB.utils.notify("Nothing found for this address: {address}".supplant({address:address}));
                     }

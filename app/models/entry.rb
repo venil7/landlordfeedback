@@ -6,7 +6,9 @@ class Entry < ActiveRecord::Base
     belongs_to :feedback
     belongs_to :user
     belongs_to :entrytype
-    has_many   :comments
+    #has_many   :comments
+    has_many :comments, :as => :commentable
+
     #validations
     validates :feedback_id, :presence => true, :numericality=>true
     validates :entrytype_id, :presence => true, :numericality=>true

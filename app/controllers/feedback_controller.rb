@@ -1,7 +1,6 @@
 class FeedbackController < PageController
   def initialize
     super()
-    @comment = Comment.new
     @own_page = false
   end
 
@@ -11,7 +10,6 @@ class FeedbackController < PageController
     @entrytypes = Entrytype.for_select
     @entry = Entry.new :feedback_id => @feedback.id
     @photo = Photo.new(:feedback_id => @feedback.id)
-    @comment.feedback_id = @feedback.id
     @own_page = @feedback.user.id == user_id
   end
   
@@ -33,7 +31,6 @@ class FeedbackController < PageController
     else
       flash.now[:error] = added_unsuccessfully_message :fedback
       @property = Property.find(@feedback[:property_id])
-      @comment  = Comment.new(:property_id => @property.id)
       render :action=>:add
     end
   end
@@ -54,7 +51,6 @@ class FeedbackController < PageController
       @feedback = Feedback.find(@entry.feedback_id)
       @property = Property.find(@feedback.property_id)
       @entrytypes = Entrytype.for_select
-      @comment.feedback_id = @feedback.id
       @photo = Photo.new(:feedback_id => @feedback.id)
       @own_page = @feedback.user.id == user_id
       render :action => 'view'
@@ -62,25 +58,14 @@ class FeedbackController < PageController
   end
   
   def comment_create
-    if params[:comment] == nil
-      redirect_to :action=>:view, :id=>params[:id]
-      return
-    end
-    @comment = Comment.new(params[:comment])
-    @comment[:user_id] = user_id
-    if @comment.save
-      flash[:success] = added_successfully_message :comment
-      redirect_to :action => "view", :id => @comment.feedback_id, :anchor => :comments
-    else
-      flash.now[:error] = added_unsuccessfully_message :comment
-      @feedback = Feedback.find(@comment.feedback_id)
+    comment_attempt_create(:feedback, lambda {
+      @feedback = Feedback.find(@comment.commentable_id)
       @property = Property.find(@feedback.property_id)
       @entrytypes = Entrytype.for_select
       @entry = Entry.new :feedback_id => @feedback.id
       @photo = Photo.new(:feedback_id => @feedback.id)
       @own_page = @feedback.user.id == user_id
-      render :action => 'view'
-    end
+      render :action => :view
+    })
   end
-  
 end

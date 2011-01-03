@@ -9,7 +9,8 @@ class Property < ActiveRecord::Base
   
   #relations
   has_many :feedbacks
-  has_many :comments
+  has_many :comments, :as => :commentable
+
   belongs_to :user
   belongs_to :propertytype
   has_many :entries, :through => :feedbacks, :source => :entries

@@ -1,6 +1,7 @@
 class Post < ActiveRecord::Base
   default_scope order("updated_at asc")
-  
+  has_many :comments, :as => :commentable
+
   def next
     begin
       Post.find(id+1)

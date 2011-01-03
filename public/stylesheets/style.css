@@ -204,7 +204,7 @@ div.star-rating{background:transparent!important;overflow:hidden!important}
 .jnotify-container .jnotify-notification-notice .jnotify-close, 
 .jnotify-container .jnotify-notification-notice .jnotify-message{color:#eee !important}
 /* notification type == "success"*/
-.jnotify-container .jnotify-notification-success .jnotify-background{background-color:#7CFC00}
+.jnotify-container .jnotify-notification-success .jnotify-background{background-color:#98FB98}
 .jnotify-container .jnotify-notification-success .jnotify-close, 
-.jnotify-container .jnotify-notification-success .jnotify-message{color:#a72947 !important}
+.jnotify-container .jnotify-notification-success .jnotify-message{color:#228B22 !important}
 /*end notification style*/

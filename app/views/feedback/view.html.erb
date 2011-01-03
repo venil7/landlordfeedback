@@ -103,7 +103,7 @@
  		<%= render "shared/comments", :comments => @feedback.comments %>
 
     <!-- post a comment -->
- 		<%= render "shared/post_comment", :comment => @comment, :parent_field_name => :feedback_id %>
+ 		<%= render "shared/post_comment", :commentable => @feedback %>
  		
 	</div>
 

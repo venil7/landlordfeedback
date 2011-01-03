@@ -10,6 +10,7 @@
 		  <div>
 		    <%=@post.entry%>
 		  </div>
+      <%= render "shared/social_widgets" %>
 		</div>
 		<div>
 		   <%if @post.hasprev?%>
@@ -19,6 +20,12 @@
 	  	   <p style="float:right;"><%= link_to "Later posts >>", :id => @post.id+1%></p>
 		   <%end%>
 		</div>
+		
+		<!-- comments if any -->
+ 		<%= render "shared/comments", :comments => @post.comments %>
+
+    <!-- post a comment -->
+ 		<%= render "shared/post_comment", :commentable => @post %>
 
 	</div>
 	<div id="sidebar">

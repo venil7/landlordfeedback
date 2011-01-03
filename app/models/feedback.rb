@@ -7,7 +7,8 @@ class Feedback < ActiveRecord::Base
     default_scope order("updated_at asc")
     
     has_many :entries
-    has_many :comments
+    has_many :comments, :as => :commentable
+
     has_many :photos
     belongs_to :property
     belongs_to :user 

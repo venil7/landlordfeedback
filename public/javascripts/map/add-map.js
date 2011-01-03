@@ -20,7 +20,8 @@ $(function() {
       position: center,
       draggable: true,
       cursor: 'move',
-      icon: LLFB.constants.ADD_ICON
+      icon: LLFB.constants.ADD_ICON,
+      animation: google.maps.Animation.BOUNCE,
     });
     
     var onDragEnd = function() {
@@ -30,6 +31,7 @@ $(function() {
         $("#property_lat").val(position.lat());
         $("#property_lng").val(position.lng());
         geocoder.geocode({latLng:position}, onReverseGeoCode());
+        //marker.setAnimation(null);
       };
     };
     var onDoubleClick = function () {

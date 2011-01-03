@@ -10,22 +10,17 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 0) do
+ActiveRecord::Schema.define(:version => 20110101233058) do
 
   create_table "comments", :force => true do |t|
-    t.integer  "entry_id"
-    t.integer  "feedback_id"
-    t.integer  "property_id"
-    t.integer  "user_id",                                   :null => false
-    t.string   "text",        :limit => 400,                :null => false
-    t.integer  "abuse",                      :default => 0, :null => false
-    t.datetime "updated_at",                                :null => false
+    t.integer  "user_id",                         :null => false
+    t.string   "text",             :limit => 400, :null => false
+    t.datetime "updated_at",                      :null => false
+    t.integer  "commentable_id"
+    t.string   "commentable_type"
   end
 
-  add_index "comments", ["abuse"], :name => "abuse"
-  add_index "comments", ["entry_id"], :name => "entry_id"
-  add_index "comments", ["feedback_id"], :name => "feedback_id"
-  add_index "comments", ["property_id"], :name => "property_id"
+  add_index "comments", ["commentable_id", "commentable_type"], :name => "index_comments_on_commentable_id_and_commentable_type"
   add_index "comments", ["user_id"], :name => "user_id"
 
   create_table "entries", :force => true do |t|

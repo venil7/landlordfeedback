@@ -33,14 +33,6 @@ class PageController < ApplicationController
     "Can't add #{entry}, please check all fields and try agan"
   end
   
-  #def render_error
-  #  respond_to do |type| 
-  #    type.html { render :template => "layouts/error", :status => 404 } 
-  #    type.all  { render :nothing => true, :status => 404 } 
-  #  end
-  #  true
-  #end
-  
   def added_successfully_message(entry = :entry, entries = nil)
     message = "Thank you, #{entry} added successfully"
     message < ", please add some #{entries}" if (entries)

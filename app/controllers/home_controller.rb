@@ -1,5 +1,5 @@
 class HomeController < PageController
-
+    caches_page :index#[:index, :about, :donate] #if Rails.env == "production"
     def index
       @menu_item = :home
       @posts = Post.last(1) or [Post.new]
@@ -16,5 +16,4 @@ class HomeController < PageController
     def search
       redirect_to :action => :index, :anchor => "search=#{params[:term]}"
     end
-
 end
