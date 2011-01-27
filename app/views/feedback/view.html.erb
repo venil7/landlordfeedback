@@ -103,8 +103,9 @@
  		<%= render "shared/comments", :comments => @feedback.comments %>
 
     <!-- post a comment -->
+    <% unless @own_page %>
  		<%= render "shared/post_comment", :commentable => @feedback %>
- 		
+ 		<% end%>
 	</div>
 
  	<div id="sidebar">
