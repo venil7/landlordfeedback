@@ -22,11 +22,11 @@ class PageController < ApplicationController
   end
   
   def get_latest_feedbacks
-    @latest_feedbacks = Feedback.last(3) or []
+    @latest_feedbacks = Feedback.first(3) or []
   end
   
   def get_latest_properties
-    @latest_properties = Property.last(3) or []
+    @latest_properties = Property.first(3) or []
   end
   
   def added_unsuccessfully_message(entry = :entry)

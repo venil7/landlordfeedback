@@ -1,0 +1,12 @@
+<h2>Blog Posts</h2>
+<ul class="posts">
+  <% posts.each do |post| %>
+	  <li>
+	    <%= link_to post.title[0,30], :controller=>:blog, :action=>:view, :id=>post.id%>
+	    <span>
+	      <%= post.updated_at%> | 
+	      <%= pluralize(post.comments.count, 'Comments') %>
+	    </span>
+	  </li>
+	<% end %>
+</ul>

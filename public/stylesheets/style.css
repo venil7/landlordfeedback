@@ -208,3 +208,5 @@ div.star-rating{background:transparent!important;overflow:hidden!important}
 .jnotify-container .jnotify-notification-success .jnotify-close, 
 .jnotify-container .jnotify-notification-success .jnotify-message{color:#228B22 !important}
 /*end notification style*/
+/*form validation errors*/
+ul.validation-error li {color:#dc143c;}

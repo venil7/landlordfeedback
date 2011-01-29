@@ -31,7 +31,6 @@ $(function() {
         $("#property_lat").val(position.lat());
         $("#property_lng").val(position.lng());
         geocoder.geocode({latLng:position}, onReverseGeoCode());
-        //marker.setAnimation(null);
       };
     };
     var onDoubleClick = function () {

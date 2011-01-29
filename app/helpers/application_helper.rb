@@ -22,7 +22,7 @@ module ApplicationHelper
     end
     
     def my_user_pic
-      user_pic(@controller.user_alias)
+      user_pic(controller.user_alias)
     end
     
     def user_logged_in?

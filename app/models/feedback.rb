@@ -4,7 +4,7 @@ class Feedback < ActiveRecord::Base
     attr_accessor :accept_terms
     #attr_accessor :post_as_anonymous
     
-    default_scope order("updated_at asc")
+    default_scope order("updated_at desc")
     
     has_many :entries
     has_many :comments, :as => :commentable

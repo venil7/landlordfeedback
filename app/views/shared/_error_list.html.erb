@@ -1,5 +1,5 @@
 <% if item.errors.any? %>
-<ul>
+<ul class="validation-error">
   <%item.errors.full_messages.each do |message| %>
     <li>
       <%= message %>
