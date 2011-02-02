@@ -78,7 +78,7 @@
         obj = obj || {};
         var loc = (obj.geometry && obj.geometry.location) ? obj.geometry.location : new google.maps.LatLng(0,0);
         var address = obj.formatted_address ? obj.formatted_address : "specify address";
-        var postcode = "specify postcode";
+        var postcode = "";
         if ($.isArray(obj.address_components)) {
             var pcodes = $.grep(obj.address_components, function(v,i){
                 return $.inArray("postal_code", v.types);
