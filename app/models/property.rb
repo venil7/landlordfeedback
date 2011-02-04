@@ -17,7 +17,7 @@ class Property < ActiveRecord::Base
   has_many :photos,  :through => :feedbacks
   #validation
   validates :address, :presence => true, :uniqueness => true, :length => { :within => 10..100 }
-  validates :postcode, :presence => true, :format => { :with => /^([A-PR-UWYZ0-9][A-HK-Y0-9][AEHMNPRTVXY0-9]?[ABEHMNPRVWXY0-9]?\s*[0-9][ABD-HJLN-UW-Z]{2}|GIR 0AA)$/i }
+  validates :postcode, :presence => true, :format => { :with => /^([A-PR-UWYZ0-9][A-HK-Y0-9][AEHMNPRTVXY0-9]?[ABEHMNPRVWXY0-9]?\s*[0-9][ABD-HJLN-UW-Z]{2}\s*)$/i }
   validates :lat, :presence => true, :numericality => true
   validates :lng, :presence => true, :numericality => true
   validates :propertytype_id, :presence => true, :numericality => true
