@@ -21,7 +21,7 @@ $(function() {
       draggable: true,
       cursor: 'move',
       icon: LLFB.constants.ADD_ICON,
-      animation: google.maps.Animation.BOUNCE,
+      animation: google.maps.Animation.BOUNCE
     });
     
     //pans map to position, and updates
@@ -68,7 +68,7 @@ $(function() {
           LLFB.utils.notify("Address not found");
         }
       };
-    }
+    };
     
     var onGeoCode = function(callback){
       return function(results, status) {
