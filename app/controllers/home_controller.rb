@@ -1,5 +1,5 @@
 class HomeController < PageController
-    caches_page :index#[:index, :about, :donate] #if Rails.env == "production"
+    #caches_page :index#[:index, :about, :donate] if Rails.env == "production"
     def index
       @menu_item = :home
       @posts = Post.last(1) or [Post.new]
