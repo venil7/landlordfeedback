@@ -27,6 +27,7 @@ class FeedbackController < PageController
     @feedback[:user_id] = user_id
     if @feedback.save
       flash[:success] = added_successfully_message :feedback, :rating
+      update_twitter_on_feedback(@feedback)
       redirect_to :controller=>:feedback, :action =>:view, :id=>@feedback.id
     else
       flash.now[:error] = added_unsuccessfully_message :fedback
@@ -67,5 +68,12 @@ class FeedbackController < PageController
       @own_page = @feedback.user.id == user_id
       render :action => :view
     })
+  end
+  
+  private 
+  def update_twitter_on_feedback(feedback)
+    url = url_for(:action=>:view,:controller=>:feedback,:id=>feedback.id,:only_path=>false)
+    text = "New feedback added about #{feedback.property.address}, #{url}"
+    twitter_update(text)
   end
 end

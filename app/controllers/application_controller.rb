@@ -53,4 +53,16 @@ class ApplicationController < ActionController::Base
                                     :secret_id => APP_CONFIG['secret_id'],
                                     :token => session[:access_token])
   end
+  
+  def twitter_client
+    @twitter_client ||= Twitter::Client.new
+  end
+  
+  def twitter_update(str)
+    begin
+     twitter_client.update(str)
+    rescue
+     logger.error("failed to post twitter update")
+    end
+  end
 end

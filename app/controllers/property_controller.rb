@@ -16,6 +16,7 @@ class PropertyController < PageController
       @property[:user_id] = user_id
       if @property.save
         flash[:success] = added_successfully_message :property, :feedback
+        update_twitter_on_property(@property)
         redirect_to :controller => :feedback, :action => :add, :id => @property.id
       else
         flash.now[:error] = added_unsuccessfully_message :property
@@ -33,5 +34,12 @@ class PropertyController < PageController
         @property = Property.find(@comment.commentable_id)
         render :action=>:view
       })
+    end
+    
+    private 
+    def update_twitter_on_property(property)
+        url = url_for(:action=>:view,:controller=>:property,:id=>property.id,:only_path=>false)
+        text = "New property added #{property.address}, #{url}"
+        twitter_update(text)
     end
 end

@@ -20,6 +20,12 @@ development:
   google_buzz: >
       [buzz here]
             
+  #this is for posting to tweet everytime a new post appears, testing uses askmoby twitter acc
+  twitter_consumer_key: r0QPYB4iEx6JhqoClRXA
+  twitter_consumer_secret: 8stWeCiR5K4Q5DdAuOWPfhTg1wryXFVYz1yTOLZwjyo
+  twitter_oauth_token: "103129028-2ekKmtTw8ojvN1v4hvTePz8WrALPKApyy0Fl3Cos"
+  twitter_oauth_token_secret: DsoaOBK2vYZFMdP8K662EekOxtqsyNDjivVOLfV44
+  
 production:
   static_marker_url: http://goo.gl/1jfSj
 
@@ -47,3 +53,9 @@ production:
   google_buzz: >
       <a title="Post to Google Buzz" class="google-buzz-button" href="http://www.google.com/buzz/post" data-button-style="small-count"></a>
       <script type="text/javascript" src="http://www.google.com/buzz/api/button.js"></script>    
+      
+  #this is for posting to tweet everytime a new post appears, production uses llfeedback twitter acc
+  twitter_consumer_key: zwZWBVQjVcWGwgnA8n0y2Q
+  twitter_consumer_secret: eQ7uvqDLOoPXPtXlm9ts1OqrdHxJIA0KgXGofV8bY
+  twitter_oauth_token: 227477296-qIkXvZiqMvZD8q5xFoPWZB8lMsxJnuezHrYxVUI7
+  twitter_oauth_token_secret: a1kl5uoFsK4YcRjno3U3jLXogg7e4Xg6DsZdYLrGw    

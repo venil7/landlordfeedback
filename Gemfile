@@ -6,10 +6,11 @@ gem 'rails'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 #gem 'sqlite3-ruby', :require => 'sqlite3'
-gem 'fbgraph'
+gem 'fbgraph' , '0.1.6.4.1'
 gem 'paperclip'
 gem 'ruby-mysql'
 gem 'mysql2', '0.2.6'
+gem 'twitter'
 
 # Use unicorn as the web server
 # gem 'unicorn'
