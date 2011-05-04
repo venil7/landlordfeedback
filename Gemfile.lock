@@ -1,3 +1,16 @@
+GIT
+  remote: https://github.com/jnunemaker/twitter.git
+  revision: 922fc762e22e3a351f204fc352c189218c778795
+  specs:
+    twitter (1.4.1)
+      faraday (~> 0.6.1)
+      faraday_middleware (~> 0.6.3)
+      hashie (~> 1.0.0)
+      multi_json (~> 1.0.0)
+      multi_xml (~> 0.2.0)
+      rash (~> 0.3.0)
+      simple_oauth (~> 0.1.4)
+
 GEM
   remote: http://rubygems.org/
   specs:
@@ -93,14 +106,6 @@ GEM
     thor (0.14.6)
     treetop (1.4.9)
       polyglot (>= 0.3.1)
-    twitter (1.4.1)
-      faraday (~> 0.6.1)
-      faraday_middleware (~> 0.6.3)
-      hashie (~> 1.0.0)
-      multi_json (~> 1.0.0)
-      multi_xml (~> 0.2.0)
-      rash (~> 0.3.0)
-      simple_oauth (~> 0.1.4)
     tzinfo (0.3.27)
 
 PLATFORMS
@@ -112,4 +117,4 @@ DEPENDENCIES
   paperclip
   rails
   ruby-mysql
-  twitter
+  twitter!

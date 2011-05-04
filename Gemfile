@@ -10,7 +10,7 @@ gem 'fbgraph' , '0.1.6.4.1'
 gem 'paperclip'
 gem 'ruby-mysql'
 gem 'mysql2', '0.2.6'
-gem 'twitter'
+gem 'twitter', :git => 'https://github.com/jnunemaker/twitter.git'
 
 # Use unicorn as the web server
 # gem 'unicorn'
