@@ -52,6 +52,27 @@ class ManageController < PageController
         @comments = Comment.page(params[:page]).per(page_size)
     end
     
+    def property_delete
+        @property = Property.find(params[:id])
+        @property.destroy
+        flash[:success] = success_message
+        redirect_to :action => :properties
+    end
+    
+    def feedback_delete
+        @feedback = Feedback.find(params[:id])
+        @feedback.destroy
+        flash[:success] = success_message
+        redirect_to :action => :feedbacks
+    end
+    
+    def comment_delete
+        @comment = Comment.find(params[:id])
+        @comment.destroy
+        flash[:success] = success_message
+        redirect_to :action => :comments        
+    end
+    
     private 
     def accessed_by_manager
         #for development set manager_alias = 0 - allow everyone

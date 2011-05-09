@@ -1,7 +1,11 @@
 Llfb::Application.routes.draw do
+  #root  
   root :to => "home#index"
-  #match "/map" => "home#index", :as => :map
+  #map post to blog
+  match 'post/view/:id' => "blog#view"
+  #default
   match ":controller(/:action(/:id(.:format)))"
+  
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
