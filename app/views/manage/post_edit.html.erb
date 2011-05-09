@@ -1,0 +1,6 @@
+<% form_for @post, :as=>:post, :url=>{:action=>:post_update,:id=>@post.id} do |p| %>
+     <%= render "shared/error_list", :item => @post %>
+     
+     <%= render "post_form", :item => p %>
+<% end %>
+<%= button_to "cancel", :action=>:index %>

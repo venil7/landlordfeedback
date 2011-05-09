@@ -1,0 +1,9 @@
+<%= render "menu" %>
+<h2>Feedbacks</h2>
+<%=paginate @feedbacks %>
+<table>
+<% @feedbacks.each do |c| %>
+    <tr><td><%=link_to "(#{c.landlord}/#{c.agency}) #{c.property.address[0..20]}..", :controller=>:feedback,:action=>:view, :id=>c.id%></td>
+        <td><%= link_to "[x]", { :action => :feedback_delete, :id => c.id } %></td></tr>
+<% end %>
+</table>

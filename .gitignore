@@ -1,5 +1,5 @@
 log/*.log
 tmp/**/*
-config/database.yml
+config/*.yml
 db/*.sqlite3
 public/assests/

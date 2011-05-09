@@ -11,6 +11,7 @@ gem 'paperclip'
 gem 'ruby-mysql'
 gem 'mysql2', '0.2.6'
 gem 'twitter', :git => 'https://github.com/jnunemaker/twitter.git'
+gem 'kaminari'
 
 # Use unicorn as the web server
 # gem 'unicorn'

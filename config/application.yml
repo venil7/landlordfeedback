@@ -26,6 +26,9 @@ development:
   twitter_oauth_token: "103129028-2ekKmtTw8ojvN1v4hvTePz8WrALPKApyy0Fl3Cos"
   twitter_oauth_token_secret: DsoaOBK2vYZFMdP8K662EekOxtqsyNDjivVOLfV44
   
+  #managing blogs, etc
+  manager_alias: 0 #everyone is a manager
+  
 production:
   static_marker_url: http://goo.gl/1jfSj
 
@@ -58,4 +61,7 @@ production:
   twitter_consumer_key: zwZWBVQjVcWGwgnA8n0y2Q
   twitter_consumer_secret: eQ7uvqDLOoPXPtXlm9ts1OqrdHxJIA0KgXGofV8bY
   twitter_oauth_token: 227477296-qIkXvZiqMvZD8q5xFoPWZB8lMsxJnuezHrYxVUI7
-  twitter_oauth_token_secret: a1kl5uoFsK4YcRjno3U3jLXogg7e4Xg6DsZdYLrGw    
+  twitter_oauth_token_secret: a1kl5uoFsK4YcRjno3U3jLXogg7e4Xg6DsZdYLrGw  
+  
+  #managing blogs, etc
+  manager_alias: 1033864170  
