@@ -65,4 +65,4 @@ production:
   twitter_oauth_token_secret: a1kl5uoFsK4YcRjno3U3jLXogg7e4Xg6DsZdYLrGw  
   
   #managing blogs, etc
-  manager_alias: 1033864170  
+  manager_alias: "1033864170"
