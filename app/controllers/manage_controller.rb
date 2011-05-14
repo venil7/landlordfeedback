@@ -27,6 +27,7 @@ class ManageController < PageController
         @post = Post.new(params[:post])
         if @post.save
             flash[:success] = success_message
+            update_twitter_on_post(@post)
             redirect_to :action => :posts
         else
             flash[:error] = failed_message
@@ -90,5 +91,12 @@ class ManageController < PageController
     
     def page_size
         20
+    end
+    
+    private 
+    def update_twitter_on_post(post)
+        url = url_for(:action=>:view,:controller=>:blog,:id=>post.id,:only_path=>false)
+        text = "#{post.title}, #{url}"
+        twitter_update(text)
     end
 end

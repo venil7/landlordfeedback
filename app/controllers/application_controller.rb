@@ -58,11 +58,13 @@ class ApplicationController < ActionController::Base
     @twitter_client ||= Twitter::Client.new
   end
   
-  def twitter_update(str)
+  def twitter_update(str, hashtag=nil)
+    hashtag ||= APP_CONFIG["hashtag"]
     begin
-     twitter_client.update(str)
+     @tweet = "#{str} ##{hashtag}"[0..139] #twitter restriction of 140 chars
+     twitter_client.update(@tweet)
     rescue
-     logger.error("failed to post twitter update")
+     logger.error("TWITTER: failed to post twitter update")
     end
   end
 end
