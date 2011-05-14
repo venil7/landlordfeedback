@@ -77,7 +77,7 @@ class ManageController < PageController
     def accessed_by_manager
         #for development set manager_alias = 0 - allow everyone
         #for production set manager_alias to managers facebook alias
-        redirect_to root_path unless (user_logged_in? and user_alias == APP_CONFIG["manager_alias"]) or APP_CONFIG["manager_alias"] == 0
+        redirect_to root_path unless (user_logged_in? and user_alias == APP_CONFIG["manager_alias"]) or APP_CONFIG["manager_alias"].nil?
     end
     
     def success_message

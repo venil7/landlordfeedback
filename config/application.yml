@@ -27,8 +27,9 @@ development:
   twitter_oauth_token_secret: DsoaOBK2vYZFMdP8K662EekOxtqsyNDjivVOLfV44
   
   #managing blogs, etc
-  manager_alias: 0 #everyone is a manager
-  
+  manager_alias: "1033864170" # supplying no manager_alias makes everyone a manager
+
+#-------------------------------------------------------------------------------
 production:
   static_marker_url: http://goo.gl/1jfSj
 
