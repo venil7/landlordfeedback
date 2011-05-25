@@ -53,6 +53,10 @@ class ManageController < PageController
         @comments = Comment.page(params[:page]).per(page_size)
     end
     
+    def users
+        @users = User.page(params[:page]).per(page_size)
+    end
+    
     def property_delete
         @property = Property.find(params[:id])
         @property.destroy

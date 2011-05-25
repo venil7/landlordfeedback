@@ -5,7 +5,7 @@ Llfb::Application.routes.draw do
   match 'post/view/:id' => "blog#view"
   
   #adds nice paging to actions mentioned in regexp
-  match ":controller/:action/:page", :controller=>"manage", :action => /posts|properties|feedbacks|comments/
+  match ":controller/:action/:page", :controller=>"manage", :action => /posts|properties|feedbacks|comments|users/
   
   #default
   match ":controller(/:action(/:id(.:format)))"
