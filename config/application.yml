@@ -1,6 +1,6 @@
 development:
   static_marker_url: http://goo.gl/1jfSj
-  
+
   client_id: 175005175873101
   secret_id: 699e53c1d614ee4270a1df567040ac71
 
@@ -13,13 +13,16 @@ development:
 
   facebook_like: >
       [fb like goes here]
-      
+
   twitter_tweet: >
       [tweet here]
 
   google_buzz: >
       [buzz here]
-            
+
+  google_plusone: >
+      [google +1 here]
+
   #this is for posting to tweet everytime a new post appears, testing uses askmoby twitter acc
   twitter_consumer_key: r0QPYB4iEx6JhqoClRXA
   twitter_consumer_secret: 8stWeCiR5K4Q5DdAuOWPfhTg1wryXFVYz1yTOLZwjyo
@@ -50,20 +53,24 @@ production:
 
   facebook_like: >
       <script src="http://connect.facebook.net/en_US/all.js#xfbml=1"></script><fb:like show_faces="true" width="200" font="trebuchet ms"></fb:like>
-      
+
   twitter_tweet: >
       <a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
 
   google_buzz: >
       <a title="Post to Google Buzz" class="google-buzz-button" href="http://www.google.com/buzz/post" data-button-style="small-count"></a>
-      <script type="text/javascript" src="http://www.google.com/buzz/api/button.js"></script>    
-      
+      <script type="text/javascript" src="http://www.google.com/buzz/api/button.js"></script>
+
+  google_plusone: >
+      <script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script>
+      <g:plusone></g:plusone>
+
   #this is for posting to tweet everytime a new post appears, production uses llfeedback twitter acc
   twitter_consumer_key: zwZWBVQjVcWGwgnA8n0y2Q
   twitter_consumer_secret: eQ7uvqDLOoPXPtXlm9ts1OqrdHxJIA0KgXGofV8bY
   twitter_oauth_token: 227477296-qIkXvZiqMvZD8q5xFoPWZB8lMsxJnuezHrYxVUI7
-  twitter_oauth_token_secret: a1kl5uoFsK4YcRjno3U3jLXogg7e4Xg6DsZdYLrGw  
+  twitter_oauth_token_secret: a1kl5uoFsK4YcRjno3U3jLXogg7e4Xg6DsZdYLrGw
   hashtag: llfb
-  
+
   #managing blogs, etc
   manager_alias: "1033864170"
