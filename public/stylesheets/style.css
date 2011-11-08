@@ -50,7 +50,7 @@ input.watermark {color:#ccc;}
  		-moz-transform: rotate(-1.5deg);  /* FF3.5+ */
     -o-transform: rotate(-1.5deg);  /* Opera 10.5 */
   	-webkit-transform: rotate(-1.5deg);  /* Saf3.1+, Chrome */
-    filter:  progid:DXImageTransform.Microsoft.Matrix(sizingMethod='auto expand', 
+    filter:  progid:DXImageTransform.Microsoft.Matrix(sizingMethod='auto expand',
                  M11=0.9996573249755573, M12=0.02617694830787315, M21=-0.02617694830787315, M22=0.9996573249755573); /* IE6,IE7 */
     -ms-filter: "progid:DXImageTransform.Microsoft.Matrix(SizingMethod='auto expand',M11=0.9996573249755573, M12=0.02617694830787315, M21=-0.02617694830787315, M22=0.9996573249755573)"; /* IE8 */
                zoom: 1;}
@@ -145,6 +145,7 @@ form { font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;}
 .textadblock2 {padding:5px; background:#ffc; border:solid 1px #666; margin-bottom:8px; margin-right:35px;}
 input[type=submit] {background:#706a5f; padding:2px 5px 2px 5px; text-align:center; font:bold 14px "Trebuchet MS", Arial, Helvetica, sans-serif; color:#efe9df; border:none;}
 .focus {background:#ffffaa;}
+#sidesearch {padding-bottom:20px;}
 #sidesearch input[type=text] {float:left; width:220px;margin-right:5px;}
 #comments h2 {background:#c7bdaa; padding:10px; font-size:18px!important;}
 #comments .entry {padding:10px; background:#c7bdaa; margin-bottom:10px;}
@@ -188,25 +189,29 @@ div.star-rating{background:transparent!important;overflow:hidden!important}
 .jnotify-container{position:fixed; top:0; left:0; width:100%; z-index:100000}
 .jnotify-container .jnotify-notification{position:relative}
 .jnotify-container .jnotify-notification .jnotify-background{position:absolute; top:0; left:0; width:100%; height:100%; background-color:#e3f0db; filter:alpha(opacity=90); -moz-opacity:0.90; opacity:0.90; z-index:1}
-.jnotify-container .jnotify-notification a.jnotify-close, 
-.jnotify-container .jnotify-notification a.jnotify-close:link, 
-.jnotify-container .jnotify-notification a.jnotify-close:visited, 
-.jnotify-container .jnotify-notification a.jnotify-close:focus, 
+.jnotify-container .jnotify-notification a.jnotify-close,
+.jnotify-container .jnotify-notification a.jnotify-close:link,
+.jnotify-container .jnotify-notification a.jnotify-close:visited,
+.jnotify-container .jnotify-notification a.jnotify-close:focus,
 .jnotify-container .jnotify-notification a.jnotify-close:hover{position:absolute; top:2px; right:5px; padding:0 5px; font:bold 1.4em Arial,Helvetica,sans-serif; line-height:1em; color:#567b1b; text-decoration:none; z-index:3; cursor:pointer}
 .jnotify-container .jnotify-notification .jnotify-message{position:relative; z-index:2; padding:20px; text-align:center; color:#567b1b; font:bold 1.4em Arial,Helvetica,sans-serif; line-height:1.2em}
 .jnotify-container .jnotify-notification .jnotify-message *{font-size:1em}
 /* notification type == "error"*/
 .jnotify-container .jnotify-notification-error .jnotify-background{background-color:#FFA07A}
-.jnotify-container .jnotify-notification-error .jnotify-close, 
+.jnotify-container .jnotify-notification-error .jnotify-close,
 .jnotify-container .jnotify-notification-error .jnotify-message{color:#a72947 !important}
 /* notification type == "notice"*/
 .jnotify-container .jnotify-notification-notice .jnotify-background{background-color:#93c4cc}
-.jnotify-container .jnotify-notification-notice .jnotify-close, 
+.jnotify-container .jnotify-notification-notice .jnotify-close,
 .jnotify-container .jnotify-notification-notice .jnotify-message{color:#eee !important}
 /* notification type == "success"*/
 .jnotify-container .jnotify-notification-success .jnotify-background{background-color:#98FB98}
-.jnotify-container .jnotify-notification-success .jnotify-close, 
+.jnotify-container .jnotify-notification-success .jnotify-close,
 .jnotify-container .jnotify-notification-success .jnotify-message{color:#228B22 !important}
 /*end notification style*/
 /*form validation errors*/
 ul.validation-error li {color:#dc143c;}
+
+#searchform form input[type=text]{border:2px solid #111;font:14px Helvetica;height:20px;width:250px}
+input.watermark{color:#999;font-family:"Trebuchet MS",Arial,Helvetica,sans-serif;font-size:12px!important}
+
