@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111108213510) do
+ActiveRecord::Schema.define(:version => 20111123225216) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -27,6 +27,18 @@ ActiveRecord::Schema.define(:version => 20111108213510) do
   add_index "active_admin_comments", ["author_type", "author_id"], :name => "index_active_admin_comments_on_author_type_and_author_id"
   add_index "active_admin_comments", ["namespace"], :name => "index_active_admin_comments_on_namespace"
   add_index "active_admin_comments", ["resource_type", "resource_id"], :name => "index_admin_notes_on_resource_type_and_resource_id"
+
+  create_table "admin_notes", :force => true do |t|
+    t.integer  "resource_id",     :null => false
+    t.string   "resource_type",   :null => false
+    t.integer  "admin_user_id"
+    t.string   "admin_user_type"
+    t.text     "body"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "admin_notes", ["resource_type", "resource_id"], :name => "index_admin_notes_on_resource_type_and_resource_id"
 
   create_table "admin_users", :force => true do |t|
     t.string   "email",                                 :default => "", :null => false
@@ -144,13 +156,14 @@ ActiveRecord::Schema.define(:version => 20111108213510) do
   end
 
   create_table "users", :force => true do |t|
-    t.string   "alias",      :limit => 16, :null => false
+    t.string   "alias",                              :null => false
     t.string   "name"
     t.string   "surname"
     t.string   "email"
     t.string   "avatar"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "provider",   :default => "facebook"
   end
 
   add_index "users", ["alias"], :name => "alias", :unique => true

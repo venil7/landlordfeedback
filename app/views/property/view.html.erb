@@ -15,7 +15,7 @@
       <div class="rating"><%= star_rating(:rating => @property.rating, :readonly=>true) %></div>
       <%= render "shared/social_widgets" %>
 		</div>
-		
+
     <!-- add new feedback link -->
 		<div>
        <h2><%= link_to (raw "Lived in this #{@property.propertytype.name}? <input type='submit' value='add feedback'/>"), {:controller=>:feedback, :action=>:add, :id=>@property.id}, {:class=>:nounder}%></h2>
@@ -33,7 +33,7 @@
             <p><cite>Agency:</cite><%=f.agency%></p>
             <p><cite>Last Date:</cite><%=f.lastdate%></p>
 		        <div class="rating"><%= star_rating(:rating => f.rating, :readonly=>true, :name=>"feedback-rating-#{f.id}") %></div>
-		        <div class="avatar"><p class="avt2"><%= image_tag user_pic(f.owner.alias)%></p></div>
+		        <div class="avatar"><p class="avt2"><%= image_tag user_pic(f.owner.avatar)%></p></div>
             <small>Posted by <%=f.owner.full_name %> on <%=f.updated_at %></small>
             <%= link_to 'Details..', :controller =>:feedback, :action=>:view, :id=>f.id %>
           </blockquote>

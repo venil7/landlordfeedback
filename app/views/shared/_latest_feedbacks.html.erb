@@ -1,12 +1,13 @@
 <h2>Latest Feedbacks</h2>
 <ul class="posts">
-  <% feedbacks.each do |feedback| %>
+  <% feedbacks.each do |f| %>
 	  <li>
-	    <%= link_to (feedback.agency or feedback.landlord)[0,30], :controller=>:feedback, :action=>:view, :id=>feedback.id%>
+	    <%= link_to f.name[0,30], :controller=>:feedback, :action=>:view, :id=>f.id%>
 	    <span>
-	      <%= feedback.updated_at%> | 
-	      <%= pluralize(feedback.comments.count, 'Comments') %>
+	      <%= f.updated_at%> |
+	      <%= pluralize(f.comments.count, 'Comments') %>
 	    </span>
 	  </li>
 	<% end %>
 </ul>
+

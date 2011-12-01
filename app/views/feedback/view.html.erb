@@ -7,10 +7,10 @@
 		    <p class="date"><%= @property.updated_at%></p>
 		    <h1><%= link_to @property.address, {:controller=>:property,:action=>:view,:id=>@property.id}%></h1>
 		    <h1><%= link_to @property.postcode.upcase, {:controller=>:property,:action=>:view,:id=>@property.id}%></h1>
-		    <h2>Landlord: <%=@feedback.landlord %> </h2> 
-		    <h2>Agency: <%=@feedback.agency %> </h2> 
+		    <h2>Landlord: <%=@feedback.landlord %> </h2>
+		    <h2>Agency: <%=@feedback.agency %> </h2>
 		    <h2>Date moved out: <%=@feedback.lastdate.to_s %> </h2>
-		    <p class="avt"><%= image_tag user_pic(@feedback.owner.alias)%></p>
+		    <p class="avt"><%= image_tag user_pic(@feedback.owner.avatar)%></p>
 		    <p class="postmeta"><%= @feedback.owner.full_name%></p>
 		  </div>
 		  <div class="rating"><%= star_rating(:rating => @feedback.rating, :readonly=>true) %></div>
@@ -36,15 +36,15 @@
               <div class="textfield fields">
 		            <label>JPG, PNG images, max 2Mb</label>
                 <%= p.file_field(:photo) %>
-		          </div>  
+		          </div>
 		          <%= p.submit('Upload') %>
-		      </div>    
+		      </div>
 		    <% end %>
 		  </div>
 		  <% end %>
 		</div>
 		<%end%>
-		
+
     <!-- ratings if any -->
     <% if @feedback.entries.any? %>
 		<div class="post">
@@ -115,5 +115,6 @@
  		<%= render "shared/side_pane" %>
   </div>
   <div class="clear">	</div>
-	
+
 </div>
+

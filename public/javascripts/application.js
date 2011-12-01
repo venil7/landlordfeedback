@@ -47,7 +47,7 @@
 	        return postcodeRegEx.test(this);
 	    };
     }
-    
+
     if (!String.prototype.strip) {
         String.prototype.strip = function(exp) {
              return this.replace(exp?exp:/\s/g,"");
@@ -93,7 +93,7 @@
           var loc = new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
           callback(loc);
         });
-      } 
+      }
     };
     //throttler
     LLFB.utils.Throttler = function(delay) {
@@ -107,14 +107,14 @@
                 clearTimeout(this.handlers[name]);
             }
             this.handlers[name] = setTimeout(func, customDelay);
-        } 
+        }
     };
     LLFB.utils.Throttler.prototype.remove = function(name) {
       var deleted = "__deleted"
       this.handlers[name]=deleted;
       this.handlers = this.handlers.splice(this.handlers.indexOf(deleted), 1);
     };
-})(jQuery);    
+})(jQuery);
 
 
 //this script runs on all pages on DOM-ready
@@ -122,25 +122,25 @@ $(function() {
     //common functionality, dependant on 3d party plugins
     LLFB.utils.notify = function(text, type, life) {
       type = type ||"notice";
-      life = life || 7000;
+      life = life || 3000;
       var sticky = typeof life === "boolean" ? life : false;
       $.jnotify(text, {type:type, delay:life, sticky:sticky});
     };
-    
+
     //jquery ui defaults
-    $.datepicker.setDefaults({ 
-      dateFormat:'yy-mm-dd', 
-      changeMonth:true, 
-      changeYear:true 
+    $.datepicker.setDefaults({
+      dateFormat:'yy-mm-dd',
+      changeMonth:true,
+      changeYear:true
     });
-    
+
     //jquery ajax defaults
-    $.ajaxSetup({ 
+    $.ajaxSetup({
       error:function(XMLHttpRequest, textStatus, errorThrown) {
         LLFB.utils.notify("there was an error processing your request: {error}".supplant({error:textStatus}));
       }
     });
-    
+
     //unfolders
     $(".unfolder").click(function(){
       var that = $(this);
@@ -149,12 +149,12 @@ $(function() {
         that.hide();
       }
       $("#"+id).fadeToggle();
-      
+
     });
-    
+
     //hidden elements
     $(".hidden").hide();
-    
+
     //ajax upload behavior
     $('#upload_form').iframePostForm({
       complete:function(response){
@@ -197,3 +197,4 @@ $(function() {
       }
     });
 });
+

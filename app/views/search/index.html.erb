@@ -1,0 +1,37 @@
+<div id="maincontent">
+	<div id="page">
+
+		<div class="post">
+		  <div class="posthead">
+  		    <h1><%=pluralize @properties.total_count, 'property'%> found..</h1>
+		  </div>
+		  <div><%= paginate @properties %></div>
+		  <div>
+        <% @properties.each {|property| %>
+          <div class='searchresult'>
+            <h3 style='position:relative;display:block;'><%= link_to property.address, {:controller=>:property,:action=>:view,:id=>property.id}%></h3>
+      		  <div style="display:block;width:120px;bottom:0px;left:0px;"><%= star_rating(:rating => property.rating, :readonly=>true) %></div>
+      		  <span><%=property.updated_at%></span> |
+      		  <span><%=pluralize property.feedbacks.size, 'feedback' %></span> |
+      		  <span><%=pluralize property.comments.size, 'comment' %></span>
+    		  </div>
+        <% } %>
+        <% unless @properties.any? %>
+          Be the first one to <%=link_to "add property", :controller=>:property,:action=>:add %> for <%= @search %>
+        <% end %>
+		  </div>
+ 		  <div><%= paginate @properties %></div>
+		</div>
+
+	</div>
+	<div id="sidebar">
+	  <%= render "shared/side_pane" %>
+	</div>
+	<div class="clear">	</div>
+</div>
+
+<style>
+  div.searchresult {position:relative;padding-bottom:30px;}
+  div.searchresult span {padding: 0 4px 0 4px;}
+</style>
+

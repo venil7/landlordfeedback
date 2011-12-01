@@ -8,7 +8,7 @@
   <div id="comments" class="comments-list">
     <% comments.each do |c| %>
       <div class="entry">
-         <p class="avt"><%= image_tag user_pic(c.user.alias) %></p>
+         <p class="avt"><%= image_tag user_pic(c.user.avatar) %></p>
          <p class="name"><%=c.user.full_name%></p>
          <p class="date"><%=c.updated_at%></p>
          <div class="con">
@@ -19,3 +19,4 @@
   </div>
 </div>
 <% end %>
+

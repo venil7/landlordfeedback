@@ -17,29 +17,37 @@ module ApplicationHelper
       raw result
     end
 
-    def user_pic(id)
-      return id ? "http://graph.facebook.com/#{id}/picture" : "/images/social/anonymous.gif"
+    def user_pic(img=nil)
+      if img
+        img
+      else
+        current_user[:avatar] ? current_user[:avatar] : "/images/social/anonymous.gif"
+      end
     end
 
-    def my_user_pic
-      user_pic(controller.user_alias)
-    end
+   # def my_user_pic
+   #   user_pic(controller.user_alias)
+   # end
 
     def user_logged_in?
       controller.user_logged_in?
     end
 
-    def user_name
-      controller.user_name
+    def current_user
+      controller.current_user
     end
 
-    def user_first_name
-      controller.user_first_name
-    end
+    #def user_name
+    #  controller.user_name
+    #end
 
-    def user_last_name
-      controller.user_last_name
-    end
+    #def user_first_name
+    #  controller.user_first_name
+    #end
+
+    #def user_last_name
+    #  controller.user_last_name
+    #end
 
     def fb_login_path
       return {:controller => :auth, :action => :fb_login}
@@ -90,3 +98,4 @@ module ApplicationHelper
     end
 
 end
+

@@ -23,9 +23,8 @@
 <div id="topbanner">
     <div class="container">
         <h1 id="sitename">
-                <%=image_tag src="/images/logo.png", :alt => "logo"%>
-                <%=link_to "Landlord Feedback", :root %>
-    </h1>
+          <a href="http://www.landlordfeedback.co.uk">Landlord Feedback</a>
+        </h1>
         <div id="mainnav">
             <ul>
                 <li class="<%=:active if @menu_item == :home %>"><a href="<%= url_for :controller=>:home, :action=>:index %>">Welcome <span>home..</span></a></li>
@@ -33,13 +32,20 @@
                 <li class="<%=:active if @menu_item == :about%>"><a href="<%= url_for :controller=>:home, :action=>:about %>">About <span>this project</span></a></li>
                 <li class="<%=:active if @menu_item == :donate%>"><a href="<%= url_for :controller=>:home, :action=>:donate %>">Donate <span>Please support us</span></a></li>
             </ul>
-            <div class="credentials">
-          <% unless user_logged_in? %>
-            <%= link_to((image_tag "fb_login.png", :id=>:fb_login_button), fb_login_path)%>
-          <%else%>
-            <div class="name"><%= user_first_name %><br/><%= user_last_name %></div>
-            <div class="avatar"><%= image_tag my_user_pic %></div>
-          <% end %>
+            <div id="credentials" class="credentials">
+              <% unless user_logged_in? %>
+                <ul class='list'>
+                  <li><span>Login with</span></li>
+                  <li class="img"><%= link_to image_tag("/images/facebook_16.png"), "/auth/facebook", :title=>"Login with Facebook"%></li>
+                  <li class="img"><%= link_to image_tag("/images/twitter_16.png"), "/auth/twitter", :title=>"Login with Twitter"%></li>
+                  <li class="img"><%= link_to image_tag("/images/google_16.png"), "/auth/google_oauth2", :title=>"Login with Google"%></li>
+                </ul>
+              <% else %>
+                <div class="name"><%= current_user[:name] %><br />
+                <%= current_user[:surname] %><br />
+                <%= link_to "log out", "/signout" %></div>
+                <div class="avatar"><%= image_tag user_pic %></div>
+              <% end %>
             </div>
         </div>
         <div class="clear">

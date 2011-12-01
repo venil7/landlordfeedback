@@ -1,34 +1,36 @@
 source 'http://rubygems.org'
 
-gem 'rails'
+gem 'rails', '3.0.10'
 
-# Bundle edge Rails instead:
-# gem 'rails', :git => 'git://github.com/rails/rails.git'
+#authorization
+gem 'omniauth'
+gem 'omniauth-twitter'
+gem 'omniauth-facebook'
+gem 'omniauth-google-oauth2'
 
-#gem 'sqlite3-ruby', :require => 'sqlite3'
-
-gem 'fbgraph' , '0.1.6.4.1'
+#image attachments
 gem 'paperclip'
 
+#production sql
 gem 'ruby-mysql'
 gem 'mysql2', '0.2.6'
 
+#twitter posting
 gem 'twitter', :git => 'https://github.com/jnunemaker/twitter.git'
 gem "twitter-text", :require => 'twitter-text', :git => 'git://github.com/twitter/twitter-text-rb.git'
 
+#pagination
 gem 'kaminari'
 
-gem 'meta_where'
-gem 'meta_search'
+#advanced sql queries thru activerecord
+gem 'squeel'
 
+#admin page
 gem 'activeadmin'
 
 
-
-# Bundle gems for the local environment. Make sure to
-# put test-only gems in this group so their generators
-# and rake tasks are available in development mode:
-# group :development, :test do
-#   gem 'webrat'
-# end
+#non production gems
+group :development, :test do
+  gem 'sqlite3'
+end
 

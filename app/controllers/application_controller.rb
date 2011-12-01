@@ -3,34 +3,18 @@ class ApplicationController < ActionController::Base
     super()
   end
 
-  def user_info
-      session[:user_info]
+  def current_user
+    if user_logged_in?
+      @current_user ||= User.find(session[:user_id])
+    else
+      {}
+    end
   end
 
   def user_logged_in?
-      user_info != nil
+    session[:user_id] != nil
   end
 
-  def user_alias
-      user_info[:id] if user_logged_in?
-  end
-  
-  def user_id
-      session[:user_id] if user_logged_in?
-  end
-  
-  def user_name
-      user_info[:name] if user_logged_in?
-  end
-
-  def user_first_name
-      user_info[:first_name] if user_logged_in?
-  end
-  
-  def user_last_name
-      user_info[:last_name] if user_logged_in?
-  end
-  
   protected
   def comment_attempt_create(controller, on_fail = lambda {})
     if params[:comment] == nil
@@ -38,7 +22,7 @@ class ApplicationController < ActionController::Base
       return
     end
     @comment = Comment.new(params[:comment])
-    @comment[:user_id] = user_id
+    @comment[:user_id] = current_user.id
     if @comment.save
       flash[:success] = added_successfully_message :comment
       redirect_to :controller=>controller, :action =>:view, :id=>@comment.commentable_id, :anchor=>:comments
@@ -47,24 +31,19 @@ class ApplicationController < ActionController::Base
       on_fail.call()
     end
   end
-  
-  def fb_client
-    @client ||= FBGraph::Client.new(:client_id => APP_CONFIG['client_id'],
-                                    :secret_id => APP_CONFIG['secret_id'],
-                                    :token => session[:access_token])
-  end
-  
+
   def twitter_client
     @twitter_client ||= Twitter::Client.new
   end
-  
+
   def twitter_update(str, hashtag=nil)
     hashtag ||= APP_CONFIG["hashtag"]
     begin
      @tweet = "#{str} ##{hashtag}"[0..139] #twitter restriction of 140 chars
      twitter_client.update(@tweet)
-    rescue
-     logger.error("TWITTER: failed to post twitter update")
+    rescue Exception => e
+     logger.error("TWITTER: #{e.message}")
     end
   end
 end
+
