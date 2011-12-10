@@ -1,9 +1,0 @@
-<%= render "menu" %>
-<h2>Comments</h2>
-<%=paginate @comments %>
-<table>
-<% @comments.each do |c| %>
-    <tr><td><%=link_to "#{c.text[0..20]}..", :controller=>c.commentable_type.downcase.to_sym,:action=>:view, :id=>c.commentable_id%></td>
-        <td><%= link_to "[x]", { :action => :comment_delete, :id => c.id } %></td></tr>
-<% end %>
-</table>

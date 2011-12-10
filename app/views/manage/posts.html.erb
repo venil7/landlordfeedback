@@ -1,9 +1,0 @@
-<%= render "menu" %>
-<h2>Blog posts</h2>
-<%= button_to "new post", :action=>:post_new %>
-<%=paginate @posts %>
-<table>
-<% @posts.each do |e| %>
-    <tr><td><%=link_to "#{e.title}", :action=>:post_edit, :id=>e.id%></td><td><%= link_to "[x]", { :action => :post_delete, :id => e.id } %></td></tr>
-<% end %>
-</table>

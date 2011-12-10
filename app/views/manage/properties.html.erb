@@ -1,9 +1,0 @@
-<%= render "menu" %>
-<h2>Properties</h2>
-<%=paginate @properties %>
-<table>
-<% @properties.each do |e| %>
-    <tr><td><%=link_to "#{e.address}", :controller=>:property,:action=>:view, :id=>e.id%></td>
-        <td><%= link_to "[x]", { :action => :property_delete, :id => e.id } %></td></tr>
-<% end %>
-</table>

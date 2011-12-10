@@ -49,12 +49,12 @@ module ApplicationHelper
     #  controller.user_last_name
     #end
 
-    def fb_login_path
-      return {:controller => :auth, :action => :fb_login}
+    def login_path
+      return {:controller => :session, :action => :login}
     end
 
     def login_text_link(txt)
-      return link_to txt, fb_login_path unless user_logged_in?
+      return link_to txt, login_path unless user_logged_in?
     end
 
     def flash_notice
