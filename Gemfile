@@ -12,11 +12,13 @@ gem 'omniauth-google-oauth2'
 gem 'paperclip'
 
 #production sql
-gem 'ruby-mysql'
-gem 'mysql2', '0.2.6'
+gem 'sqlite3'
+#gem 'ruby-mysql'
+#gem 'mysql2', '0.2.6'
 
 #twitter posting
-gem 'twitter', :git => 'https://github.com/jnunemaker/twitter.git'
+gem 'twitter', :git => 'https://github.com/sferik/twitter.git'
+#gem 'twitter', :git => 'https://github.com/jnunemaker/twitter.git'
 gem "twitter-text", :require => 'twitter-text', :git => 'git://github.com/twitter/twitter-text-rb.git'
 
 #pagination
@@ -27,10 +29,3 @@ gem 'squeel'
 
 #admin page
 gem 'activeadmin'
-
-
-#non production gems
-group :development, :test do
-  gem 'sqlite3'
-end
-

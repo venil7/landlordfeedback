@@ -5,7 +5,7 @@ class Property < ActiveRecord::Base
   attr_accessor :accept_terms
   #attr_accessor :post_as_anonymous
 
-  default_scope order("updated_at desc")
+  default_scope order("'properties'.'updated_at' desc")
 
   #relations
   has_many :feedbacks
