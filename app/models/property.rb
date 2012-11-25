@@ -66,7 +66,7 @@ class Property < ActiveRecord::Base
     .joins{entries.outer}
     .select{[id,address,lat,lng,propertytype_id,updated_at,user_id]}
     .select{"ifnull(round(avg(`entries`.`rating`),0),0) as `rating`"}
-    .select{"ucase(`properties`.`postcode`) as `postcode`"}
+    .select{"upper(`properties`.`postcode`) as `postcode`"}
     .group{id}
   end
 end
