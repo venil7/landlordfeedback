@@ -160,8 +160,8 @@ input[type=submit] {background:#111; padding:2px 5px 2px 5px; text-align:center;
 #comments .entry {padding:10px; background:#c7bdaa; margin-bottom:10px;}
 #comments .entry p {display:block; margin-bottom:8px!important;}
 #comments .entry .avt {float:left; width:55px; margin-right:10px;}
-.avt img {background:#706a5f; padding:5px;}
-.avt2 img {background:#c7bdaa; padding:5px;}
+.avt img {background:#706a5f; padding:5px; width:50px; height:50;}
+.avt2 img {background:#c7bdaa; padding:5px; width:50px; height:50;}
 #comments .entry .con, #comments .entry .name, #comments .entry .date { margin-left:70px; font: italic 11px "Trebuchet MS", Arial, Helvetica, sans-serif; }
 #comments .entry .con blockquote {}
 h3#respond {color: #fff; font:bold 18px "Trebuchet MS", Arial, Helvetica, sans-serif; margin-bottom:15px;}
