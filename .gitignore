@@ -1,3 +1,6 @@
+.bundle/*
+.bundle/**/*
+vendor/**/*
 log/*.log
 tmp/**/*
 config/*.yml
