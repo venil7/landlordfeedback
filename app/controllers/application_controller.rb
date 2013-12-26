@@ -33,7 +33,13 @@ class ApplicationController < ActionController::Base
   end
 
   def twitter_client
-    @twitter_client ||= Twitter::Client.new
+    @twitter_client ||= Twitter::REST::Client.new do |config|
+      @keys = APP_CONFIG['auth']['twitter'].to_options
+      config.consumer_key    = @keys[:client]
+      config.consumer_secret = @keys[:secret]
+      config.access_token = @keys[:token]
+      config.access_token_secret = @keys[:token_secret]
+    end
   end
 
   def twitter_update(str, hashtag=nil)
@@ -42,7 +48,7 @@ class ApplicationController < ActionController::Base
      @tweet = "#{str} ##{hashtag}"[0..139] #twitter restriction of 140 chars
      twitter_client.update(@tweet)
     rescue Exception => e
-     logger.error("TWITTER: #{e.message}")
+     logger.error("Caught twitter exception: #{e.message}")
     end
   end
 end

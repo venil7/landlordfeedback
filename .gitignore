@@ -3,4 +3,3 @@ tmp/**/*
 config/*.yml
 db/*.sqlite3
 public/assests/
-Gemfile.lock
