@@ -1,10 +1,10 @@
 .bundle/*
 .bundle/**/*
+public/assests/**/*
 vendor/**/*
 log/*.log
 tmp/**/*
 config/*.yml
 db/*.sqlite3
 db/*.sqlite
-public/assests/
 .sass-cache/*

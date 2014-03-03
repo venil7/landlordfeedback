@@ -9,7 +9,7 @@ gem 'omniauth-facebook', '1.0.0'
 gem 'omniauth-google-oauth2', '0.1.4'
 
 #image attachments
-gem 'paperclip', '2.4.5'
+gem 'paperclip', '3.5.4'
 
 #production sql
 gem 'sqlite3', '1.3.4'
