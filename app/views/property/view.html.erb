@@ -10,7 +10,9 @@
 		    </p>
 		  </div>
  		  <%@property.photos.last(4).each do |f| %>
-        <%= image_tag f.photo.url(:thumb) %>
+        <a href="<%=f.photo.url(:original)%>" class="photo-link">
+          <%= image_tag f.photo.url(:thumb) %>
+        </a>
       <% end %>
       <div class="rating"><%= star_rating(:rating => @property.rating, :readonly=>true) %></div>
       <%= render "shared/social_widgets" %>
@@ -56,3 +58,4 @@
 	<div class="clear">	</div>
 </div>
 
+<%= render "shared/gallery_init" %>

@@ -21,7 +21,9 @@
 		<%if @own_page or @feedback.photos.any? %>
 		<div class="post" id="photo-container">
 		  <%@feedback.photos.each do |f| %>
-        <%= image_tag f.photo.url(:thumb) %>
+        <a href="<%=f.photo.url(:original)%>" class="photo-link">
+          <%= image_tag f.photo.url(:thumb) %>
+        </a>
       <% end %>
       <% if @own_page %>
    		  <div class="posthead">
@@ -118,3 +120,4 @@
 
 </div>
 
+<%= render "shared/gallery_init" %>
