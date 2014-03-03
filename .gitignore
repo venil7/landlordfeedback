@@ -1,6 +1,6 @@
 .bundle/*
 .bundle/**/*
-public/assests/**/*
+public/assets/**/*
 vendor/**/*
 log/*.log
 tmp/**/*
